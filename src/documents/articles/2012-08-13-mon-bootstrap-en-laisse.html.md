@@ -88,7 +88,7 @@ Ce répertoire contiendra les surcharges des classes LESS.
 Pour surcharger un fichier, il suffit de copier le fichier `bootstrap.less` du répertoire `bootstrap`.
 
 ```bash
- #> sed -e "s/@import \"/@import \"\.\.\/bootstrap\/less\//g" ../bootstrap/less/bootstrap.less > theme.less
+ > sed -e "s/@import \"/@import \"\.\.\/bootstrap\/less\//g" ../bootstrap/less/bootstrap.less > theme.less
 ```
 
 Ce fichier sera votre point d'entrée de votre thème Bootstrap, c'est celui qui sera compilé pour produire le fichier CSS.
@@ -111,7 +111,9 @@ Il faut aussi modifier la ligne dans le fichier `theme.less` pour inclure votre 
 @import "../bootstrap/less/variables.less"; // Modify this for custom colors, font-sizes, etc
 @import "../bootstrap/less/mixins.less";
 ```
+
 Pour le modifier de la sorte :
+
 ```css
 // Core variables and mixins
 @import "variables.less"; // Modify this for custom colors, font-sizes, etc
@@ -152,7 +154,7 @@ module.exports = function(grunt) {
 Il faut installer les dépendances liées à Grunt via :
 
 ```bash
- #> npm install -g grunt grunt-recess
+ > npm install -g grunt grunt-recess
 ```
 
 Pour compiler le tout, un petit `grunt` et voila ! J'utilise la tâche Recess de Grunt, disponible [ici](https://github.com/sindresorhus/grunt-recess).
@@ -162,8 +164,8 @@ Vous trouverez les sources complètes de l'article sur [Github](https://github.c
 Pour utiliser cet exemple, vous devez cloner le dépôt, et initialiser le sous-module :
 
 ```bash
- #> git clone https://github.com/Zenithar/custom-bootstrap-boilerplate.git
- #> git submodule --init update
+ > git clone https://github.com/Zenithar/custom-bootstrap-boilerplate.git
+ > git submodule --init update
 ``` 
 
 Et voila, bon bootstapping !

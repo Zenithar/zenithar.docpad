@@ -26,7 +26,7 @@ if @document.filename.indexOf @document.title == 0
 if !@document.author
 	@documentModel.set('author', @document.name)
 
-article "#post.#{@document.class}", typeof: 'sioc:post', about: "#{@document.url}", lang: 'ko-kr', ->
+article "#post.#{@document.class}", typeof: 'sioc:post', about: "#{@document.url}", lang: 'fr-fr', ->
 	header '.row', ->
 		div '.span2', ->
 			img src: "http://www.gravatar.com/avatar/#{@document.gravata}"

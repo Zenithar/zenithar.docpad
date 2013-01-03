@@ -34,7 +34,7 @@ tag 'feed', xmlns: 'http://www.w3.org/2005/Atom', ->
 
   i=0
   @getCollection('posts').forEach (document) ->
-    if document.get('encoding') != 'binary' and 0 is document.get('url').indexOf '/posts'
+    if document.get('encoding') != 'binary' and 0 is document.get('url').indexOf '/articles'
       i++
       if i < 10 and document.get('contentRenderedWithoutLayouts')
         anEntry document

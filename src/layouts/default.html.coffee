@@ -9,22 +9,14 @@ html lang: 'fr', ->
 
     if @document.meta.layout is 'post' or @document.meta.layout is 'author'
       #document has own title, articles or authors
-      title "#Zenithar.org - #{@document.meta.title}"
-      meta name: 'description', content: @document.meta.description or ''
-      meta name: 'keywords', content: @document.meta.keywords or ''
-      meta name: 'author', content: @document.meta.author or ''
+      title "Zenithar.org - #{@document.meta.title}"
     else
       #document has not own title, not articles or authors
-      title "#Zenithar.org - #{@site.title}"
-      meta name: 'description', content: @site.description or ''
-      meta name: 'keywords', content: @site.keywords or ''
-      authorNames=[]
-      @getCollection('documents').forEach (document)->
-        if 0 is document.get('url').indexOf '/authors'
-          authorNames.push document.get('name')
+      title "Zenithar.org - #{@site.title}"
 
-      authors = if authorNames.length > 0 then authorNames.join(', ') else ''
-      meta name: 'author', content: authors
+    meta name: 'description', content: @getPreparedDescription()
+    meta name: 'keywords', content: @getPreparedKeywords()
+    meta name: 'author', content: 'Thibault NORMAND'
 
     comment 'Icons'
     link rel: 'shortcut icon', href: 'images/favicon.ico'
@@ -32,7 +24,7 @@ html lang: 'fr', ->
     link rel: 'apple-touch-icon', sizes: '72x72', href: 'images/apple-touch-icon-72x72.png'
     link rel: 'apple-touch-icon', sizes: '114x114', href: 'images/apple-touch-icon-114x114.png'
 
-    link rel: 'alternate', type: 'application/atom+xml', title: "#{@site.title} &raquo; Feed", href: 'http://feeds.feedburner.com/github/dogfeet'
+    link rel: 'alternate', type: 'application/atom+xml', title: "Zenithar.org &raquo; Feed", href: 'http://feeds.feedburner.com/ZenitharOrg'
 
     comment 'Shims: IE6-8 support of HTML5 elements'
     comment '[if lt IE 9]>\n        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>\n    <![endif]'
@@ -49,6 +41,7 @@ html lang: 'fr', ->
 
     script src: 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js'
     script src: 'http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js'
+    script src: 'http://connect.facebook.net/fr_FR/all.js#xfbml=1'
     script src: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.0/js/bootstrap.min.js'
     script src: 'http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js'
 
@@ -68,11 +61,12 @@ html lang: 'fr', ->
           div '.nav-collapse.collapse', ->
             ul '.nav', ->
               li -> a href: '/site/tagmap.html', 'Tagmap'
-              li -> a href: '/site/archive.html', 'Archive'
-              li -> a href: 'http://feeds.feedburner.com/github/dogfeet', ->
+              li -> a href: '/site/archive.html', 'Archives'
+              li -> a href: 'http://zenithar.org', rel: 'me', 'CV'
+              li -> a href: 'http://feeds.feedburner.com/ZenitharOrg', ->
                 img src: 'http://forum.tattersite.com/ko/style/Textcube/feed-icon.png'
             form '#search-form.pull-right.navbar-search', action: 'http://google.com/search', method: 'get', ->
-              input type: 'hidden', name: 'q', value: 'site:dogfeet.github.com'
+              input type: 'hidden', name: 'q', value: 'site:www.zenithar.org'
               input 'search-query', type: 'text', name: 'q', results: '0', placeholder: 'Search'
 
     comment 'Markup'
@@ -100,7 +94,7 @@ html lang: 'fr', ->
       """
       if( '#{@site.url}' === 'http://' + window.location.hostname ) {
         var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-27493298-1']);
+        _gaq.push(['_setAccount', 'UA-8114245-1']);
         _gaq.push(['_trackPageview']);
 
         (function() {

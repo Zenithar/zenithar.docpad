@@ -35,7 +35,7 @@ script ->
 
   """
 section '.content', ->
-  article "#post.post.#{@document.class}", typeof: 'sioc:post', about: "#{@document.url}", lang: 'fr-fr', ->
+  article "#post.post", typeof: 'sioc:post', about: "#{@document.url}", lang: 'fr-fr', ->
     # Date & Title
     div '.row', ->
       div '.span2.muted.modern-font.small-font', ->
@@ -49,8 +49,7 @@ section '.content', ->
         text @layout 'article-footer', @documentModel
     # Content Container
     div '.row', ->
-      div '.offset2.span10', ->
-        text '<br/>'
+      div '.span2', ->
         # Social Button
         style rel: 'stylesheet', media: 'screen, projection', scoped: 'scoped', ->
           """
@@ -70,6 +69,8 @@ section '.content', ->
             li -> div '.g-plusone', 'data-size': 'medium', 'data-href': articleUrl
             li -> div '.fb-like', 'data-href': articleUrl, 'data-send': 'false', 'data-layout': 'button_count', 'data-show-faces': 'false'
         # / Social Button
+
+      div '.span10', ->
         # Content
         div property: 'sioc:content', -> "#{@content}"
 # relatedDocuments

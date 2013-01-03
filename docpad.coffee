@@ -40,12 +40,12 @@ docpadConfig = {
 
             # The website description (for SEO)
             description: """
-                
+                Ancien ingénieur sécurité passionné, acteur dans le monde du logiciel 'libre'. Je suis en veille technologique permanente car toujours à la recherche du 'meilleur tournevis'.
                 """
 
             # The website keywords (for SEO) separated by commas
             keywords: """
-                place, your, website, keywoards, here, keep, them, related, to, the, content, of, your, website
+                zenithar,html5,node.js,coffeescript,toulouse,java,security,engineer
                 """
 
             # The website author's name
@@ -128,7 +128,7 @@ docpadConfig = {
         # Get the prepared site/document keywords
         getPreparedKeywords: ->
             # Merge the document keywords with the site keywords
-            @site.keywords.concat(@document.keywords or []).join(', ')
+            @site.keywords.concat(@document.tags or []).join(', ')
 
     # =================================
     # Collections
@@ -141,7 +141,7 @@ docpadConfig = {
 
         # This one, will fetch in all documents that have the tag "post" specified in their meta data
         posts: (database) ->
-            database.findAllLive({relativeOutDirPath:'posts'}, [date:-1])
+            database.findAllLive({relativeOutDirPath:'articles'}, [date:-1])
 
 
     # =================================
