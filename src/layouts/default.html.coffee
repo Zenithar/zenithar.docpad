@@ -10,13 +10,15 @@ html lang: 'fr', ->
     if @document.meta.layout is 'post' or @document.meta.layout is 'author'
       #document has own title, articles or authors
       title "Zenithar.org - #{@document.meta.title}"
+      meta name: 'description', content: @getPreparedDescription()
+      meta name: 'keywords', content: @getPreparedKeywords()
+      meta name: 'author', content: 'Thibault NORMAND'
     else
       #document has not own title, not articles or authors
       title "Zenithar.org - #{@site.title}"
-
-    meta name: 'description', content: @getPreparedDescription()
-    meta name: 'keywords', content: @getPreparedKeywords()
-    meta name: 'author', content: 'Thibault NORMAND'
+      meta name: 'description', content: @getPreparedDescription()
+      meta name: 'keywords', content: @getPreparedKeywords()
+      meta name: 'author', content: 'Thibault NORMAND'
 
     comment 'Icons'
     link rel: 'shortcut icon', href: 'images/favicon.ico'
@@ -29,21 +31,21 @@ html lang: 'fr', ->
     comment 'Shims: IE6-8 support of HTML5 elements'
     comment '[if lt IE 9]>\n        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>\n    <![endif]'
     comment 'Styles'
-    link rel: 'stylesheet', href: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.0/css/bootstrap-combined.min.css', media: 'screen, projection'
+
+    link rel: 'stylesheet', href: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css', media: 'screen, projection'
     link rel: 'stylesheet', href: '/styles/style.css', media: 'screen, projection'
     link rel: 'stylesheet', href: '/styles/markdown.css', media: 'screen, projection'
     link rel: 'stylesheet', href: 'http://yandex.st/highlightjs/7.3/styles/github.min.css', media: 'screen, projection'
+    
     #link rel: 'stylesheet', href: '/styles/print.css', media: 'print'
 
     #text @blocks.styles.join('')
 
     comment 'Scripts'
 
-    script src: 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js'
-    script src: 'http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js'
-    script src: 'http://connect.facebook.net/fr_FR/all.js#xfbml=1'
-    script src: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.0/js/bootstrap.min.js'
-    script src: 'http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js'
+    script src: '//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js'
+    script src: '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js'
+    script src: '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js'
 
     #text @blocks.scripts.join('')
 
@@ -64,7 +66,7 @@ html lang: 'fr', ->
               li -> a href: '/site/archive.html', 'Archives'
               li -> a href: 'http://zenithar.org', rel: 'me', 'CV'
               li -> a href: 'http://feeds.feedburner.com/ZenitharOrg', ->
-                img src: 'http://forum.tattersite.com/ko/style/Textcube/feed-icon.png'
+                img src: '/images/rss_32.png', style: 'width: 24px'
             form '#search-form.pull-right.navbar-search', action: 'http://google.com/search', method: 'get', ->
               input type: 'hidden', name: 'q', value: 'site:www.zenithar.org'
               input 'search-query', type: 'text', name: 'q', results: '0', placeholder: 'Search'
@@ -74,8 +76,10 @@ html lang: 'fr', ->
       div ->
         @content
 
-      footer '.footer', ->
-        p 'Copyright &copy; 2005-2013 Thibault NORMAND, motorisé par <a href="https://github.com/balupton/docpad">Docpad</a>, versionné par <a href="https://github.com/Zenithar/zenithar.docpad">Github</a>.'
+    footer '.footer', ->
+      div '.container', ->
+        div '.row', ->
+          p 'Copyright &copy; 2005-2013 Thibault NORMAND, motorisé par <a href="https://github.com/balupton/docpad">Docpad</a>, versionné par <a href="https://github.com/Zenithar/zenithar.docpad">Github</a>.'
 
     comment 'DISQUS'
     script ->
