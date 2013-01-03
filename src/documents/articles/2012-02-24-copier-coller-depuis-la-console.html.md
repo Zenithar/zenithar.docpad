@@ -17,8 +17,8 @@ Petite découverte de la journée, j'ai eu le besoin de copier un fichier de la 
 
 [Xsel](http://www.kfish.org/software/xsel/), est l'outil qu'il faut pour ça ! Il permet de manipuler le clipboard depuis la console.
 
-``` bash Pour transférer le contenu d'un fichier dans le clipboard
-#> cat file | xsel --clipboard
+``` bash
+ > cat file | xsel --clipboard
 ```
 
 Je vous invite à aller sur le site pour plus d'exemples, vraiment pas mal, il fallait y penser et il l'a fait ^^
