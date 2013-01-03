@@ -75,7 +75,7 @@ html lang: 'fr', ->
         @content
 
       footer '.footer', ->
-        p 'Copyright &copy; 2005-2013 Thibault NORMAND, motorisé par <a href="https://github.com/balupton/docpad">Docpad</a>'
+        p 'Copyright &copy; 2005-2013 Thibault NORMAND, motorisé par <a href="https://github.com/balupton/docpad">Docpad</a>, versionné par <a href="https://github.com/Zenithar/zenithar.docpad">Github</a>.'
 
     comment 'DISQUS'
     script ->

@@ -45,7 +45,7 @@ docpadConfig = {
 
             # The website keywords (for SEO) separated by commas
             keywords: """
-                zenithar,html5,node.js,coffeescript,toulouse,java,security,engineer
+                zenithar,toulouse,java,security,engineer
                 """
 
             # The website author's name
