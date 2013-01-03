@@ -1,0 +1,50 @@
+{
+	"name": "docpad-plugin-tags",
+	"version": "0.1.0",
+	"description": "for tags",
+	"homepage": "https://github.com/dogfeet/dogfeet.docpad",
+	"keywords": [
+		"docpad-plugin"
+	],
+	"author": {
+		"name": "dogfeet",
+		"email": "dogfeet@weaveus.com",
+		"url": "http://github.com/dogfeet"
+	},
+	"maintainers": [
+		{
+			"name": "dogfeet",
+			"email": "dogfeet@weaveus.com",
+			"url": "http://github.com/dogfeet"
+		}
+	],
+	"contributors": [
+		{
+			"name": "dogfeet",
+			"email": "dogfeet@weaveus.com",
+			"url": "http://github.com/dogfeet"
+		}
+	],
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://creativecommons.org/licenses/MIT/"
+		}
+	],
+	"repository" : {
+		"type": "git",
+		"url": "http://github.com/dogfeet/dogfeet.docpad.git"
+	},
+	"dependencies": {
+	},
+	"engines" : {
+		"node": ">=0.6.0"
+	},
+	"bin": {
+		"docpad": "./bin/docpad"
+	},
+	"directories": {
+		"lib": "."
+	},
+	"main": "./tags.plugin.coffee"
+}
