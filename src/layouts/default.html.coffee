@@ -20,6 +20,7 @@ html lang: 'fr', ->
       meta name: 'keywords', content: @getPreparedKeywords()
       meta name: 'author', content: 'Thibault NORMAND'
 
+
     comment 'Icons'
     link rel: 'shortcut icon', href: 'images/favicon.ico'
     link rel: 'apple-touch-icon', href: 'images/apple-touch-icon.png'
@@ -45,6 +46,7 @@ html lang: 'fr', ->
 
     script src: '//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js'
     script src: '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js'
+    script src: "//connect.facebook.net/fr_FR/all.js#xfbml=1"
     script src: '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js'
 
     #text @blocks.scripts.join('')

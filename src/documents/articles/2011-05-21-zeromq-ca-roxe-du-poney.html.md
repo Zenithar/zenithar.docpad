@@ -26,7 +26,7 @@ Il faut savoir qu'il est possible d'implémenter plus d'une dizaine de topologie
 
 Voici un exemple de serveur en C++ :  
 
-``` octave
+``` cpp
 #include <zmq.hpp>
 #include <string>
 #include <iostream>
@@ -69,7 +69,7 @@ int main() {
 
 Pour compiler l'exemple, voici la ligne de commande :  
 
-```
+``` bash
 zenithar:test-zmq/ $ g++ main.cpp -I/opt/zmq/include -L/opt/zmq/lib -lzmq -o main
 ```
 Et un client en python :  
@@ -88,7 +88,7 @@ msg
 ```
 On verra apparaitre coté serveur :  
 
-```
+``` bash
 zenithar:test-zmq/ $ LD_LIBRARY_PATH=/opt/zmq/lib ./main
 * Current 0MQ version is 2.1.7
 * Listening on *:5555

@@ -36,6 +36,6 @@ section '.content.articles', ->
             if document.get('contentRenderedWithoutLayouts')
               text '<br/>'
               text @tool.summary document.get('contentRenderedWithoutLayouts')
-            p -> a '.btn.btn-mini.pull-right', href: document.get('url'), 'Suite &raquo;'
+            p -> a '.btn', href: document.get('url'), 'Suite &raquo;'
 
   div '.row', -> p '.offset2.span10', -> a '.btn.btn-mini.info.right', href: '/site/archive.html', 'Archives &raquo;'

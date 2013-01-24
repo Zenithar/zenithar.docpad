@@ -16,7 +16,7 @@ tags:
 
 Voici comment ajouter l'entête HTTP Access-control-allow-origin, bien connu des utilisateurs de JSON, AMF ou tout simplement de service REST.
 
-``` java JsonpFilter.java
+``` java
 package org.zenithar.servlet.filters;
 
 import java.io.IOException;
@@ -94,7 +94,7 @@ public class JsonpFilter implements Filter {
 
 Exemple de configuration de votre fichier web.xml
 
-``` xml web.xml
+``` xml
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app id="dataservices" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

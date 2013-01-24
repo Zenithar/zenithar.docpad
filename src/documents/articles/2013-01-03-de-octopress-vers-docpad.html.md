@@ -3,6 +3,7 @@ layout: post
 title: "De Octopress vers DocPad"
 date: 2013-01-03 16:51
 comments: true
+description: "La migration d'Octopress vers DocPad, une histoire de temps !"
 tags:
  - Octopress
  - DocPad
