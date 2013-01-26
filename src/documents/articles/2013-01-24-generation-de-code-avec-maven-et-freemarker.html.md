@@ -237,7 +237,7 @@ User;Deleted;UserDTO
 
 ```
 
-``` !!! ATTENTION de ne pas oublier le dernier retour à la ligne !!! ```
+[info] !!! ATTENTION de ne pas oublier le dernier retour à la ligne !!! [/info]
 
 ## Génération multi-fichiers
 

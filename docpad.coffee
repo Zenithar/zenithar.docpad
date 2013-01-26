@@ -184,9 +184,9 @@ docpadConfig = {
               hash m1 + '<a href="https://twitter.com/' + m2 + '">@' + m2 + '</a>'
 
             #for hash tag·
-            out = out.replace /(^|[ \t]+)#([ㄱ-ㅎ가-힣a-zA-Z0-9]+)/g, (whole, m1, m2) ->
+            out = out.replace /(^|[ \t]+)#([a-zA-Z0-9]+)/g, (whole, m1, m2) ->
               hash m1 + '<a href="/site/tagmap.html#' + m2 + '">#' + m2 + '</a>'
-
+              
             out
 
 }

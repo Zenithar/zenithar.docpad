@@ -1,0 +1,50 @@
+{
+	"name": "docpad-plugin-bootstrapalert",
+	"version": "0.1.0",
+	"description": "Support Twitter Bootstrap alert",
+	"homepage": "https://github.com/Zenithar/zenithar.docpad",
+	"keywords": [
+		"docpad-plugin"
+	],
+	"author": {
+		"name": "zenithar",
+		"email": "me@zenithar.org",
+		"url": "http://github.com/Zenithar"
+	},
+	"maintainers": [
+		{
+			"name": "zenithar",
+			"email": "me@zenithar.org",
+			"url": "http://github.com/Zenithar"
+		}
+	],
+	"contributors": [
+		{
+			"name": "zenithar",
+			"email": "me@zenithar.org",
+			"url": "http://github.com/Zenithar"
+		}
+	],
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://creativecommons.org/licenses/MIT/"
+		}
+	],
+	"repository" : {
+		"type": "git",
+		"url": "http://github.com/zenithar/zenithar.docpad.git"
+	},
+	"dependencies": {
+	},
+	"engines" : {
+		"node": ">=0.6.0"
+	},
+	"bin": {
+		"docpad": "./bin/docpad"
+	},
+	"directories": {
+		"lib": "."
+	},
+	"main": "./bootstrapalert.plugin.coffee"
+}
