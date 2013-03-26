@@ -32,7 +32,6 @@
     "moment": "latest",
     "underscore": "latest",
     "coffee-script": "latest",
-    "coffeecup": "latest",
     "highlight.js": "latest",
     "docpad": "6.x",
     "docpad-plugin-eco": "2.x",
