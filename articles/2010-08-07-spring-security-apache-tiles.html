@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="fr"><head><!--Meta--><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><meta http-equiv="content-type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Zenithar.org - Spring Security &amp; Apache Tiles</title><meta name="description" content="Ancien ingénieur sécurité passionné, acteur dans le monde du logiciel 'libre'. Je suis en veille technologique permanente car toujours à la recherche du 'meilleur tournevis'." /><meta name="keywords" content="zenithar, toulouse, java, security, engineer, bug, spring, spring security, struts, tiles" /><meta name="author" content="Thibault NORMAND" /><!--Icons--><link rel="shortcut icon" href="images/favicon.ico" /><link rel="apple-touch-icon" href="images/apple-touch-icon.png" /><link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png" /><link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png" /><link rel="alternate" type="application/atom+xml" title="Zenithar.org &raquo; Feed" href="http://feeds.feedburner.com/ZenitharOrg" /><!--Shims: IE6-8 support of HTML5 elements--><!--[if lt IE 9]>
+        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]--><!--Styles--><link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" media="screen, projection" /><link rel="stylesheet" href="/styles/style.css" media="screen, projection" /><link rel="stylesheet" href="/styles/markdown.css" media="screen, projection" /><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/github.min.css" media="screen, projection" /><!--Scripts--><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script src="//connect.facebook.net/fr_FR/all.js#xfbml=1"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js"></script></head><body><!--Topbar--><div class="navbar navbar-static-top"><div class="navbar-inner"><div class="container"><a class="btn btn-navbar pull-right" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="/">Zenithar.org</a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/site/tagmap.html">Tagmap</a></li><li><a href="/site/archive.html">Archives</a></li><li><a href="http://zenithar.org" rel="me">CV</a></li><li><a href="http://feeds.feedburner.com/ZenitharOrg"><img src="/images/rss_32.png" style="width: 24px" /></a></li></ul><form id="search-form" class="pull-right navbar-search" action="http://google.com/search" method="get"><input type="hidden" name="q" value="site:www.zenithar.org" /><input type="text" name="q" results="0" placeholder="Search" search-query /></form></div></div></div></div><!--Markup--><div class="container"><div><script src="http://platform.twitter.com/widgets.js"></script><script>//facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+//google plusone
+(function() {
+  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+  po.src = 'https://apis.google.com/js/plusone.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+</script><section class="content"><article id="post" class="post" typeof="sioc:post" about="/articles/2010-08-07-spring-security-apache-tiles.html" lang="fr-fr"><div class="row"><div class="span2 muted modern-font small-font"><span property="dc:created">2010 août 07 &raquo;</span></div><div class="span10"><h1 property="dcterms:title">Spring Security &amp; Apache Tiles</h1></div></div><div class="row"><div class="offset2 span10 modern-font small-font muted"><span>&nbsp; par <a href="https://twitter.com/zenithar/">Thibault NORMAND</a></span>
+ | <a href="/site/tagmap.html#bug" class="tag">bug</a> <a href="/site/tagmap.html#spring" class="tag">spring</a> <a href="/site/tagmap.html#spring security" class="tag">spring security</a> <a href="/site/tagmap.html#struts" class="tag">struts</a> <a href="/site/tagmap.html#tiles" class="tag">tiles</a> | <span><a href="/articles/2010-08-07-spring-security-apache-tiles.html#disqus_thread" data-disqus-identifier="/articles/2010-08-07-spring-security-apache-tiles.html"></a></span>
+</div></div><div class="row"><div class="span2"><style rel="stylesheet" media="screen, projection" scoped="scoped">#social-buttons {
+  margin-left: 30px;
+}</style><div id="social-buttons" class="pull-right"><ul class="unstyled"><li><a class="twitter-share-button" href="https://twitter.com/share" data-url="http://www.zenithar.org/articles/2010-08-07-spring-security-apache-tiles.html" data-via="zenithar" data-count="horizontal" data-lang="fr">Tweet</a></li><li><div class="g-plusone" data-size="medium" data-href="http://www.zenithar.org/articles/2010-08-07-spring-security-apache-tiles.html"></div></li><li><div class="fb-like" data-href="http://www.zenithar.org/articles/2010-08-07-spring-security-apache-tiles.html" data-send="false" data-layout="button_count" data-show-faces="false"></div></li></ul></div></div><div class="span10"><div property="sioc:content"><p>Je viens d'être conforonté à un problème particulièrement énervant et difficile à diagnostiquer. C'est pour cela que je vous donne ma solution (il y a peut être mieux mais bon ça marche).</p>
+
+<h4>Environnement</h4>
+
+<ul>
+<li>Moteur MVC : <a href="http://struts.apache.org/">Struts 2.1.8.1</a></li>
+<li>IoC : <a href="http://www.springsource.org/">Spring 3.0.3</a></li>
+<li>Securité : <a href="http://www.springsource.org/node/2706">Spring Security 3.0.3</a></li>
+<li>Moteur de template : <a href="http://tiles.apache.org/">Apache Tiles 2.2</a></li>
+</ul>
+
+<h4>Description du contexte</h4>
+
+<p>Une application web, contenant les composants techniques précités. La mise ne page est assurée par Tiles, et Dojo (version de Struts2).</p>
+
+<h4>Problème</h4>
+
+<p>Lorsque l'on charge la page, toutes les tiles ne sont pas affichées, et aucun message d'erreur n'est produit, ni exception; cependant lors de l'appel des liens vers les tiles, tout fonctionne correctement.</p>
+
+<h4>Explication</h4>
+
+<p>C'est un problème qui vient de l'utilisation de Spring Security, et de Tiles dans la même application. La nature asynchrone de la génération des tiles provoque des requête qui sont hors contexte de sécurité contrôlé par Spring Security. De plus le traitement des tiles demande plusieurs accès au contexte sécurité par requête ce qui est interdit par Spring Security d'où l'affichage incomplet.</p>
+
+<p>Lorsque que l'on clique sur les liens seule la Tile est appelée donc convient au spécification d'utilisation Spring Security.</p>
+
+<h4>Solution</h4>
+
+<p>Pour cela il faut donc dire à Spring Security qu'il est possible d'accéder au contexte plusieurs fois par requête.</p>
+
+<p>Cela se configure comme ceci dans votre applicationContext.xml (ou equiv.) :</p>
+
+<pre class="highlighted"><code class="xml"><span class="tag">&lt;<span class="title">sec:http</span> <span class="attribute">access-denied-page</span>=<span class="value">"/accessDenied.jsp"</span>
+    <span class="attribute">use-expressions</span>=<span class="value">"true"</span> <span class="attribute">auto-config</span>=<span class="value">"false"</span>
+    <span class="attribute">entry-point-ref</span>=<span class="value">"authenticationProcessingFilterEntryPoint"</span>
+    <span class="attribute">lowercase-comparisons</span>=<span class="value">"false"</span> <span class="attribute">once-per-request</span>=<span class="value">"false"</span> <span class="attribute">realm</span>=<span class="value">"Pouet"</span>&gt;</span>
+</code></pre>
+
+<p>Ajouter l'attribut &ldquo;**once-per-request=&quot;false&rdquo;**&ldquo; à votre configuration.</p>
+
+<p>Compilez, Assemblez, Deployez, Testez, &hellip; et normalement tout va marcher correctement.</p>
+
+<p>Si ce n'est pas le cas essayez en enlevant <strong>INCLUDE</strong> au FilterDispatcher.</p>
+
+<pre class="highlighted"><code class="xml"><span class="tag">&lt;<span class="title">filter-mapping</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">filter-name</span>&gt;</span>springSecurityFilterChain<span class="tag">&lt;/<span class="title">filter-name</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="title">url-pattern</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">dispatcher</span>&gt;</span>REQUEST<span class="tag">&lt;/<span class="title">dispatcher</span>&gt;</span>
+    <span class="comment">&lt;!-- &lt;dispatcher&gt;INCLUDE&lt;/dispatcher&gt; --&gt;</span>
+    <span class="tag">&lt;<span class="title">dispatcher</span>&gt;</span>FORWARD<span class="tag">&lt;/<span class="title">dispatcher</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">filter-mapping</span>&gt;</span>
+</code></pre>
+
+<p>Si cela ne marche pas, c'est que c'est un autre problème. Bon courage cependant <sup>^</sup></p>
+
+<p><a href="http://stackoverflow.com/questions/3406344/what-to-do-when-apache-tiles-2-1-does-nothing-when-it-has-to">Problème posé sur stackoverflow</a></p>
+</div></div></div></article></section><section id="related"><div class="row"><div class="offset2 span10"><h3>Autre(s) article(s)</h3><ul><li><span>2011 janv. 17</span>&nbsp;&raquo;&nbsp;<a href="/articles/2011-01-17-premier-gros-plantage-apres-3ans-de-fonctionnement.html">Premier gros plantage après 3ans de fonctionnement ...</a></li></ul></div></div></section><section id="comments"><div class="row"><div class="offset2 span10"><h3>Commentaire(s)</h3><div id="disqus_thread" class="well"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'zenithar';
+    var disqus_identifier = '/articles/2010-08-07-spring-security-apache-tiles.html';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></section></div></div><footer class="footer"><div class="container"><div class="row"><p>Copyright &copy; 2005-2013 Thibault NORMAND, motorisé par <a href="https://github.com/balupton/docpad">Docpad</a>, versionné par <a href="https://github.com/Zenithar/zenithar.docpad">Github</a>.</p></div></div></footer><!--DISQUS--><script>var disqus_shortname = 'zenithar';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());</script><!--GA--><script>if( 'http://www.zenithar.org' === 'http://' + window.location.hostname ) {
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8114245-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}</script></body></html>

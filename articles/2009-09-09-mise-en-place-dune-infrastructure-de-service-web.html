@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="fr"><head><!--Meta--><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><meta http-equiv="content-type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Zenithar.org - Mise en place d'une infrastructure de service Web</title><meta name="description" content="Ancien ingénieur sécurité passionné, acteur dans le monde du logiciel 'libre'. Je suis en veille technologique permanente car toujours à la recherche du 'meilleur tournevis'." /><meta name="keywords" content="zenithar, toulouse, java, security, engineer, apache, chroot, ebios, FastCGI, Linux, mysql, nginx, SuExec" /><meta name="author" content="Thibault NORMAND" /><!--Icons--><link rel="shortcut icon" href="images/favicon.ico" /><link rel="apple-touch-icon" href="images/apple-touch-icon.png" /><link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png" /><link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png" /><link rel="alternate" type="application/atom+xml" title="Zenithar.org &raquo; Feed" href="http://feeds.feedburner.com/ZenitharOrg" /><!--Shims: IE6-8 support of HTML5 elements--><!--[if lt IE 9]>
+        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]--><!--Styles--><link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" media="screen, projection" /><link rel="stylesheet" href="/styles/style.css" media="screen, projection" /><link rel="stylesheet" href="/styles/markdown.css" media="screen, projection" /><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/github.min.css" media="screen, projection" /><!--Scripts--><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script src="//connect.facebook.net/fr_FR/all.js#xfbml=1"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js"></script></head><body><!--Topbar--><div class="navbar navbar-static-top"><div class="navbar-inner"><div class="container"><a class="btn btn-navbar pull-right" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="/">Zenithar.org</a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/site/tagmap.html">Tagmap</a></li><li><a href="/site/archive.html">Archives</a></li><li><a href="http://zenithar.org" rel="me">CV</a></li><li><a href="http://feeds.feedburner.com/ZenitharOrg"><img src="/images/rss_32.png" style="width: 24px" /></a></li></ul><form id="search-form" class="pull-right navbar-search" action="http://google.com/search" method="get"><input type="hidden" name="q" value="site:www.zenithar.org" /><input type="text" name="q" results="0" placeholder="Search" search-query /></form></div></div></div></div><!--Markup--><div class="container"><div><script src="http://platform.twitter.com/widgets.js"></script><script>//facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+//google plusone
+(function() {
+  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+  po.src = 'https://apis.google.com/js/plusone.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+</script><section class="content"><article id="post" class="post" typeof="sioc:post" about="/articles/2009-09-09-mise-en-place-dune-infrastructure-de-service-web.html" lang="fr-fr"><div class="row"><div class="span2 muted modern-font small-font"><span property="dc:created">2009 sept. 09 &raquo;</span></div><div class="span10"><h1 property="dcterms:title">Mise en place d'une infrastructure de service Web</h1></div></div><div class="row"><div class="offset2 span10 modern-font small-font muted"><span>&nbsp; par <a href="https://twitter.com/zenithar/">Thibault NORMAND</a></span>
+ | <a href="/site/tagmap.html#apache" class="tag">apache</a> <a href="/site/tagmap.html#chroot" class="tag">chroot</a> <a href="/site/tagmap.html#ebios" class="tag">ebios</a> <a href="/site/tagmap.html#fastcgi" class="tag">FastCGI</a> <a href="/site/tagmap.html#linux" class="tag">Linux</a> <a href="/site/tagmap.html#mysql" class="tag">mysql</a> <a href="/site/tagmap.html#nginx" class="tag">nginx</a> <a href="/site/tagmap.html#suexec" class="tag">SuExec</a> | <span><a href="/articles/2009-09-09-mise-en-place-dune-infrastructure-de-service-web.html#disqus_thread" data-disqus-identifier="/articles/2009-09-09-mise-en-place-dune-infrastructure-de-service-web.html"></a></span>
+</div></div><div class="row"><div class="span2"><style rel="stylesheet" media="screen, projection" scoped="scoped">#social-buttons {
+  margin-left: 30px;
+}</style><div id="social-buttons" class="pull-right"><ul class="unstyled"><li><a class="twitter-share-button" href="https://twitter.com/share" data-url="http://www.zenithar.org/articles/2009-09-09-mise-en-place-dune-infrastructure-de-service-web.html" data-via="zenithar" data-count="horizontal" data-lang="fr">Tweet</a></li><li><div class="g-plusone" data-size="medium" data-href="http://www.zenithar.org/articles/2009-09-09-mise-en-place-dune-infrastructure-de-service-web.html"></div></li><li><div class="fb-like" data-href="http://www.zenithar.org/articles/2009-09-09-mise-en-place-dune-infrastructure-de-service-web.html" data-send="false" data-layout="button_count" data-show-faces="false"></div></li></ul></div></div><div class="span10"><div property="sioc:content"><p>Bonsoir à tous, je me suis enfin motivé pour rédiger un multi-post, même si a mon avis un blog n'est pas fait dans cet objectif. (c'est plus le rôle d'un wiki)</p>
+
+<p>Je vais parler de la mise en service LAMP (Linux Apache MySQL PHP) avancée, en y ajoutant des contraintes de sécurité.</p>
+
+<p>Ce post sera pour une fois, orienté besoin, et non pas tartine technologique associé à un &ldquo;Lego System&rdquo;.</p>
+
+<p>Je vais essayer de répondre à un besoin croissant en sécurité tout en répondant à des critères d'évaluation qui seront la disponibilité, l'intégrité, la confidentialité, l'auditabilité (noté DICA). Chaque configuration sera exposée à un risque qui sera évalué et coté selon ces mêmes critères.</p>
+
+<p>Tout d'abord définissons nos critères d'évaluations, pour mettre tous les lecteurs d'accord.</p>
+
+<p>L'objectif de la <a href="http://www.commentcamarche.net/contents/surete-fonctionnement/haute-disponibilite.php3">disponibilité</a> est de garantir l'accès à un service ou à des ressources.</p>
+
+<ul>
+<li>La disponibilité <strong>immédiate</strong> qui est la plus forte (cotée <strong>3</strong>), implique un accès en tout temps à la ressource.</li>
+<li>La disponibilité &ldquo;**à court terme**&rdquo; (cotée <strong>2</strong>), accepte les indisponibilités de services pendant un durée courte. (1 a 2h d'interruption maximale)</li>
+<li>La disponibilité &ldquo;**à long terme**&rdquo; (cotée <strong>1</strong>), autorise une extinction de service temporaire sur une longue période.</li>
+<li>L'**absence de besoin** en disponibilité (cotée <strong>0</strong>), indique que le système n'est pas contraint au fonctionnement.</li>
+</ul>
+
+<p>L'intégrité consiste à déterminer si les données n'ont pas été altérées durant la communication (de manière fortuite ou intentionnelle)</p>
+
+<ul>
+<li>Intégrité &ldquo;**complète**&rdquo; (cotée <strong>3</strong>), implique que l'information est scellée. (_Signature numérique forte : scellement par certificat, etc._)</li>
+<li>Intégrité &ldquo;**élevée**&rdquo; (cotée <strong>2</strong>), indique que l'information est soumise a une signature numérique chiffrée simple (PGP)</li>
+<li>Intégrité &ldquo;**moyenne**&rdquo; (cotée <strong>1</strong>), indique que l'information est soumise a une vérification. (Signature numérique classique MD5, CRC32)</li>
+<li><strong>Absence du besoin</strong> d'intégrité. (cotée <strong>0</strong>)</li>
+</ul>
+
+<p>La confidentialité consiste à rendre l'information inintelligible à d'autres personnes que les seuls acteurs de la transaction.</p>
+
+<ul>
+<li>La confidentialité &ldquo;**privée**&rdquo; (cotée <strong>3</strong>) caractérise une information privée (1 personne).</li>
+<li>Confidentialité &ldquo;**professionnelle**&rdquo; (cotée <strong>2</strong>) caractérise une information connu par un ensemble professionnel (_collègues de travail_).</li>
+<li>Confidentialité &ldquo;**restreinte**&rdquo; (cotée <strong>1</strong>) caractérise une information connu par un ensemble contrôlé (_membres d'un forum, etc._)</li>
+<li>L'absence de confidentialité (cotée <strong>0</strong>) caractérise une information publique.</li>
+</ul>
+
+<p>L'auditabilité représente l'aptitude à fournir, à une autorité compétente, la preuve que la conception et le fonctionnement du système et de ses contrôles internes sont conformes aux exigences.</p>
+
+<ul>
+<li>Audabilité &ldquo;**complète**&rdquo; (cotée <strong>3</strong>) indique que toutes actions agissant sur le système doivent être tracées.</li>
+<li>Auditabilité &ldquo;**partielle**&rdquo; (cotée <strong>2</strong>) indique que les actions liées à la sécurité ainsi que d'autre informations doivent être tracées.</li>
+<li>Auditabilité &ldquo;**suffisante**&rdquo; (cotée <strong>1</strong>) indique que seul les actions liées à la sécurité doivent être tracées.</li>
+<li>Absence d'auditabilité. (cotée <strong>0</strong>)</li>
+</ul>
+
+<p>Essayez de bien comprendre chacun de ces critères d'évaluations ainsi que leurs niveaux respectifs, ce sera la base de départ de l'étude des scénarii ainsi que la mise en service d'**une** solution correspondant aux besoins cotés.<br/>
+Je posterai les scénarii étudiés au fur et à mesure de l'avancement du post.</p>
+
+<p>Source :</p>
+
+<ul>
+<li><em>Définition des critères</em> - <a href="http://www.commentcamarche.net/contents/secu/">http://www.commentcamarche.net/contents/secu/</a></li>
+<li><a href="http://www.securite-informatique.gouv.fr/">http://www.securite-informatique.gouv.fr/</a></li>
+<li><a href="http://www.adeli.org/">http://www.adeli.org/</a></li>
+</ul>
+</div></div></div></article></section><section id="related"><div class="row"><div class="offset2 span10"><h3>Autre(s) article(s)</h3><ul><li><span>2006 oct. 23</span>&nbsp;&raquo;&nbsp;<a href="/articles/2006-10-23-umbrello-fr-umbrellofreefr.html">Umbrello-FR [umbrello.free.fr]</a></li><li><span>2007 mars 04</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-03-04-quelques-trucs-sous-linux.html">Quelques trucs sous Linux ....</a></li><li><span>2007 avr. 02</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-04-02-akademy-2007-me-voila.html">aKademy 2007, me voila !</a></li><li><span>2007 avr. 05</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-04-05-virtualisons-ensemble-mes-amis.html">Virtualisons ensemble mes amis ...</a></li><li><span>2007 avr. 09</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-04-09-va-y-avoir-de-la-viande-sur-les-murs.html">Va y avoir de la viande sur les murs !!!!</a></li><li><span>2007 avr. 17</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-04-17-akademy-2007-etape-2-etape-1-en-attente.html">aKademy 2007, étape 2, étape 1 en attente ....</a></li><li><span>2007 avr. 20</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-04-20-akademy-2007-etape-1-passee.html">aKademy 2007, etape 1 passée !!!</a></li><li><span>2007 mai 09</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-05-09-objecteering-modeleur-uml-base-sur-mda.html">Objecteering : Modeleur UML basé sur MDA.</a></li><li><span>2007 juin 01</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-06-01-debian-40-etch.html">Debian 4.0 Etch.</a></li><li><span>2007 juin 04</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-06-04-fait-des-rats-7eme-version.html">Fait des rats 7eme version.</a></li><li><span>2007 juin 28</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-06-28-demain-premier-jour-des-tribulations-dun-frejusien-toulousan-exporte-a-glasgow.html">Demain, premier jour des tribulations d'un fréjusien toulousan, exporté à Glasgow.</a></li><li><span>2007 juil. 02</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-07-02-icecream-ou-loutil-indispensable-pour-kde.html">IceCream, ou l'outil indispensable pour KDE.</a></li><li><span>2005 sept. 01</span>&nbsp;&raquo;&nbsp;<a href="/articles/2005-09-01-iwhax-news.html">IWHAX - News</a></li><li><span>2005 sept. 03</span>&nbsp;&raquo;&nbsp;<a href="/articles/2005-09-03-hula-project-hula.html">Hula Project - Hula</a></li><li><span>2005 déc. 26</span>&nbsp;&raquo;&nbsp;<a href="/articles/2005-12-26-passage-sous-freebsd.html">Passage sous FreeBSD !</a></li><li><span>2006 oct. 16</span>&nbsp;&raquo;&nbsp;<a href="/articles/2006-10-16-projet-kdeumbrello.html">Projet KDE/Umbrello</a></li><li><span>2007 mars 17</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-03-17-hakin-session-mars.html">Hakin' Session Mars</a></li><li><span>2006 déc. 03</span>&nbsp;&raquo;&nbsp;<a href="/articles/2006-12-03-cest-la-celebrite-qui-commence.html">C'est la célébrité qui commence ...</a></li><li><span>2007 janv. 02</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-01-02-il-existe-moins-bien-mais-cest-plus-cher.html">Il existe moins bien mais c'est plus cher :)</a></li><li><span>2007 août 21</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-08-21-un-peu-dinutile-mais-tellement-beau.html">Un peu d'inutile, mais tellement beau !</a></li><li><span>2007 oct. 29</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-10-29-damn-vulnerable-linux.html">Damn Vulnerable Linux</a></li><li><span>2007 nov. 26</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-11-26-ateliers-kde-novembre-2007.html">Ateliers KDE - Novembre 2007</a></li><li><span>2007 déc. 18</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-12-18-fastcgi-suexec-ouf.html">FastCGI + SuEXEC, ouf !</a></li><li><span>2005 août 11</span>&nbsp;&raquo;&nbsp;<a href="/articles/2005-08-11-gentoo-linux-where-to-get-gentoo-linux.html">Gentoo Linux -- Where to Get Gentoo Linux</a></li><li><span>2005 août 14</span>&nbsp;&raquo;&nbsp;<a href="/articles/2005-08-14-herms-sous-linux-cest-possible.html">HermS sous linux c'est possible !</a></li><li><span>2005 août 28</span>&nbsp;&raquo;&nbsp;<a href="/articles/2005-08-28-mldonkey-world.html">MLdonkey World</a></li><li><span>2007 févr. 21</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-02-21-hakin-session-fevrier.html">Hakin' Session Fevrier</a></li><li><span>2008 nov. 06</span>&nbsp;&raquo;&nbsp;<a href="/articles/2008-11-06-en-route-vers-opensuse-111.html">En route vers OpenSUSE 11.1</a></li><li><span>2009 févr. 24</span>&nbsp;&raquo;&nbsp;<a href="/articles/2009-02-24-de-activemq-vers-xmpp-mais-pourquoi-jy-ai-pas-pense-plus-tot.html">De ActiveMQ vers XMPP : mais pourquoi j'y ai pas pensé plus tôt ?</a></li><li><span>2009 mars 13</span>&nbsp;&raquo;&nbsp;<a href="/articles/2009-03-13-backtrack-4-is-unleashed-watch-the-dog.html">BackTrack 4 is unleashed ! Watch the dog !</a></li><li><span>2009 mars 13</span>&nbsp;&raquo;&nbsp;<a href="/articles/2009-03-13-zerowine-les-malwares.html">ZeroWine &amp; les malwares</a></li><li><span>2011 avr. 03</span>&nbsp;&raquo;&nbsp;<a href="/articles/2011-04-03-minecraft-compiler-mineserver-sous-linuxmacosx.html">Minecraft : Compiler Mineserver sous Linux/MacOSX</a></li><li><span>2011 mai 06</span>&nbsp;&raquo;&nbsp;<a href="/articles/2011-05-06-pourquoi-je-nutiliserai-plus-struts-2-a-lavenir.html">Pourquoi je n'utiliserai plus Struts 2 à l'avenir ...</a></li></ul></div></div></section><section id="comments"><div class="row"><div class="offset2 span10"><h3>Commentaire(s)</h3><div id="disqus_thread" class="well"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'zenithar';
+    var disqus_identifier = '/articles/2009-09-09-mise-en-place-dune-infrastructure-de-service-web.html';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></section></div></div><footer class="footer"><div class="container"><div class="row"><p>Copyright &copy; 2005-2013 Thibault NORMAND, motorisé par <a href="https://github.com/balupton/docpad">Docpad</a>, versionné par <a href="https://github.com/Zenithar/zenithar.docpad">Github</a>.</p></div></div></footer><!--DISQUS--><script>var disqus_shortname = 'zenithar';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());</script><!--GA--><script>if( 'http://www.zenithar.org' === 'http://' + window.location.hostname ) {
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8114245-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}</script></body></html>

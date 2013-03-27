@@ -1,0 +1,145 @@
+<!DOCTYPE html><html lang="fr"><head><!--Meta--><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><meta http-equiv="content-type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Zenithar.org - ZeroMQ, ça roxe du poney !</title><meta name="description" content="Ancien ingénieur sécurité passionné, acteur dans le monde du logiciel 'libre'. Je suis en veille technologique permanente car toujours à la recherche du 'meilleur tournevis'." /><meta name="keywords" content="zenithar, toulouse, java, security, engineer, 0MQ, activemq, C++, LGPL, Python, SOA, ZMQ" /><meta name="author" content="Thibault NORMAND" /><!--Icons--><link rel="shortcut icon" href="images/favicon.ico" /><link rel="apple-touch-icon" href="images/apple-touch-icon.png" /><link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png" /><link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png" /><link rel="alternate" type="application/atom+xml" title="Zenithar.org &raquo; Feed" href="http://feeds.feedburner.com/ZenitharOrg" /><!--Shims: IE6-8 support of HTML5 elements--><!--[if lt IE 9]>
+        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]--><!--Styles--><link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" media="screen, projection" /><link rel="stylesheet" href="/styles/style.css" media="screen, projection" /><link rel="stylesheet" href="/styles/markdown.css" media="screen, projection" /><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/github.min.css" media="screen, projection" /><!--Scripts--><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script src="//connect.facebook.net/fr_FR/all.js#xfbml=1"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js"></script></head><body><!--Topbar--><div class="navbar navbar-static-top"><div class="navbar-inner"><div class="container"><a class="btn btn-navbar pull-right" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="/">Zenithar.org</a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/site/tagmap.html">Tagmap</a></li><li><a href="/site/archive.html">Archives</a></li><li><a href="http://zenithar.org" rel="me">CV</a></li><li><a href="http://feeds.feedburner.com/ZenitharOrg"><img src="/images/rss_32.png" style="width: 24px" /></a></li></ul><form id="search-form" class="pull-right navbar-search" action="http://google.com/search" method="get"><input type="hidden" name="q" value="site:www.zenithar.org" /><input type="text" name="q" results="0" placeholder="Search" search-query /></form></div></div></div></div><!--Markup--><div class="container"><div><script src="http://platform.twitter.com/widgets.js"></script><script>//facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+//google plusone
+(function() {
+  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+  po.src = 'https://apis.google.com/js/plusone.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+</script><section class="content"><article id="post" class="post" typeof="sioc:post" about="/articles/2011-05-21-zeromq-ca-roxe-du-poney.html" lang="fr-fr"><div class="row"><div class="span2 muted modern-font small-font"><span property="dc:created">2011 mai 21 &raquo;</span></div><div class="span10"><h1 property="dcterms:title">ZeroMQ, ça roxe du poney !</h1></div></div><div class="row"><div class="offset2 span10 modern-font small-font muted"><span>&nbsp; par <a href="https://twitter.com/zenithar/">Thibault NORMAND</a></span>
+ | <a href="/site/tagmap.html#0mq" class="tag">0MQ</a> <a href="/site/tagmap.html#activemq" class="tag">activemq</a> <a href="/site/tagmap.html#c++" class="tag">C++</a> <a href="/site/tagmap.html#lgpl" class="tag">LGPL</a> <a href="/site/tagmap.html#python" class="tag">Python</a> <a href="/site/tagmap.html#soa" class="tag">SOA</a> <a href="/site/tagmap.html#zmq" class="tag">ZMQ</a> | <span><a href="/articles/2011-05-21-zeromq-ca-roxe-du-poney.html#disqus_thread" data-disqus-identifier="/articles/2011-05-21-zeromq-ca-roxe-du-poney.html"></a></span>
+</div></div><div class="row"><div class="span2"><style rel="stylesheet" media="screen, projection" scoped="scoped">#social-buttons {
+  margin-left: 30px;
+}</style><div id="social-buttons" class="pull-right"><ul class="unstyled"><li><a class="twitter-share-button" href="https://twitter.com/share" data-url="http://www.zenithar.org/articles/2011-05-21-zeromq-ca-roxe-du-poney.html" data-via="zenithar" data-count="horizontal" data-lang="fr">Tweet</a></li><li><div class="g-plusone" data-size="medium" data-href="http://www.zenithar.org/articles/2011-05-21-zeromq-ca-roxe-du-poney.html"></div></li><li><div class="fb-like" data-href="http://www.zenithar.org/articles/2011-05-21-zeromq-ca-roxe-du-poney.html" data-send="false" data-layout="button_count" data-show-faces="false"></div></li></ul></div></div><div class="span10"><div property="sioc:content"><p>Voici un broker peu traditionnel, car ils sont souvent distribués sous la forme d'une application complète (<a href="http://activemq.apache.org/">ActiveMQ</a>, <a href="http://www.rabbitmq.com/">RabbitMQ</a>, etc.), ici il s'agit d'une librairie C (~2Mo) LGPL et il existe plus d'une vingtaine de bindings (C++, Java, Ruby, Node.JS, &hellip;).</p>
+
+<p>Je vous invite à regarder les présentations à cette adresse : <a href="http://www.zeromq.org/intro:read-the-manual">Read the manual</a></p>
+
+<p>Il faut savoir qu'il est possible d'implémenter plus d'une dizaine de topologies différentes : REQ/REPL, PUB/SUB, etc&hellip; mais aussi il est possible de tout mélanger pour obtenir des topologies personnalisées. Ce que j'aime c'est son utilisation, il n'y a pas de fichiers de configurations XML, YAML, ou autres, que neni, du code &hellip; simple et efficace.</p>
+
+<p>Voici un exemple de serveur en C++ :  </p>
+
+<pre class="highlighted"><code class="cpp"><span class="preprocessor">#include &lt;zmq.hpp&gt;</span>
+<span class="preprocessor">#include &lt;string&gt;</span>
+<span class="preprocessor">#include &lt;iostream&gt;</span>
+<span class="preprocessor">#include &lt;unistd.h&gt;</span>
+
+<span class="keyword">static</span> <span class="built_in">std</span>::<span class="built_in">string</span> s_recv (zmq::socket_t &amp; socket) {
+  zmq::message_t message;
+  socket.recv(&amp;message);
+
+  <span class="keyword">return</span> <span class="built_in">std</span>::<span class="built_in">string</span>(<span class="keyword">static_cast</span>&lt;<span class="keyword">char</span>*&gt;(message.data()), message.size());
+}
+
+<span class="keyword">int</span> main() {
+  <span class="keyword">int</span> major, minor, patch;
+
+  zmq::context_t context(<span class="number">1</span>);
+  zmq::socket_t socket (context, ZMQ_REP);
+
+  socket.bind(<span class="string">"tcp://*:5555"</span>);
+
+  zmq::version(&amp;major,&amp;minor,&amp;patch);
+  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"* Current 0MQ version is "</span> &lt;&lt; major &lt;&lt; <span class="string">"."</span> &lt;&lt; minor &lt;&lt; <span class="string">"."</span> &lt;&lt; patch &lt;&lt; <span class="built_in">std</span>::endl;
+  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"* Listening on *:5555"</span> &lt;&lt; <span class="built_in">std</span>::endl;
+
+  <span class="keyword">while</span>(<span class="keyword">true</span>) {
+    zmq::message_t request;
+
+    <span class="built_in">std</span>::<span class="built_in">string</span> msg = s_recv(socket);
+    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">" Received : ["</span> &lt;&lt; msg &lt;&lt; <span class="string">"]"</span> &lt;&lt; <span class="built_in">std</span>::endl;
+
+    sleep(<span class="number">1</span>);
+
+    zmq::message_t reply(<span class="number">5</span>);
+    memcpy ((<span class="keyword">void</span> *) reply.data (), <span class="string">"World"</span>, <span class="number">5</span>);
+    socket.send(reply);
+  }
+  <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre>
+
+<p>Pour compiler l'exemple, voici la ligne de commande :  </p>
+
+<pre class="highlighted"><code class="bash">zenithar:test-zmq/ $ g++ main.cpp -I/opt/zmq/include -L/opt/zmq/lib -lzmq -o main
+</code></pre>
+
+<p>Et un client en python :  </p>
+
+<pre class="highlighted"><code class="python"><span class="keyword">import</span> zmq
+context = zmq.Context()
+socket = context.socket(zmq.REQ)
+socket.connect(<span class="string">"tcp://localhost:5555"</span>)
+a = {}
+a[<span class="string">"toto"</span>] = <span class="string">"fait du vélo"</span>
+message = socket.send_json(a)
+msg = socket.recv()
+msg
+<span class="string">'World'</span>
+</code></pre>
+
+<p>On verra apparaitre coté serveur :  </p>
+
+<pre class="highlighted"><code class="bash">zenithar:test-zmq/ $ LD_LIBRARY_PATH=/opt/zmq/lib ./main
+* Current 0MQ version is 2.1.7
+* Listening on *:5555
+ Received : [{<span class="string">"toto"</span>:<span class="string">"fait du v\u00e9lo"</span>}]
+</code></pre>
+
+<p>Quelles sont les cas d'utilisations d'un tel système ? </p>
+
+<ul>
+<li>La programmation distribuée</li>
+<li>Le modèle Acteur et Message(s)</li>
+<li>L'utilisation de plusieurs technologies différentes (C/C++, Java, etc.)</li>
+<li>&hellip;</li>
+</ul>
+
+<p>Je ne vais pas lister tous les cas d'utilisations, je vous laisse découvrir par vous même les possibilités d'un tel système.</p>
+
+<p>A titre d'exemple, je peux citer le projet <a href="http://depthjs.media.mit.edu/">Depth.JS</a>, qui utilise <a href="http://www.zeromq.org/">ZMQ</a> comme broker entre l'analyse via <a href="http://opencv.willowgarage.com/wiki/">OpenCV</a> de l'image du Kinect et un serveur Web Python (<a href="http://www.tornadoweb.org/">Tornado</a>) pour rallier via WebSockets le navigateur.</p>
+
+<p>Alternatives :</p>
+
+<ul>
+<li><a href="http://www2.tls.cena.fr/products/ivy/">Ivy Software Bus</a> (On l'avait utililsé pour un projet universitaire de simulation de réseau d'autobus.)</li>
+<li><a href="http://www.zeromq.org/">ZMQ</a></li>
+<li><a href="http://activemq.apache.org/">ActiveMQ</a></li>
+<li><a href="http://www.rabbitmq.com/">RabbitMQ</a></li>
+<li><a href="http://qpid.apache.org/">QPid</a></li>
+</ul>
+</div></div></div></article></section><section id="related"><div class="row"><div class="offset2 span10"><h3>Autre(s) article(s)</h3><ul><li><span>2005 août 11</span>&nbsp;&raquo;&nbsp;<a href="/articles/2005-08-11-plus-de-python-dans-herms.html">Plus de python dans HermS</a></li><li><span>2009 févr. 24</span>&nbsp;&raquo;&nbsp;<a href="/articles/2009-02-24-de-activemq-vers-xmpp-mais-pourquoi-jy-ai-pas-pense-plus-tot.html">De ActiveMQ vers XMPP : mais pourquoi j'y ai pas pensé plus tôt ?</a></li></ul></div></div></section><section id="comments"><div class="row"><div class="offset2 span10"><h3>Commentaire(s)</h3><div id="disqus_thread" class="well"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'zenithar';
+    var disqus_identifier = '/articles/2011-05-21-zeromq-ca-roxe-du-poney.html';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></section></div></div><footer class="footer"><div class="container"><div class="row"><p>Copyright &copy; 2005-2013 Thibault NORMAND, motorisé par <a href="https://github.com/balupton/docpad">Docpad</a>, versionné par <a href="https://github.com/Zenithar/zenithar.docpad">Github</a>.</p></div></div></footer><!--DISQUS--><script>var disqus_shortname = 'zenithar';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());</script><!--GA--><script>if( 'http://www.zenithar.org' === 'http://' + window.location.hostname ) {
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8114245-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}</script></body></html>

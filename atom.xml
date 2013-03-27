@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title><![CDATA[ Il existe moins bien mais c'est plus cher ! ]]></title><link href="http://www.zenithar.org/atom.xml" rel="self" /><link href="http://www.zenithar.org" /><updated>2013-03-27T23:31:23.795Z</updated><id>http://www.zenithar.org</id><entry><title><![CDATA[ Google Protobuf MessageConverter pour Spring AMQP ]]></title><link href="http://www.zenithar.org/articles/2013-03-26-spring-amqp-protobuf.html" /><updated>2013-03-26T21:13:00.000Z</updated><id>http://www.zenithar.org/articles/2013-03-26-spring-amqp-protobuf.html</id><content type="html"><![CDATA[
+<p>Je travaille actuellement pas mal avec <a href="http://www.rabbitmq.com">RabbitMQ</a>, <a href="http://akka.io/">AKKA</a>, et surtout <a href="https://code.google.com/p/protobuf/">Protobuf</a>. Pourquoi Protobuf et pas Jackson ? Et bien c'est simple pour la rapidité de sérialization / déserialisation, mais aussi le portage simple vers d'autres langages supportés par Protobuf Compiler : Java, C, Python par défaut.</p>
+
+<p>Mais il y en beaucoup <a href="https://code.google.com/p/protobuf/wiki/ThirdPartyAddOns">d'autres</a></p>
+
+<h1>Code</h1>
+
+<p><script src="https://gist.github.com/5215005.js"></script></p>
+]]>
+</content></entry><entry><title><![CDATA[ Exporter les tâches IceScrum avec Node.js ]]></title><link href="http://www.zenithar.org/articles/2013-02-05-exporter-les-taches-icescrum-avec-nodejs.html" /><updated>2013-02-05T22:59:00.000Z</updated><id>http://www.zenithar.org/articles/2013-02-05-exporter-les-taches-icescrum-avec-nodejs.html</id><content type="html"><![CDATA[
+<p>Voici un petit outil permettant d'exporter les tâches associées aux <code>stories</code> d'un <code>sprint</code> pour un <code>projet</code> donnée, depuis <a href="http://www.icescrum.org/">IceScrum</a> vers un format imprimable : postit HTML en l'ocurrence.</p>
+
+<h1>Code</h1>
+
+<p><script src="https://gist.github.com/4706637.js"></script></p>
+
+<h1>Explication</h1>
+
+<p>Rien de bien sorcier, vous trouverez des références aux projets annexes :</p>
+
+<ul>
+<li><a href="https://github.com/danwrong/restler">Restler</a> : Librairie utilisée pour la communication HTTP</li>
+<li><a href="https://github.com/caolan/async">Async.js</a> : Librairie utilisée pour <code>simplifier</code> l'asynchronisme</li>
+<li><a href="http://underscorejs.org/">Underscore.js</a> : Véritable caisse à outils du Javascript, utilisée pour filtrer, ainsi que la gestion du template.</li>
+</ul>
+
+<p>Un jour si j'ai le temps, et la motivation, je ferais bien un client complet Node.js, mais là n'était pas le besoin.</p>
+]]>
+</content></entry><entry><title><![CDATA[ Génération de code avec Maven et Freemarker ]]></title><link href="http://www.zenithar.org/articles/2013-01-24-generation-de-code-avec-maven-et-freemarker.html" /><updated>2013-01-24T18:46:00.000Z</updated><id>http://www.zenithar.org/articles/2013-01-24-generation-de-code-avec-maven-et-freemarker.html</id><content type="html"><![CDATA[
+<p>J'utilise de plus en plus dans mes applications les évènements Spring car je trouve ça tout simplement pratique et cela offre un découplage simple et efficace des applications.</p>
+
+<p>Ces évènements sont à la fois des évènements de type Entity : Create, Delete, Update, mais aussi ils peuvent être Business. Ils sont représentés sous la forme de classes souvent en quantité. </p>
+
+<p>Je n'ai pas souvent l'occasion d'utiliser mes connaissances en métamodélisation, et ou génération de code, en entreprise, mais quand l'occasion se présente j'en profite.</p>
+
+<p>Il arrive souvent que l'on nécessite un peu de génération de code lors de la construction d'artefact; Attention je parle pas de MDA, mais bien de génération ponctuelle.</p>
+
+<p>C'est ce qui a motivé cet article.</p>
+
+<h1>FreeMarker</h1>
+
+<p><a href="http://freemarker.sourceforge.net/">FreeMarker</a> est un moteur de template Java, tout comme <a href="http://velocity.apache.org/">Velocity</a>, ou <a href="http://www.stringtemplate.org/">StringTemplate</a>.</p>
+
+<p>Il est capable de générer des fichiers de sortie type texte, à partir des modèles et de données. Il est souvent utilisé comme moteur dans <a href="http://freemarker.sourceforge.net/poweredBy.html">les applications Java</a> car il est entièrement écrit dans ce même langage.</p>
+
+<p>Voici un exemple de fichier FreeMarker (sample.ftl)</p>
+
+<pre class="highlighted"><code class="xml"><span class="tag">&lt;<span class="title">#assign</span> <span class="attribute">book</span> = <span class="attribute">doc.book</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h1</span>&gt;</span>${book.title}<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+<span class="tag">&lt;<span class="title">#list</span> <span class="attribute">book.chapter</span> <span class="attribute">as</span> <span class="attribute">ch</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">h2</span>&gt;</span>${ch.title}<span class="tag">&lt;/<span class="title">h2</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">#list</span> <span class="attribute">ch.para</span> <span class="attribute">as</span> <span class="attribute">p</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>${p}<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">#list</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">#list</span>&gt;</span>
+</code></pre>
+
+<p>Les instructions <code>${}</code> sont des placeholders qui seront remplacés à la fusion entre les données et le template.<br/>
+Les instructions <code>&lt;# &gt;</code>sont les instructions FreeMarker, elles peuvent être de commandes de contrôle de flot (if, then, etc.), mais aussi des instructions de boucles (list, etc.)</p>
+
+<p>L'instruction <code>#list</code> est un équivalent d'un <code>foreach</code>.</p>
+
+<pre class="highlighted"><code class="xml"><span class="tag">&lt;<span class="title">book</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">title</span>&gt;</span>Test Book<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">chapter</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Ch1<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">para</span>&gt;</span>p1.1<span class="tag">&lt;/<span class="title">para</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">para</span>&gt;</span>p1.2<span class="tag">&lt;/<span class="title">para</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">para</span>&gt;</span>p1.3<span class="tag">&lt;/<span class="title">para</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">chapter</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">chapter</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Ch2<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">para</span>&gt;</span>p2.1<span class="tag">&lt;/<span class="title">para</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">para</span>&gt;</span>p2.2<span class="tag">&lt;/<span class="title">para</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">chapter</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">book</span>&gt;</span>
+</code></pre>
+
+<p>En joignant le fichier XML précédent avec le template, on obtient :</p>
+
+<pre class="highlighted"><code class="xml"><span class="tag">&lt;<span class="title">h1</span>&gt;</span>Test<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">h2</span>&gt;</span>Ch1<span class="tag">&lt;/<span class="title">h2</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>p1.1
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>p1.2
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>p1.3
+  <span class="tag">&lt;<span class="title">h2</span>&gt;</span>Ch2<span class="tag">&lt;/<span class="title">h2</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>p2.1
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>p2.2
+</code></pre>
+
+<p>Notez que l'indentation est sauvegardée, cela pourra vous poser des problèmes dans certains cas.</p>
+
+<p>Pour plus d'informations, je vous invite à consulter la documentation<br/>
+&ldquo;<a href="http://freemarker.sourceforge.net/docs/xgui_imperative_learn.html">Learning by example</a>&rdquo;.</p>
+
+<h2>FMPP : FreeMarker-based text file PreProcessor</h2>
+
+<p><a href="http://fmpp.sourceforge.net/">FMPP</a> est un outil dérivé de FreeMarker, il se présente sous plusieurs formes :</p>
+
+<ul>
+<li>Un outil en ligne de commande</li>
+<li>Extension ANT</li>
+</ul>
+
+<p>Il permet d'effectuer des fusion de modèles à partir d'un script SHELL ou ANT. C'est un outil très pratique car notament il peut utiliser tout un tas de type de <a href="http://fmpp.sourceforge.net/dataloader.html">source en entrée</a> (CSV, Java Properties, Txt, XML, HTML, etc.).</p>
+
+<h1>Maven</h1>
+
+<p><a href="http://maven.apache.org/">Maven</a> est un outil de gestion d'environnement de construction spécialisé pour Java.</p>
+
+<p>Cet outil apporte un certains cadre lié au cycle de génération d'une application (compilation, test, packaging, etc.), mais aussi une extensibilité que je qualifirais d'exemplaire.</p>
+
+<p><a href="http://fr.wikipedia.org/wiki/Apache_Maven">Plus d'informations ?</a></p>
+
+<h2>Plugin FFMP pour Maven</h2>
+
+<p>Ce <a href="http://code.google.com/p/freemarkerpp-maven-plugin/">plugin</a> permet d'utiliser FMPP au sein d'un processus de génération Maven.</p>
+
+<p>Pour pouvoir utiliser le plugin dans votre projet, il suffit de déclarer un  plugin dans votre fichier <code>pom.xml</code></p>
+
+<pre class="highlighted"><code class="xml"><span class="tag">&lt;<span class="title">plugin</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>com.googlecode.fmpp-maven-plugin<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>fmpp-maven-plugin<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+<span class="tag">&lt;<span class="title">plugin</span>&gt;</span>
+</code></pre>
+
+<p>Il faut ordonner la génération du code lors de la compilation de l'artefact pour cela vous devez configuration la phase d'invocation du plugin :</p>
+
+<pre class="highlighted"><code class="xml"><span class="tag">&lt;<span class="title">configuration</span>&gt;</span>
+  <span class="comment">&lt;!-- Fichier de configuration FMPP --&gt;</span>
+  <span class="tag">&lt;<span class="title">cfgFile</span>&gt;</span>src/main/fmpp/config.fmpp<span class="tag">&lt;/<span class="title">cfgFile</span>&gt;</span>
+  <span class="comment">&lt;!-- Configuration du repertoire par défaut de sortie --&gt;</span>
+  <span class="tag">&lt;<span class="title">outputDirectory</span>&gt;</span>target/generated-sources/main/java<span class="tag">&lt;/<span class="title">outputDirectory</span>&gt;</span>
+  <span class="comment">&lt;!-- Repertoire contenant les templates *.ftl --&gt;</span>
+  <span class="tag">&lt;<span class="title">templateDirectory</span>&gt;</span>src/main/fmpp/templates<span class="tag">&lt;/<span class="title">templateDirectory</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">configuration</span>&gt;</span>
+<span class="comment">&lt;!-- Cela va invoquer le plugin lors du traitement de la phase "generate" --&gt;</span>
+<span class="tag">&lt;<span class="title">executions</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">execution</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">phase</span>&gt;</span>generate-sources<span class="tag">&lt;/<span class="title">phase</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">goals</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">goal</span>&gt;</span>generate<span class="tag">&lt;/<span class="title">goal</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">goals</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">execution</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">executions</span>&gt;</span>
+</code></pre>
+
+<p>Voila qui en est terminé de la configuration Maven !</p>
+
+<h1>Génération du code</h1>
+
+<p>Nous allons procéder à la génération de classe Java <code>simple</code> à partir des informations fournies par un fichier CSV.</p>
+
+<p>Jusque là rien de magique, tout est fourni par FMPP.</p>
+
+<pre class="highlighted"><code class="java"><span class="keyword">package</span> org.zenithar.app.service.events;
+
+<span class="keyword">import</span> org.zentihar.app.dto.${event.payloadType};
+<span class="keyword">import</span> org.springframework.context.ApplicationEvent;
+
+<span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> ${</span>event.entityName}${event.name}Event extends ApplicationEvent {
+  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1</span>L;
+
+  <span class="keyword">private</span> ${event.payloadType} payload;
+
+  <span class="keyword">public</span> ${event.entityName}${event.name}Event(Object source, ${event.payloadType} payload) {
+    <span class="keyword">super</span>(source);
+    <span class="keyword">this</span>.payload = payload;
+  }
+
+  <span class="keyword">public</span> ${event.payloadType} getPayload() {
+    <span class="keyword">return</span> <span class="keyword">this</span>.payload;
+  } 
+}
+</code></pre>
+
+<p>Voici mon modèle pour une classe Java, cela représente un évènement Spring. Biensur il est tout à fait possible d'utiliser l'héritage ainsi que la généricité pour limiter la duplication de code.</p>
+
+<h2>Configuration FMPP</h2>
+
+<p>Par défaut la génération via FreeMarker est <code>mono-fichier</code>, c'est à dire qu'un template<br/>
+devient un et un seul fichier. </p>
+
+<p>Il faut procéder à la configuration de FMPP, en modifiant de fichier <code>config.fmpp</code>, <br/>
+<a href="http://fmpp.sourceforge.net/configfile.html">plusieurs formats de fichier de configuration</a> <br/>
+peuvent être utilisés. J'ai choisi d'utilisé le format TDD, qui resemble beaucoup au format<br/>
+JSON.</p>
+
+<pre class="highlighted"><code class="javascript">data: events:csv(..<span class="regexp">/data/</span>events.csv)
+</code></pre>
+
+<p>Ce fichier va définir les sources de données utilisées <code>data</code>, remarquez la syntaxe :</p>
+
+<pre class="highlighted"><code class="xml">data: <span class="tag">&lt;<span class="title">collection</span>&gt;</span>:<span class="tag">&lt;<span class="title">loader</span>&gt;</span>(<span class="tag">&lt;<span class="title">source</span>&gt;</span>)
+</code></pre>
+
+<p>Cette configuration va charger le fichier <code>../data/events.csv</code>, à l'aide du loader <code>csv</code> afin de produire une collection nommée <code>events</code>. C'est à dire que dans notre template il y aura une collection appelée <code>events</code> exploitable par le langage FreeMarker.</p>
+
+<h2>Préparation des données</h2>
+
+<p>Pour exploiter une source de données de type séquence, il faut utiliser :</p>
+
+<pre class="highlighted"><code class="xml"><span class="tag">&lt;<span class="title">#list</span> <span class="attribute">events</span> <span class="attribute">as</span> <span class="attribute">event</span>&gt;</span>
+  ${event.name}
+<span class="tag">&lt;/<span class="title">#list</span>&gt;</span>
+</code></pre>
+
+<p>Vous avez remarqué que <code>event</code> est considéré comme un objet avec des propriétés, et bien dans le cadre du loader CSV, il s'agit tout simplement du nom de colonne renseignée dans le fichier :</p>
+
+<pre class="highlighted"><code class="bash">entityName;name;payloadType
+User;Created;UserDTO
+User;Deleted;UserDTO
+
+</code></pre>
+
+<p><div class="alert alert-info"> !!! ATTENTION de ne pas oublier le dernier retour à la ligne !!! </div></p>
+
+<h2>Génération multi-fichiers</h2>
+
+<p>La fusion du template avec les données va donc produire une suite d'évènement, jusque là<br/>
+tout va bien, seul problème, tout est généré dans un seul fichier portant le nom du template !</p>
+
+<p>Pour cela il faut utiliser des directives fmpp supplémentaires, ce qui donnera au final le <br/>
+template suivant :</p>
+
+<pre class="highlighted"><code class="java">&lt;<span class="annotation">@pp</span>.dropOutputFile /&gt; 
+&lt;#list events as event&gt;
+&lt;<span class="annotation">@pp</span>.changeOutputFile name=${event.entityName}+${event.name}+<span class="string">"Event.java"</span> /&gt;
+<span class="keyword">package</span> org.zenithar.app.service.events;
+
+<span class="keyword">import</span> org.zenithar.app.service.events.AbstractEvent;
+<span class="keyword">import</span> org.zenithar.app.service.dto.${event.payloadType};
+
+<span class="keyword">import</span> org.springframework.context.ApplicationEvent;
+
+<span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> ${</span>event.entityName}${event.name}Event extends AbstractEvent&lt;${event.payloadType}&gt; {
+  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1</span>L;
+
+  <span class="keyword">public</span> ${event.entityName}${event.name}Event(Object source, ${event.payloadType} payload) {
+    <span class="keyword">super</span>(source, payload);
+  }
+}
+&lt;/#list&gt;
+</code></pre>
+
+<p>Ce template produira autant de fichier qu'il y a de lignes dans la collection.</p>
+
+<p>A l'exécution de la commande :</p>
+
+<pre class="highlighted"><code class="bash">&gt; mvn clean package
+</code></pre>
+
+<p>Le plugin FMPP sera invoqué, génèrera les fichiers, ils seront compilés, puis intégrés dans l'artefact généré.</p>
+
+<h1>Conclusion</h1>
+
+<p>Et voila ! Vous possédez un micro générateur de code, ce n'est pas du MDA type UML + M2T avec <a href="http://www.acceleo.org/">Acceleo</a> ou équivalent, mais ça peut dépanner pour des générations simples.</p>
+]]>
+</content></entry><entry><title><![CDATA[ De Octopress vers DocPad ]]></title><link href="http://www.zenithar.org/articles/2013-01-03-de-octopress-vers-docpad.html" /><updated>2013-01-03T15:51:00.000Z</updated><id>http://www.zenithar.org/articles/2013-01-03-de-octopress-vers-docpad.html</id><content type="html"><![CDATA[
+<p>Il y a quelques temps, j'ai fait la migration de <a href="/articles/2012-02-18-bye-bye-wordpress.html">Worpress vers Octopress</a>, cependant je n'étais pas vraiment satisfait. </p>
+
+<p>C'est un bon logiciel, forké de <a href="http://jekyllrb.com/">Jekyll</a>, cependant je trouve qu'il est difficile à personnaliser et l'on se trouve souvent à avoir un blog qui ressemble à tous les utilisateurs d'<a href="http://octopress.org/">Octopress</a>. </p>
+
+<p>J'ai donc pris la décison de migrer (encore une fois), vers une autre solution de publication basé Markdown. Cette fois ce sera <a href="http://docpad.org/">DocPad</a>.</p>
+
+<p>DocPad est un moteur de génération de site écrit en CoffeeScript et fonctionne avec Node.js.</p>
+
+<h2>Initialisation de DocPad</h2>
+
+<p>Pour démarrer un site utilisant docpad, il suffit d'utiliser un site qui l'a déja mis en place, c'est ce qui est appelé un <code>skeleton</code>.</p>
+
+<pre class="highlighted"><code class="bash"> &gt; git clone https://github.com/docpad/twitter-bootstrap.docpad.git 
+</code></pre>
+
+<p>Ce squelette DocPad est un exemple de blog utilisant <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> comme framework de style. Et accessoirement, c'est avec ce squelette que j'ai démarré la migration.</p>
+
+<p>Une fois le projet cloné, vous devez télécharger les dépendances Node.js, comme d'habitude :</p>
+
+<pre class="highlighted"><code class="bash"> &gt; npm install
+</code></pre>
+
+<p>Les dépendnaces sont gérées comme toutes applications Node.js conforme au CommonJS, via un fichier <code>package.json</code>.</p>
+
+<pre class="highlighted"><code class="undefined">{
+    "name": "twitter-bootstrap.docpad",
+    .... (blah blah comme d'hab) ...
+    "dependencies": {
+        "docpad": "6.x",
+        "docpad-plugin-cleanurls": "2.x",
+        "docpad-plugin-coffeescript": "2.x",
+        "docpad-plugin-eco": "2.x",
+        "docpad-plugin-less": "2.x",
+        "docpad-plugin-marked": "2.x",
+        "docpad-plugin-partials": "2.x",
+        "docpad-plugin-stylus": "2.x",
+        "docpad-plugin-text": "2.x"
+    },
+    "devDependencies": {
+        "docpad-plugin-livereload": "2.x"
+    },
+    "main": "node_modules/docpad/bin/docpad-server"
+}
+</code></pre>
+
+<p>Le squelette utilise 9 plugins :</p>
+
+<ul>
+<li><a href="https://github.com/docpad/docpad-plugin-cleanurls">cleanurls</a> : Plugin de gestion des URLs, ne fonctionne pas en static.</li>
+<li><a href="https://github.com/docpad/docpad-plugin-coffeescript">coffeescript</a> : Plugin de compilation des fichiers dont l'extension est .coffee.</li>
+<li><a href="https://github.com/docpad/docpad-plugin-eco">eco</a> : Moteur de template</li>
+<li><a href="https://github.com/docpad/docpad-plugin-less">less</a> : Support du langage CSS <a href="http://lesscss.org/">Less</a></li>
+<li><a href="https://github.com/docpad/docpad-plugin-marked">marked</a> : Plugin de gestion des fichiers markdown</li>
+<li><a href="https://github.com/docpad/docpad-plugin-partials">partials</a> : Gestion des morceaux de fichiers (template)</li>
+<li><a href="https://github.com/docpad/docpad-plugin-stylus">stylus</a> : Autre langage CSS <a href="http://learnboost.github.com/stylus/">Stylus</a></li>
+<li><a href="https://github.com/docpad/docpad-plugin-text">text</a> : Gestion de template simple (type placeholder)</li>
+<li><a href="https://github.com/docpad/docpad-plugin-livereload">livereload</a> : Plugin utilisé lors du développement pour le rechargement automatique des ressources modifiées.</li>
+</ul>
+
+<p>Vous pouvez dès à présent lancer la plateforme :</p>
+
+<pre class="highlighted"><code class="bash"> &gt; docpad run
+</code></pre>
+
+<p>Cette commande va exécuter le serveur docpad utilisé pour le développement, il s'agit d'un simple serveur de fichiers statics. La commande va d'abord procéder à la génération du site dans le répertoire de sortie <code>out</code>. Ce répertoire contient l'ensemble des fichiers nécessaire au site.</p>
+
+<p>Vous pourrez accéder au site via <a href="http://localhost:9778">http://localhost:9778</a></p>
+
+<h2>Structure d'un site DocPad</h2>
+
+<pre class="highlighted"><code class="bash"> +- out             // Répertoire de sortie
+ +- src             // Répertoire contenant les sources à générer
+ +- plugins         // Répertoire optionnel contenant les plugins locaux
+ docpad.coffee       // Fichier contenant à la fois la configuration et les modifications du système
+ package.json        // Fichier CommonJS
+</code></pre>
+
+<p>Tous les fichiers contenu dans <code>src</code> sont soumis à la génération au travers de tous les plugins. C'est le plugin qui décidera en fonction de critères particuliers qu'il traitera le fichier et/ou le délguera au prochain dans la chaine de traitement.</p>
+
+<p>Voilà c'est une présentation rapide et succinte, mais je reviendrai dans les détails en utilisant mon propre blog comme support d'exemple.<br/>
+En attendant, vous pouvez jetez un oeil sur le dépot Git : <a href="https://github.com/Zenithar/zenithar.docpad">https://github.com/Zenithar/zenithar.docpad</a>.</p>
+]]>
+</content></entry><entry><title><![CDATA[ Backbone.js : IterableModel ]]></title><link href="http://www.zenithar.org/articles/2012-08-14-backbone-dot-js-iterablemodel.html" /><updated>2012-08-14T17:22:00.000Z</updated><id>http://www.zenithar.org/articles/2012-08-14-backbone-dot-js-iterablemodel.html</id><content type="html"><![CDATA[
+<p>Voici une petite astuce pour rendre vos Modèles Backbone.js, navigable depuis le modèle si celui-ci fait partie d'une collection.</p>
+
+<p><script src="https://gist.github.com/3350751.js"></script></p>
+]]>
+</content></entry><entry><title><![CDATA[ Mon bootstrap en laisse ! ]]></title><link href="http://www.zenithar.org/articles/2012-08-13-mon-bootstrap-en-laisse.html" /><updated>2012-08-13T17:19:00.000Z</updated><id>http://www.zenithar.org/articles/2012-08-13-mon-bootstrap-en-laisse.html</id><content type="html"><![CDATA[
+<p>Oui, moi aussi je veux mon <a href="http://twitter.github.com/bootstrap">Bootstrap</a> ! Voici comment le personnaliser, avec possibilités de mises à jour du framework de base.</p>
+
+<p>Avant de commencer, il vous faudra installer Git, Node.js, ainsi que les dépendances associées à Bootstrap.</p>
+
+<pre class="highlighted"><code class="brainfuck"><span class="comment">projectRoot</span>
+  <span class="literal">+</span><span class="literal">-</span> <span class="comment">bootstrap</span>
+  <span class="literal">+</span><span class="literal">-</span> <span class="comment">custom</span>    
+  <span class="literal">+</span><span class="literal">-</span> <span class="comment">grunt</span>.<span class="comment">js</span>        
+  <span class="literal">+</span><span class="literal">-</span> <span class="comment">package</span>.<span class="comment">json</span>
+</code></pre>
+
+<ul>
+<li><code>bootstrap</code> : Contiendra un sous-module Git, pointant sur le dépôt Github de Bootstrap.</li>
+<li><code>custom</code> : Contiendra vos sources venant surcharger les scripts LESS de bootstrap.</li>
+<li><code>grunt.js</code> : Un Gruntfile basique pour la compilation du thème.</li>
+<li><code>package.json</code> : Déclaration CommonJS des dépendances du projet.</li>
+</ul>
+
+<h1>Mise en place</h1>
+
+<p>Je suppose que vous savez déjà installer Git, Node.js, ainsi que NPM.</p>
+
+<h2>Préparation du répertoire</h2>
+
+<p>Tout d'abord, nous allons créer la structure d'accueil de notre thème.</p>
+
+<pre class="highlighted"><code class="bash"> &gt; mkdir montheme
+ &gt; cd montheme
+ &gt; git init .
+</code></pre>
+
+<p>Nous devons ajouter un certains nombre de fichiers à ignorer au référentiel Git :</p>
+
+<pre class="highlighted"><code class="bash"> &gt; <span class="keyword">echo</span> <span class="string">"node_modules"</span> &gt;&gt; .gitignore
+ &gt; <span class="keyword">echo</span> <span class="string">"npm-debug.log"</span> &gt;&gt; .gitignore
+</code></pre>
+
+<h2>Récupération de Bootstrap</h2>
+
+<p>Nous allons récupérer les sources de Bootstrap sur Github :</p>
+
+<pre class="highlighted"><code class="bash"> &gt; git submodule add https://github.com/twitter/bootstrap.git
+</code></pre>
+
+<p>Cette commande va télécharger Bootstrap et le mettre dans un répertoire <code>bootstrap</code>, ce répertoire contiendra tout le dépôt Git associé au projet, c'est une sorte de lien, un sous-module Git (<a href="http://git-scm.com/book/en/Git-Tools-Submodules">pour plus d'informations c'est par ici !</a>).</p>
+
+<p>Nous venons de récupérer les sources de Bootstrap, pensez à exécuter la commande suivante depuis le répertoire <code>bootstrap</code></p>
+
+<pre class="highlighted"><code class="bash"> &gt; npm install -g
+</code></pre>
+
+<p>Vous allez installer avec cette commande :</p>
+
+<ul>
+<li><a href="https://github.com/mishoo/UglifyJS/">Uglify-JS</a> : Minifier Javascript / CSS</li>
+<li><a href="http://www.jshint.com/">JSHint</a> : Validateur syntaxique</li>
+<li><a href="http://twitter.github.com/recess/">Recess</a> : Couteau suisse CSS twitter</li>
+<li><a href="http://www.senchalabs.org/connect/">Connect</a> : Utilisé uniquement pour les tests unitaires</li>
+</ul>
+
+<p>Notez, l'utilisation du switch <code>-g</code> permettant une installation globale, et non pas localisée au projet.</p>
+
+<h2>Création de votre thème</h2>
+
+<pre class="highlighted"><code class="bash"> &gt; mkdir custom
+ &gt; cd custom
+</code></pre>
+
+<p>Ce répertoire contiendra les surcharges des classes LESS.</p>
+
+<p>Pour surcharger un fichier, il suffit de copier le fichier <code>bootstrap.less</code> du répertoire <code>bootstrap</code>.</p>
+
+<pre class="highlighted"><code class="bash"> &gt; sed -e <span class="string">"s/@import \"/@import \"\.\.\/bootstrap\/less\//g"</span> ../bootstrap/less/bootstrap.less &gt; theme.less
+</code></pre>
+
+<p>Ce fichier sera votre point d'entrée de votre thème Bootstrap, c'est celui qui sera compilé pour produire le fichier CSS.<br/>
+La commande précédente permet de générer un fichier LESS, en modifiant les <code>@import</code> pour pouvoir utiliser ceux de bootstrap.</p>
+
+<h2>Surcharge des classes LESS</h2>
+
+<p>Si vous souhaitez par exemple, changer les couleurs du thème de base Bootstrap, il suffit de créer un fichier correspondant au fichier que vous souhaitez modifier.</p>
+
+<p>Nous allons modifier les couleurs de bases du thème, pour cela il suffit de créer un fichier <code>variables.less</code> dans le répertoire <code>custom</code> :</p>
+
+<pre class="highlighted"><code class="css"><span class="at_rule">@<span class="keyword">import</span> <span class="string">"../bootstrap/less/variables.less"</span></span>;
+</code></pre>
+
+<p>Il faut aussi modifier la ligne dans le fichier <code>theme.less</code> pour inclure votre fichier <code>variables.less</code></p>
+
+<pre class="highlighted"><code class="undefined">// Core variables and mixins
+@import "../bootstrap/less/variables.less"; // Modify this for custom colors, font-sizes, etc
+@import "../bootstrap/less/mixins.less";
+</code></pre>
+
+<p>Pour le modifier de la sorte :</p>
+
+<pre class="highlighted"><code class="undefined">// Core variables and mixins
+@import "variables.less"; // Modify this for custom colors, font-sizes, etc
+@import "../bootstrap/less/mixins.less";
+</code></pre>
+
+<p>De ce fait lors de la compilation du LESS en CSS, votre fichier sera analysé pour générer un thème à partir de Bootstrap.</p>
+
+<pre class="highlighted"><code class="bash"> &gt; lessc theme.less
+</code></pre>
+
+<p>Je vais maintenant traiter des problématiques d'automatisation de génération, via le gestionnaire de build <a href="https://github.com/cowboy/grunt">Grunt.js</a>.</p>
+
+<h1>Automatisation</h1>
+
+<p>J'ai choisi d'utiliser Grunt.js, alors pourquoi ? Bien parce que ça marche ! Tout simplement !</p>
+
+<pre class="highlighted"><code class="javascript">module.exports = <span class="keyword">function</span>(grunt) {
+  <span class="comment">// Project configuration.</span>
+  grunt.initConfig({
+    recess : {
+      dist: {
+        src: [<span class="string">'custom/theme.less'</span>],
+        dest: <span class="string">'dist/theme.css'</span>,
+        options: {
+          compile: <span class="literal">true</span>
+        }
+      }
+    }
+  });
+  grunt.loadNpmTasks(<span class="string">'grunt-recess'</span>);
+  <span class="comment">// Default task.</span>
+  grunt.registerTask(<span class="string">'default'</span>, <span class="string">'recess'</span>);
+};
+</code></pre>
+
+<p>Il faut installer les dépendances liées à Grunt via :</p>
+
+<pre class="highlighted"><code class="bash"> &gt; npm install -g grunt grunt-recess
+</code></pre>
+
+<p>Pour compiler le tout, un petit <code>grunt</code> et voila ! J'utilise la tâche Recess de Grunt, disponible <a href="https://github.com/sindresorhus/grunt-recess">ici</a>.</p>
+
+<p>Vous trouverez les sources complètes de l'article sur <a href="https://github.com/Zenithar/custom-bootstrap-boilerplate">Github</a>.</p>
+
+<p>Pour utiliser cet exemple, vous devez cloner le dépôt, et initialiser le sous-module :</p>
+
+<pre class="highlighted"><code class="bash"> &gt; git clone https://github.com/Zenithar/custom-bootstrap-boilerplate.git
+ &gt; git submodule --init update
+</code></pre>
+
+<p>Et voila, bon bootstapping !</p>
+]]>
+</content></entry><entry><title><![CDATA[ 8 mois avec Backbone.js et ça dure ! ]]></title><link href="http://www.zenithar.org/articles/2012-08-06-8-mois-avec-backbone-dot-js-et-ca-dure.html" /><updated>2012-08-06T17:08:00.000Z</updated><id>http://www.zenithar.org/articles/2012-08-06-8-mois-avec-backbone-dot-js-et-ca-dure.html</id><content type="html"><![CDATA[
+<p>Cela fait quelques temps déjà que j'utilise Backbone.JS and Friends, et bon je vais essayer de rester objectif sur le retour d'expérience que je compte développer.</p>
+
+<p>Tout d'abord, ça roxe du poney (avis tout à fait objectif !) par rapport au développement classique d'IHM web (struts, dojo, etc.). Ceux qui me lisent et/ou me connaissent (en vrai) savent tout mon amour que je porte au développement Web (hum), qui plus est développement web avec des technologies compatibles IE2 (ActiveX sur Serveur jBoss par exemple) … voir IE tout court … hum hum :-)</p>
+
+<p>Personnellement, ce que je n'aime pas dans le développement Web, c'est le Web lui même, qui ressemble plus à un ensemble bricolé qui tombait en marche sur tous les navigateurs du marché (sauf un, devinez :-) ).</p>
+
+<p>Beaucoup d'application dites Web 2.0, ne le sont pas ! Notamment, on croit que faire un include de plusieurs librairies JavaScript, permet comme par magie de faire du Web 2.0. Mais j'ai eu l'occasion de découvrir toutes la puissance des &ldquo;vraies&rdquo; applications JavaScript via Backbone.js. </p>
+
+<h1>Découverte</h1>
+
+<p>Comment suis-je arrivé à connaitre Backbone.js, et bien à cause de <a href="http://nodejs.org/">Node.js</a> ! Vous ne connaissez pas ? C'est, selon moi, celui qui a accéléré les choses, RoR/Django ont essuyés les plâtres, mais <a href="http://nodejs.org/">Node.js</a> a tout refait mais en mieux.</p>
+
+<p>Le problème de ces technologies, c'est qu'elles ne sont pas guidées (est-ce vraiment un inconvénient ?), et j'ai du prendre en bloc tout ce qui est venu avec c-à-d :</p>
+
+<ul>
+<li>JavaScript, que je ne connaissais pas si puissant (comme bcp de monde d'ailleurs)</li>
+<li><a href="http://jquery.com/">jQuery</a></li>
+<li>puis <a href="http://coffeescript.org">CoffeeScript</a>, pour simplifier le JavaScript</li>
+<li>et enfin <a href="http://backbonejs.org">Backbone.js</a></li>
+</ul>
+
+<p>J'ai du me mettre au JS, par nécessité d'interactivité tout simplement, je suis passé du simple <code>$(&quot;#foo&quot;).hide()</code> à une organisation du code en modules, classes, composants.</p>
+
+<p><a href="http://jquery.com/">jQuery</a> m'a surtout permit de gérer les problèmes de navigateurs, ainsi que les manipulations DOM; premier plugin un diagramme de Gantt basé sur des <code>&lt;tr&gt;</code>, <code>&lt;td&gt;</code>, et css (Ouh que c'était dégueulasse !).</p>
+
+<p><a href="http://coffeescript.org">CoffeeScript</a> n'était pas encore présent (Décembre 2011) dans ma caisse à outils. Cependant ce qui m'a fait migrer, c'est la génération du code JS valide sur tous les navigateurs (Gestion des &lsquo;var&rsquo;, &lsquo;;&rsquo;, etc.). Pour moi CoffeeScript c'était ça au début, puis j'ai découvert les classes Objet et pas par Prototype.</p>
+
+<h1>Problèmes rencontrés</h1>
+
+<p>C'est bien beau toutes ces nouvelles technologies, mais comment les intégrer ? Voici les problèmes rencontrés :</p>
+
+<h2>Intégration au processus de génération Java</h2>
+
+<p>Un des problèmes majeurs est l'intégration au système de build de l'application Java/J2EE que ce soit Maven ou Ant, il y a un gros vide. J'ai donc pris la décision d'utiliser Node.js dans la chaine de compilation.</p>
+
+<h2>Mise en place d'une architecture orientée service</h2>
+
+<p>Malheureusement, le découplage fonctionnel n'est pas naturel pour tous les développeurs, il a fallut mettre en place par le biais de service Web REST/JSON, une interface d'accès au système. </p>
+
+<p>Nous avons mis en évidence aussi la présence de fonctionnel métier présent dans la vue (formulaire), ce qui a impliqué une longue phase de refactoring, qui est traitée au fur et à mesure de l'avancement de la migration. Cette phase consiste à déplacer le fonctionnel métier dans un module partagé entre la vue (action struts2) et le service.</p>
+
+<h2>Export fonctionnel client</h2>
+
+<p>Le fait d'exporter une partie du fonctionnel coté client (navigateur) a impliqué beaucoup de travail annexe, notamment tout ce qui concerne le domaine &ldquo;statique&rdquo; applicatif tels que les typologies, les paramètres.</p>
+
+<p>L'objectif majeur était d'éliminer les interactions serveurs &ldquo;inutiles&rdquo;, d'où le besoin d'exporter les logiques métiers coté client, pour présenter une information pré-machée au serveur, sans pour autant faire confiance, d'où le doublon de code.</p>
+
+<h2>Sécurité</h2>
+
+<p>L'export fonctionnel apporte des problématiques de gestion de la Sécurité (Qui me tient à coeur, car trop souvent négligée !). &ldquo;Normalement&rdquo;, il y a coté serveur des contrôles d'accès sur les  fonctions, et le code exposé. </p>
+
+<p>En JavaScript, tout est modifiable par l'utilisateur, seule la norme ECMASCRIPT 5 (ça aussi découvert pendant l'apprentissage !) apporte des mécanismes de scellements via <code>Object.seal</code>, ou de vérrouillage via <code>Object.freeze</code>. Qui plus est beaucoup de développeurs n'utilisent pas les namespaces, et le module pattern pour protéger leurs codes privés. Il devient alors très facile d'écraser un contrôle client, qui n'est pas vérifié coté serveur.</p>
+
+<p>Nous avons mis en place un système de facades, permettant via un bootstrap applicatif, de récupérer coté client les permissions de l'utilisateur. Les méthodes de la facade sous forme de &ldquo;can*&rdquo; exposent les permissions à l'application JavaScript.<br/>
+Nous avons repris et adapté le pattern &ldquo;<a href="http://addyosmani.com/largescalejavascript/">Large Scale JavaScript Application</a>&rdquo; d'Addy Osmani à nos besoins.</p>
+
+<h2>Gestion des modules</h2>
+
+<p>Avec la multiplication des modules JS (CoffeeScript compilé), il a fallut mettre en place un système de gestion de dépendances, chose il faut le dire, ce n'est pas necessairement naturel pour un néophyte du JavaScript, qui a l'habitude du bon vieux <code>&lt;script src=&#39;…&#39;&gt;</code> dans l'entête.</p>
+
+<p>Il a fallut comprendre la différence entre <a href="http://wiki.commonjs.org/">CommonJS</a> et AMD, pour comprendre que c'est la même chose, en fait <a href="http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition">AMD</a> est un gestionnaire <a href="http://wiki.commonjs.org/">CommonJS</a>, mais avec le chargement asynchrone (via réseau par exemple).</p>
+
+<p>Nous nous sommes tournés vers <a href="http://requirejs.org/">Require.js</a> qui est un des chargeurs <a href="http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition">AMD</a>, permettant au travers du module pattern d'organiser le code, et surtout la gestion de l'exposition des fonctions (privées / publiques).</p>
+
+<p>La partie cliente est composée de :</p>
+
+<ul>
+<li>Framework : Abstraction des librairies (Notifications, Validations), etc.</li>
+<li>Modèles (Backbone)</li>
+<li>Collections (Backbone)</li>
+<li>Facades</li>
+<li>Views (Backbone)</li>
+<li>Templates (Handlebars)</li>
+<li>Widgets </li>
+<li>Services : Pour les communications serveurs hors Backbone.</li>
+</ul>
+
+<p>Le tout articulé via Require.js (AMD), hormis le framework qui est sous la forme d'extension d'espace de nom via le plugin namespace de CoffeeScript simplement concaténé.</p>
+
+<p><script src="https://gist.github.com/2318881.js"></script></p>
+
+<h2>Beaucoup de connaissances à acquérir</h2>
+
+<p>Il n'est pas possible de prendre en partie toute la connaissance nécessaire pour contrôler ces nouveaux outils, ils sont tous reliés. De ce fait on a souvent le sentiment de se disperser.<br/>
+Qui plus est, liés aux buzzs, beaucoup d'autres choses intéressantes viennent polluer les choix.</p>
+
+<h1>Avantages</h1>
+
+<p>Biensur beaucoup d'inconvénients majeurs liés à la migration d'un projet, tout cela ne sont au final que des pré-requis à l'utilisation d'IHM JS, donc effectivement si ce n'est pas le cas, et bien il faut mettre en place l'infrastructure d'accueil.</p>
+
+<h2>Modularité et réutilisabilité</h2>
+
+<p>On obtient bon nombre de modules, qui en fonction de la sensibilité (/ compétences) de développeur peuvent être réutilisable. Backbone.js est pour moi une librairie de concept qui peuvent être tous (ou pas) utilisés, voir complété par extensions.</p>
+
+<p>Personnellement, j'utilise <a href="https://github.com/chaplinjs/chaplin">Chaplin</a>, qui se veut être un framework qui utilise Backbone.js. Cela permet d'ajouter et de prendre en charge les problématiques que l'ont rencontre assez rapidement en cas de développement IHM JS (Gestion des sessions, gestion des vues, mise en page). Il ajoute à la manière de Rails, des conventions permettant de simplifier la configuration, et donc le développement.</p>
+
+<h2>Testabilité</h2>
+
+<p>La testabilité devient de plus en plus le mot d'ordre pour les entreprises d'aujourd'hui, il est très important de pouvoir tester son code de manière efficace et surtout rapide.</p>
+
+<p>Le fait de découper son application cliente en modules fonctionnels testables, permets d'utiliser tous les mécanismes de tests &ldquo;coté serveur&rdquo;, mais &ldquo;coté client&rdquo;, en utilisant des framework comme <a href="http://visionmedia.github.com/mocha/">Mocha</a> (mon préféré ! surtout le <a href="http://tjholowaychuk.com/post/25314967097/mocha-1-2-0-now-with-more-nyan">mode nyan cat</a> ! heu non en fait …)</p>
+
+<h2>Interactivité / Rapidité</h2>
+
+<p>Autre avantage, l'interactivité ! L'utilisateur veut améliorer son expérience (cette fameuse expérience utilisateur : UX en anglais, dont <a href="https://www.google.fr/search?q=CV%20UX">les spécialistes fleurissent sur Internet</a> )</p>
+
+<p>Le fait d'utiliser les ressources du client (navigateur) pour générer les pages, les modifier sans le fameux &ldquo;click&rdquo; d'IE signifiant un chargement, aller-retour serveurs, l'utilisation de techniques de templates clients (Handlebars, et bien d'autres) instrumenté via JSON pour limiter les informations au strict nécessaire, permettent d'améliorer la rapidité et donc la satisfaction de l'utilisateur.</p>
+
+<p>Fini les aller-retours pour cocher une case à cocher, fini les aller-retours pour valider un formulaire, fini les allés-retours pour changer un CSS, le Javascript est la pour ça.</p>
+
+<h2>Conception offline</h2>
+
+<p>Cette approche permet un développement centré sur l'IHM, c-à-d ce qui va être le plus jugé par l'utilisateur final. Il est conseillé de concevoir l'application JavaScript comme une application Offline puis la connecté à l'infrastructure via les DataServices.</p>
+
+<p>Ce modèle fait que l'application devient cliente de l'infrastructure, ce qui permet d'avoir une infrastructure ouverte et extensible.</p>
+
+<p>J'ai essayé de garder un point objectif sur mon utilisation de Backbone.js, dons le cadre d'une migration de socle applicatif. J'espère vous avoir donné quelques éléments permettant de vous préparer, si comme moi vous êtes aussi fou pour tenter la migration (Mais bon je suis loin d'avoir fini, prochaine étape : les websockets pour élminer le polling !). </p>
+
+<h1>Conclusion</h1>
+
+<p>La migration d'une application Web 1.5, vers une application Web 2.5 (2.0 + HTML5) permet d'améliorer dans un premier temps la satisfaction du client, via une expérience utilisateur plus proche de lui, mais aussi la satisfaction du développeur souvent négligée au profit de la satisfaction du client.</p>
+
+<p>L'introduction de &ldquo;Backbone.js And Friends&rdquo; dans les projets n'est pas simple du fait de la frilosité des entreprises à investir sur des technologies nouvelles. Choses assez paradoxales puisque ces mêmes entreprises vont investir sur le HTML5, qui je rappelle est une technologie encore en cours de spécification. Pour moi, Backbone.js, *.js sont issues de la génèse de HTML5, et je pense qu'on a pas fini d'en voir.</p>
+
+<p>J'avoue être curieux, et admiratif de toutes ces personnalités émérgentes du HTML5 et dérivés, je pense à <a href="http://addyosmani.com/blog/">Addy Osmani</a> (<a href="http://yeoman.io/">Yeoman</a> c'est pour quand ?), <a href="https://github.com/jashkenas/">Jeremy Ashkenas</a>, <a href="http://ejohn.org/">John Resig</a>, et bien d'autres. Et je me pose une question simple utilisez vous vos propres technologies ? ou deviennent elles publiques par manquent de confiance de vos sociétés respectives ? (TROOOOOLLLLLLLLLLL) </p>
+
+<p>En tout cas merci !</p>
+]]>
+</content></entry><entry><title><![CDATA[ Vérifier un RIO ]]></title><link href="http://www.zenithar.org/articles/2012-08-05-verifier-un-rio.html" /><updated>2012-08-05T19:23:00.000Z</updated><id>http://www.zenithar.org/articles/2012-08-05-verifier-un-rio.html</id><content type="html"><![CDATA[
+<p>Lors de mon inscription chez Free Mobile, j'ai eu quelques soucis liés à la récupération de mon RIO chez mon ancien opérateur. J'ai du faire la demande 6 ou 7 fois en utilisant le robot, en espérant recevoir le texto de validation, mais je n'ai jamais rien reçu.</p>
+
+<p>Qui plus est, le serveur vocal était de mauvaise qualité (bim), de ce fait je n'entendais pas le RIO correctement, il simulait des pertes réseaux (paf).</p>
+
+<p>Donc voila, j'ai récupéré le plus d'informations nécessaires possible, mon RIO était incompréhensible, je n'arrivais pas à comprendre la clé de RIO, alors je l'ai calculée, tout en prenant en compte la prononciation approximative de l'opérateur (re-bim !).</p>
+
+<p>Voici le module CoffeeScript que j'ai codé pour calculer la clé.</p>
+
+<p><script src="https://gist.github.com/1597257.js"></script></p>
+
+<pre class="highlighted"><code class="nginx"><span class="title">For</span> educational purpose only !
+</code></pre>
+
+<p>J'ai toujours révé marquer ça dans un post :-)</p>
+]]>
+</content></entry><entry><title><![CDATA[ Génération de Hash conforme OWASP ]]></title><link href="http://www.zenithar.org/articles/2012-08-05-generation-de-hash-conforme-owasp.html" /><updated>2012-08-05T19:05:00.000Z</updated><id>http://www.zenithar.org/articles/2012-08-05-generation-de-hash-conforme-owasp.html</id><content type="html"><![CDATA[
+<p>Voici un module conforme aux conseils <a href="https://www.owasp.org/index.php/Hashing_Java">OWASP</a> sur le hashage des mots de passe. Il s'agit d'un module (CommonJS) codé en CoffeeScript.</p>
+
+<p>Le prinicpe est simple, choisir un <code>algorithm</code>, ajouter une graine <code>key</code> utlisée pour initialiser la chaine de hashage, en y ajoutant le <code>message</code> a hasher. Suivi d'<code>iterations</code> (souvent > 1000), permettant de ce fait d'ajouter des inconnues en cas de brute force.</p>
+
+<p><script src="https://gist.github.com/3169823.js"></script></p>
+
+<p>Il suffit alors pour comparer les hash de connaitre :</p>
+
+<ul>
+<li>L'algorithme (SHA1, SHA256, etc…)</li>
+<li>La graine</li>
+<li>Le nombre d'itérations</li>
+</ul>
+
+<p>Ces informations devront être stockées dans la persistence, pour pouvoir être utilisées plus tard, par exemple pour la validation.</p>
+
+<p>Biensur la validation se fait par comparaison des images issue de l'algorithme.</p>
+]]>
+</content></entry></feed>

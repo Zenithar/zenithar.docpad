@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="fr"><head><!--Meta--><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><meta http-equiv="content-type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Zenithar.org - Acceleo 3.0 et les attributs de classe UML.</title><meta name="description" content="Ancien ingénieur sécurité passionné, acteur dans le monde du logiciel 'libre'. Je suis en veille technologique permanente car toujours à la recherche du 'meilleur tournevis'." /><meta name="keywords" content="zenithar, toulouse, java, security, engineer, acceleo, eclipse, G33k, Java, UML" /><meta name="author" content="Thibault NORMAND" /><!--Icons--><link rel="shortcut icon" href="images/favicon.ico" /><link rel="apple-touch-icon" href="images/apple-touch-icon.png" /><link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png" /><link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png" /><link rel="alternate" type="application/atom+xml" title="Zenithar.org &raquo; Feed" href="http://feeds.feedburner.com/ZenitharOrg" /><!--Shims: IE6-8 support of HTML5 elements--><!--[if lt IE 9]>
+        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]--><!--Styles--><link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" media="screen, projection" /><link rel="stylesheet" href="/styles/style.css" media="screen, projection" /><link rel="stylesheet" href="/styles/markdown.css" media="screen, projection" /><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/github.min.css" media="screen, projection" /><!--Scripts--><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script src="//connect.facebook.net/fr_FR/all.js#xfbml=1"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js"></script></head><body><!--Topbar--><div class="navbar navbar-static-top"><div class="navbar-inner"><div class="container"><a class="btn btn-navbar pull-right" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="/">Zenithar.org</a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/site/tagmap.html">Tagmap</a></li><li><a href="/site/archive.html">Archives</a></li><li><a href="http://zenithar.org" rel="me">CV</a></li><li><a href="http://feeds.feedburner.com/ZenitharOrg"><img src="/images/rss_32.png" style="width: 24px" /></a></li></ul><form id="search-form" class="pull-right navbar-search" action="http://google.com/search" method="get"><input type="hidden" name="q" value="site:www.zenithar.org" /><input type="text" name="q" results="0" placeholder="Search" search-query /></form></div></div></div></div><!--Markup--><div class="container"><div><script src="http://platform.twitter.com/widgets.js"></script><script>//facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+//google plusone
+(function() {
+  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+  po.src = 'https://apis.google.com/js/plusone.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+</script><section class="content"><article id="post" class="post" typeof="sioc:post" about="/articles/2011-03-19-acceleo-3-0-et-les-attributs-de-classe-uml.html" lang="fr-fr"><div class="row"><div class="span2 muted modern-font small-font"><span property="dc:created">2011 mars 19 &raquo;</span></div><div class="span10"><h1 property="dcterms:title">Acceleo 3.0 et les attributs de classe UML.</h1></div></div><div class="row"><div class="offset2 span10 modern-font small-font muted"><span>&nbsp; par <a href="https://twitter.com/zenithar/">Thibault NORMAND</a></span>
+ | <a href="/site/tagmap.html#acceleo" class="tag">acceleo</a> <a href="/site/tagmap.html#eclipse" class="tag">eclipse</a> <a href="/site/tagmap.html#g33k" class="tag">G33k</a> <a href="/site/tagmap.html#java" class="tag">Java</a> <a href="/site/tagmap.html#uml" class="tag">UML</a> | <span><a href="/articles/2011-03-19-acceleo-3-0-et-les-attributs-de-classe-uml.html#disqus_thread" data-disqus-identifier="/articles/2011-03-19-acceleo-3-0-et-les-attributs-de-classe-uml.html"></a></span>
+</div></div><div class="row"><div class="span2"><style rel="stylesheet" media="screen, projection" scoped="scoped">#social-buttons {
+  margin-left: 30px;
+}</style><div id="social-buttons" class="pull-right"><ul class="unstyled"><li><a class="twitter-share-button" href="https://twitter.com/share" data-url="http://www.zenithar.org/articles/2011-03-19-acceleo-3-0-et-les-attributs-de-classe-uml.html" data-via="zenithar" data-count="horizontal" data-lang="fr">Tweet</a></li><li><div class="g-plusone" data-size="medium" data-href="http://www.zenithar.org/articles/2011-03-19-acceleo-3-0-et-les-attributs-de-classe-uml.html"></div></li><li><div class="fb-like" data-href="http://www.zenithar.org/articles/2011-03-19-acceleo-3-0-et-les-attributs-de-classe-uml.html" data-send="false" data-layout="button_count" data-show-faces="false"></div></li></ul></div></div><div class="span10"><div property="sioc:content"><p>Ah lala ça fait depuis quelque temps que j'utilise <a href="http://www.eclipse.org/acceleo/">Acceleo</a> pour faire pas de mal de chose (Génération de code Java, Docbook, etc.), et bon j'ai été confronté à un problème particulier. Il faut savoir que dans le métamodele UML, la liste des attributs (Property) est marqué comme <em>unordered</em>, ce qui a pour effet dans <a href="http://www.eclipse.org/acceleo/">Acceleo</a> suite à des générations successives de mélanger les attributs de votre classe.</p>
+
+<p>Vous me direz pas très grave pour un bean Java, mais ça devient plus compliqué quand celui-ci est un bean à persistance (type JPA). En effet, les ORM utilisent souvent la position de l'attribut dans la classe pour générer la colonne associée. Et surtout vu qu'il s'agit d'un visiteur l'ordre des colonnes est égal à l'ordre de l'apparition des attributs dans cette classe mappée.</p>
+
+<p>J'ai donc utilisé une query template avec un service externe Java pour ordonner ma liste d'attributs en fonction d'une taggedvalue d'un stéréotype appliqué à la classe.</p>
+
+<pre class="highlighted"><code class="java"><span class="javadoc">/**
+ * Return an ordered list of property according to OrderedAttributes stereotype.
+ * <span class="javadoctag">@param</span> c
+ * <span class="javadoctag">@return</span>
+ */</span>
+ <span class="keyword">public</span> Collection&lt;Property&gt; getOrderedProperties(org.eclipse.uml2.uml.Class c) {
+        Stereotype orderedAttributeStereotype = c.getAppliedStereotype(<span class="string">"extensions::OrderedAttributes"</span>);
+        <span class="keyword">if</span>(orderedAttributeStereotype != <span class="keyword">null</span>) {
+            String attributeList = (String) c.getValue(orderedAttributeStereotype, <span class="string">"list"</span>);
+            <span class="keyword">if</span>(attributeList != <span class="keyword">null</span> &amp;&amp; !attributeList.isEmpty()) {
+                String attributes[] = attributeList.split(<span class="string">","</span>);
+
+                LinkedHashMap&lt;String, Property&gt; orderedAttributes = <span class="keyword">new</span> LinkedHashMap&lt;String, Property&gt;();
+                <span class="keyword">for</span>(String att : attributes) {
+                    att = att.trim();
+
+                    <span class="keyword">for</span>(Property p : c.getAllAttributes()) {
+                        <span class="keyword">if</span>(p.getName().equalsIgnoreCase(att)) {
+                            orderedAttributes.put(att, p);
+                        }
+                    }
+                }
+
+                <span class="keyword">return</span> orderedAttributes.values();
+            }
+        }
+        <span class="keyword">return</span> c.getAllAttributes();
+    }
+</code></pre>
+
+<p>Voici le code du service Java pour <a href="http://www.eclipse.org/acceleo/">Acceleo</a>, ainsi que la query dans le template :</p>
+
+<pre class="highlighted"><code class="java">[ query <span class="keyword">public</span> getOrderedProperties(c : Class) : Sequence(Property) = invoke(<span class="string">'org.zenithar.common.acceleo.uml.UML2Services'</span>, <span class="string">'getOrderedProperties(org.eclipse.uml2.uml.Class)'</span>, Sequence{c}) /]
+</code></pre>
+
+<p>Voila maintenant comment utilise-t-on ce code ?</p>
+
+<p>J'utilise <a href="http://abstratt.com/">TextUML</a> pour éditer mes modèles UML (pour des raisons de mise en conf Git plus simple, enfin ce n'est pas le sujet.), voici un exemple avec <a href="http://abstratt.com/">TextUML</a> :</p>
+
+<pre class="highlighted"><code class="actionscript">[extensions::Entity(prefix=<span class="string">"PER"</span>, tableName=<span class="string">"PERSON"</span>), extensions::OrderedAttributes(list=<span class="string">"id,firstName,lastName"</span>)]
+<span class="class"><span class="keyword">class</span> <span class="title">Person</span>
+(* <span class="title">Primary</span> <span class="title">Key</span> *)
+[<span class="title">extensions</span>::<span class="title">Column</span>(<span class="title">colName</span>="<span class="title">ID</span>"),<span class="title">extensions</span>::<span class="title">PrimaryKey</span>]
+<span class="title">attribute</span> <span class="title">id</span> : <span class="title">Integer</span>;
+
+(* <span class="title">Person</span> '<span class="title">s</span> <span class="title">firstname</span> *)
+[<span class="title">extensions</span>::<span class="title">Column</span>(<span class="title">colName</span>="<span class="title">FNAME</span>", <span class="title">nullable</span>="<span class="title">false</span>", <span class="title">length</span>="50")]
+<span class="title">attribute</span> <span class="title">firstName</span> : <span class="title">String</span>;
+
+(* <span class="title">Person</span> '<span class="title">s</span> <span class="title">lastname</span> *)
+[<span class="title">extensions</span>::<span class="title">Column</span>(<span class="title">colName</span>="<span class="title">LNAME</span>", <span class="title">nullable</span>="<span class="title">false</span>", <span class="title">length</span>="50")]
+<span class="title">attribute</span> <span class="title">lastName</span> : <span class="title">String</span>;
+
+<span class="title">end</span>;
+</code></pre>
+
+<p>Et dans le template <a href="http://www.eclipse.org/acceleo/">Acceleo</a> :</p>
+
+<pre class="highlighted"><code class="java">[<span class="keyword">for</span> (p : Property | c.getOrderedProperties())]
+....
+[/<span class="keyword">for</span>]
+</code></pre>
+
+<p>Où c qualifie la classe en cours de visite.</p>
+
+<p>Voila j'espère que cela vous aidera. Solution certifiée <a href="http://www.risacher.com/la-rache/index.php?z=3">ISO-1664</a> !!!</p>
+
+<p>Biensur je suis toujours preneur d'autres solutions mais celle-ci fonctionne. Peut être uniquement dans mon cas précis, mais c'est le principal.</p>
+</div></div></div></article></section><section id="related"><div class="row"><div class="offset2 span10"><h3>Autre(s) article(s)</h3><ul><li><span>2007 déc. 06</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-12-06-6-strikes-wiiiiiiiiiiiiiiiiiiiiii.html">7 Strikes Wiiiiiiiiiiiiiiiiiiiiii</a></li><li><span>2007 mars 04</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-03-04-quelques-trucs-sous-linux.html">Quelques trucs sous Linux ....</a></li><li><span>2007 mai 09</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-05-09-objecteering-modeleur-uml-base-sur-mda.html">Objecteering : Modeleur UML basé sur MDA.</a></li><li><span>2007 mai 29</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-05-29-23-g33k-ouf.html">2/3 G33k, ouf ....</a></li><li><span>2007 juin 01</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-06-01-debian-40-etch.html">Debian 4.0 Etch.</a></li><li><span>2007 juin 19</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-06-19-vbi-teletext-cc-directshow.html">VBI, Teletext, CC, DirectShow, ...</a></li><li><span>2005 oct. 03</span>&nbsp;&raquo;&nbsp;<a href="/articles/2005-10-03-trop-fort-le-steak-hashe.html">Trop fort, le steak hashé ...</a></li><li><span>2005 nov. 30</span>&nbsp;&raquo;&nbsp;<a href="/articles/2005-11-30-un-site-casse-tete.html">Un site casse tête ...</a></li><li><span>2006 févr. 17</span>&nbsp;&raquo;&nbsp;<a href="/articles/2006-02-17-rumblebox-tournament-edition.html">RumbleBox Tournament Edition</a></li><li><span>2006 févr. 26</span>&nbsp;&raquo;&nbsp;<a href="/articles/2006-02-26-bitefight-lycans-vs-vampire.html">BiteFight - Lycans vs Vampire</a></li><li><span>2006 mars 19</span>&nbsp;&raquo;&nbsp;<a href="/articles/2006-03-19-oblivion-j-4.html">Oblivion J-4</a></li><li><span>2006 sept. 22</span>&nbsp;&raquo;&nbsp;<a href="/articles/2006-09-22-basshunter-dota.html">Basshunter - DotA</a></li><li><span>2007 janv. 02</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-01-02-il-existe-moins-bien-mais-cest-plus-cher.html">Il existe moins bien mais c'est plus cher :)</a></li><li><span>2007 août 21</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-08-21-un-peu-dinutile-mais-tellement-beau.html">Un peu d'inutile, mais tellement beau !</a></li><li><span>2007 sept. 06</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-09-06-frets-on-fire.html">Frets On Fire</a></li><li><span>2007 sept. 13</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-09-13-everyone-has-heroes-no.html">Everyone has heroes no ?</a></li><li><span>2007 sept. 16</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-09-16-the-answer-to-life-the-universe-and-everything.html">The answer to life, the universe, and everything</a></li><li><span>2007 oct. 07</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-10-07-opensuse-103.html">OpenSuSE 10.3</a></li><li><span>2007 nov. 25</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-11-25-tgs-content-de-savoir-quil-y-a-plus-g33k-que-moi.html">TGS - Content de savoir qu'il y a plus G33k que moi !</a></li><li><span>2007 avr. 20</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-04-20-solution-a-lecran-noir-a-linstallation-de-xp.html">Solution à l'ecran noir à l'installation de XP.</a></li><li><span>2007 déc. 13</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-12-13-i-need-a-good-firewall.html">I need a good Firewall !</a></li><li><span>2007 déc. 18</span>&nbsp;&raquo;&nbsp;<a href="/articles/2007-12-18-fastcgi-suexec-ouf.html">FastCGI + SuEXEC, ouf !</a></li><li><span>2005 août 10</span>&nbsp;&raquo;&nbsp;<a href="/articles/2005-08-10-java-cest-mal.html">Java c'est mal !!!!!!!</a></li><li><span>2005 août 11</span>&nbsp;&raquo;&nbsp;<a href="/articles/2005-08-11-un-clavier-pour-les-programmeurs.html">Un clavier pour les programmeurs !</a></li><li><span>2005 août 13</span>&nbsp;&raquo;&nbsp;<a href="/articles/2005-08-13-toujours-pas-de-nouvelles-de-ldlc.html">Toujours pas de nouvelles de LDLC !</a></li><li><span>2005 août 28</span>&nbsp;&raquo;&nbsp;<a href="/articles/2005-08-28-mldonkey-world.html">MLdonkey World</a></li><li><span>2008 févr. 08</span>&nbsp;&raquo;&nbsp;<a href="/articles/2008-02-08-xmi-g-xmi-generator.html">XMI-G : XMI Generator</a></li><li><span>2008 févr. 13</span>&nbsp;&raquo;&nbsp;<a href="/articles/2008-02-13-encore-mieux-que-katapult-oui-ca-existe.html">Encore mieux que Katapult ! Oui ça existe !</a></li><li><span>2008 mars 27</span>&nbsp;&raquo;&nbsp;<a href="/articles/2008-03-27-get-back-to-work.html">Get back to work !</a></li><li><span>2008 mars 28</span>&nbsp;&raquo;&nbsp;<a href="/articles/2008-03-28-une-autre-dans-le-meme-esprit.html">Une autre dans le même esprit.</a></li><li><span>2008 mai 17</span>&nbsp;&raquo;&nbsp;<a href="/articles/2008-05-17-la-programmation-objet-evidence-ou-fatalite.html">La programmation objet : évidence ou fatalité ....</a></li><li><span>2008 mai 31</span>&nbsp;&raquo;&nbsp;<a href="/articles/2008-05-31-wifi-mcdo.html">WiFi McDO</a></li><li><span>2008 juil. 18</span>&nbsp;&raquo;&nbsp;<a href="/articles/2008-07-18-passage-a-wordpress-26.html">Passage à Wordpress 2.6</a></li><li><span>2008 août 05</span>&nbsp;&raquo;&nbsp;<a href="/articles/2008-08-05-katan-colons-de-catane-modelisation.html">Katan : Colons de catane, modélisation.</a></li><li><span>2013 janv. 24</span>&nbsp;&raquo;&nbsp;<a href="/articles/2013-01-24-generation-de-code-avec-maven-et-freemarker.html">Génération de code avec Maven et Freemarker</a></li><li><span>2009 mars 13</span>&nbsp;&raquo;&nbsp;<a href="/articles/2009-03-13-backtrack-4-is-unleashed-watch-the-dog.html">BackTrack 4 is unleashed ! Watch the dog !</a></li><li><span>2009 mars 13</span>&nbsp;&raquo;&nbsp;<a href="/articles/2009-03-13-zerowine-les-malwares.html">ZeroWine &amp; les malwares</a></li><li><span>2011 avr. 02</span>&nbsp;&raquo;&nbsp;<a href="/articles/2011-04-02-minecraft-compiler-la-libnoise-sous-opensuse-voir-dautres.html">MineCraft : Compiler la libnoise sous OpenSuSE, voir d'autres ...</a></li><li><span>2011 mai 06</span>&nbsp;&raquo;&nbsp;<a href="/articles/2011-05-06-pourquoi-je-nutiliserai-plus-struts-2-a-lavenir.html">Pourquoi je n'utiliserai plus Struts 2 à l'avenir ...</a></li></ul></div></div></section><section id="comments"><div class="row"><div class="offset2 span10"><h3>Commentaire(s)</h3><div id="disqus_thread" class="well"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'zenithar';
+    var disqus_identifier = '/articles/2011-03-19-acceleo-3-0-et-les-attributs-de-classe-uml.html';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></section></div></div><footer class="footer"><div class="container"><div class="row"><p>Copyright &copy; 2005-2013 Thibault NORMAND, motorisé par <a href="https://github.com/balupton/docpad">Docpad</a>, versionné par <a href="https://github.com/Zenithar/zenithar.docpad">Github</a>.</p></div></div></footer><!--DISQUS--><script>var disqus_shortname = 'zenithar';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());</script><!--GA--><script>if( 'http://www.zenithar.org' === 'http://' + window.location.hostname ) {
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8114245-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}</script></body></html>

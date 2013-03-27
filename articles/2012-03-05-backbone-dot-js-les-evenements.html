@@ -1,0 +1,349 @@
+<!DOCTYPE html><html lang="fr"><head><!--Meta--><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><meta http-equiv="content-type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Zenithar.org - Backbone.js - Les évènements</title><meta name="description" content="Ancien ingénieur sécurité passionné, acteur dans le monde du logiciel 'libre'. Je suis en veille technologique permanente car toujours à la recherche du 'meilleur tournevis'." /><meta name="keywords" content="zenithar, toulouse, java, security, engineer, backbone.js, node.js, tutorial" /><meta name="author" content="Thibault NORMAND" /><!--Icons--><link rel="shortcut icon" href="images/favicon.ico" /><link rel="apple-touch-icon" href="images/apple-touch-icon.png" /><link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png" /><link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png" /><link rel="alternate" type="application/atom+xml" title="Zenithar.org &raquo; Feed" href="http://feeds.feedburner.com/ZenitharOrg" /><!--Shims: IE6-8 support of HTML5 elements--><!--[if lt IE 9]>
+        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]--><!--Styles--><link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" media="screen, projection" /><link rel="stylesheet" href="/styles/style.css" media="screen, projection" /><link rel="stylesheet" href="/styles/markdown.css" media="screen, projection" /><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/github.min.css" media="screen, projection" /><!--Scripts--><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script src="//connect.facebook.net/fr_FR/all.js#xfbml=1"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js"></script></head><body><!--Topbar--><div class="navbar navbar-static-top"><div class="navbar-inner"><div class="container"><a class="btn btn-navbar pull-right" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="/">Zenithar.org</a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/site/tagmap.html">Tagmap</a></li><li><a href="/site/archive.html">Archives</a></li><li><a href="http://zenithar.org" rel="me">CV</a></li><li><a href="http://feeds.feedburner.com/ZenitharOrg"><img src="/images/rss_32.png" style="width: 24px" /></a></li></ul><form id="search-form" class="pull-right navbar-search" action="http://google.com/search" method="get"><input type="hidden" name="q" value="site:www.zenithar.org" /><input type="text" name="q" results="0" placeholder="Search" search-query /></form></div></div></div></div><!--Markup--><div class="container"><div><script src="http://platform.twitter.com/widgets.js"></script><script>//facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+//google plusone
+(function() {
+  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+  po.src = 'https://apis.google.com/js/plusone.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+</script><section class="content"><article id="post" class="post" typeof="sioc:post" about="/articles/2012-03-05-backbone-dot-js-les-evenements.html" lang="fr-fr"><div class="row"><div class="span2 muted modern-font small-font"><span property="dc:created">2012 mars 05 &raquo;</span></div><div class="span10"><h1 property="dcterms:title">Backbone.js - Les évènements</h1></div></div><div class="row"><div class="offset2 span10 modern-font small-font muted"><span>&nbsp; par <a href="https://twitter.com/zenithar/">Thibault NORMAND</a></span>
+ | <a href="/site/tagmap.html#backbone.js" class="tag">backbone.js</a> <a href="/site/tagmap.html#node.js" class="tag">node.js</a> <a href="/site/tagmap.html#tutorial" class="tag">tutorial</a> | <span><a href="/articles/2012-03-05-backbone-dot-js-les-evenements.html#disqus_thread" data-disqus-identifier="/articles/2012-03-05-backbone-dot-js-les-evenements.html"></a></span>
+</div></div><div class="row"><div class="span2"><style rel="stylesheet" media="screen, projection" scoped="scoped">#social-buttons {
+  margin-left: 30px;
+}</style><div id="social-buttons" class="pull-right"><ul class="unstyled"><li><a class="twitter-share-button" href="https://twitter.com/share" data-url="http://www.zenithar.org/articles/2012-03-05-backbone-dot-js-les-evenements.html" data-via="zenithar" data-count="horizontal" data-lang="fr">Tweet</a></li><li><div class="g-plusone" data-size="medium" data-href="http://www.zenithar.org/articles/2012-03-05-backbone-dot-js-les-evenements.html"></div></li><li><div class="fb-like" data-href="http://www.zenithar.org/articles/2012-03-05-backbone-dot-js-les-evenements.html" data-send="false" data-layout="button_count" data-show-faces="false"></div></li></ul></div></div><div class="span10"><div property="sioc:content"><h2>Introduction</h2>
+
+<p>Cet article fait suite à la <a href="http://www.zenithar.org/2012/03/04/backbone-dot-js-presentation/">présentation des concepts Backbone.JS</a>. Vous devez avoir connaissance d'une base de Javascript pour aborder de manière sereine la partie suivante.</p>
+
+<p>Dans cet article, je vais m'attacher à expliquer le fonctionnement des évènements dans Backbone.JS, ainsi que, de fait, les principes de programmation asynchrone utilisés.</p>
+
+<h2>Programmation asynchrone</h2>
+
+<p>La programmation asynchrone est le coeur de la programmation Javascript, vous avez toujours la possibilité de faire du synchrone, cependant ce serait perdre un des avantages de Javascript.</p>
+
+<p>Le principe est simple :</p>
+
+<blockquote>
+<p>On sait quand on appelle la fonction, mais on ne sait pas quand elle sera traitée !</p>
+</blockquote>
+
+<p>De ce fait, cela induit des modes de programmation qui ne sont pas forcément habituels :</p>
+
+<p>Si on prend l'exemple suivant (Node.js) :</p>
+
+<pre class="highlighted"><code class="javascript"><span class="keyword">var</span> fs = require(<span class="string">"fs"</span>);
+fs.readFile(<span class="string">"fichier.txt"</span>, <span class="keyword">function</span>(err, content) {
+  <span class="keyword">if</span> (err) {
+    console.err(err);
+  } <span class="keyword">else</span> {
+    console.log(<span class="string">"file read: "</span> + content.length + <span class="string">" bytes"</span>);
+  }
+}
+console.log(<span class="string">"after readFile"</span>);
+</code></pre>
+
+<p>Produira la sortie suivante :</p>
+
+<pre class="highlighted"><code class="bash">&gt; node file.js
+after readFile
+file read: 234 bytes
+</code></pre>
+
+<p>On peut remarquer une particularité, la fonction d'appel à la lecture du fichier &ldquo;fichier.txt&rdquo;, prends en paramètre une fonction dîtes &ldquo;anonyme&rdquo; (sans nom).</p>
+
+<p>Cette fonction sera exécutée comme un &ldquo;callback&rdquo;, lors de la lecture du fichier. </p>
+
+<p>Il est très important de comprendre ce mécanisme pour la suite de l'article.</p>
+
+<h2>Evènements Backbone.JS</h2>
+
+<p>Les évènements Backbone.JS sont aussi traités de manière asynchrone, on enregistre des &ldquo;handlers&rdquo;, sur des évènements qui peuvent intervenir n'importe quand. </p>
+
+<p>Une bonne application Backbone.JS est une application complètement décorellée et évènementielle. Les composants sont implémentés, et reliés par des messages (event). </p>
+
+<p>Et je vais encore une fois citer Addy Osmani, pour son article expliquant comment construire une application Web Javascript &ldquo;scalable&rdquo;, et découplée :</p>
+
+<ul>
+<li><a href="http://addyosmani.com/blog/jqcon-largescalejs-2012/">Slides: Building Decoupled Large-Scale Applications With JavaScript And jQuery</a></li>
+</ul>
+
+<h3>Gestion des évènements</h3>
+
+<p>La gestion des évènements avec Backbone.JS se fait comme pour jQuery, avec les fonctions &ldquo;<a href="http://documentcloud.github.com/backbone/#Events-on">on</a>&rdquo;, &ldquo;<a href="http://documentcloud.github.com/backbone/#Events-off">off</a>&rdquo;.</p>
+
+<p>Les évènements sont gérés sous la forme d'un modèle de conception très bien connu aujourd'hui, le modèle Publish / Subscribe (Producteur / Consommateur). <br/>
+Le bus de dispatch utilisé pour la communication entre les composants se nomme le <strong>médiateur</strong>.</p>
+
+<p>Tous les concepts de Backbone.JS peuvent être à la fois producteur et consommateur. Cependant certains concepts possèdent des mécanismes déjà implémentés de publication. <br/>
+Il n'y a pas de consommateur par défaut.</p>
+
+<h3>Les modèles : <a href="http://documentcloud.github.com/backbone/#Model">Backbone.Model</a></h3>
+
+<pre class="highlighted"><code class="javascript"><span class="keyword">var</span> Sidebar = Backbone.Model.extend({
+  promptColor: <span class="keyword">function</span>() {
+    <span class="keyword">var</span> cssColor = prompt(<span class="string">"Please enter a CSS color:"</span>);
+    <span class="comment">// Publication de l'évènement "change:color"</span>
+    <span class="keyword">this</span>.set({color: cssColor});
+  }
+});
+
+window.sidebar = <span class="keyword">new</span> Sidebar;
+
+<span class="comment">// Enregistre un callback, sur l'évènement "change:color", la fonction</span>
+<span class="comment">// sera appelée dès que quelqu'un publiera l'évènement.</span>
+sidebar.on(<span class="string">'change:color'</span>, <span class="keyword">function</span>(model, color) {
+  $(<span class="string">'#sidebar'</span>).css({background: color});
+});
+
+<span class="comment">// Modification de l'attribut, publication automatique de l'évènement </span>
+<span class="comment">// "change:&lt;attribute-name&gt;". </span>
+sidebar.set({color: <span class="string">'white'</span>});
+
+<span class="comment">// On demande une couleur</span>
+sidebar.promptColor();
+
+<span class="comment">// On annule toutes les inscriptions sur l'évènement</span>
+sidebar.off(<span class="string">'change:color'</span>);
+</code></pre>
+
+<table class="inpost">
+    <thead>
+        <tr><th style="width:7em">Evènements</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>change:attribute</td><td>Emis lors de la modification d'un attribut du modèle.</td></tr>
+        <tr><td>error</td><td>Emis par la validation du modèle s'il y a des erreurs.</td></tr>
+        <tr><td>destroy</td><td>Emis quand l'objet a été détruit.</td></tr>
+        <tr><td>sync</td><td>Emis quand l'objet a été synchronisé.</td></tr>
+    </tbody>
+</table>
+
+<h3>Les collections : <a href="http://documentcloud.github.com/backbone/#Collection">Backbone.Collection</a></h3>
+
+<p>Par convention, tous les évènements émis d'un modèle peuvent être capturé par la collection.</p>
+
+<pre class="highlighted"><code class="javascript"><span class="keyword">var</span> ships = <span class="keyword">new</span> Backbone.Collection;
+
+ships.on(<span class="string">"add"</span>, <span class="keyword">function</span>(ship) {
+  alert(<span class="string">"Ahoy "</span> + ship.get(<span class="string">"name"</span>) + <span class="string">"!"</span>);
+});
+
+ships.add([
+  {name: <span class="string">"Flying Dutchman"</span>},
+  {name: <span class="string">"Black Pearl"</span>}
+]);
+</code></pre>
+
+<table class="inpost">
+    <thead>
+        <tr><th style="width:7em">Evènements</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>add</td><td>Emis lors de l'ajout d'un modèle à la collection.</td></tr>
+        <tr><td>remove</td><td>Emis lors de la suppression d'un modèle de la collection.</td></tr>
+        <tr><td>reset</td><td>Emis lors de la réinitialisation de la collection.</td></tr>
+    </tbody>
+</table>
+
+<h3>Les routeurs : <a href="http://documentcloud.github.com/backbone/#Router">Backbone.Router</a></h3>
+
+<pre class="highlighted"><code class="javascript"><span class="keyword">var</span> Workspace = Backbone.Router.extend({
+
+  routes: {
+    <span class="string">"help"</span>:                 <span class="string">"help"</span>,    <span class="comment">// #help</span>
+    <span class="string">"search/:query"</span>:        <span class="string">"search"</span>,  <span class="comment">// #search/kiwis</span>
+    <span class="string">"search/:query/p:page"</span>: <span class="string">"search"</span>   <span class="comment">// #search/kiwis/p7</span>
+  },
+
+  help: <span class="keyword">function</span>() {
+    ...
+  },
+
+  search: <span class="keyword">function</span>(query, page) {
+    ...
+  }
+
+});
+
+router.on(<span class="string">"route:help"</span>, <span class="keyword">function</span>(page) {
+  ...
+});
+</code></pre>
+
+<table class="inpost">
+    <thead>
+        <tr><th style="width:7em">Evènements</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>route:&lt;name&gt;</td><td>Emis lors de l'activation de la route &ldquo;name&rdquo;.</td></tr>
+    </tbody>
+</table>
+
+<h3>Les vues : <a href="http://documentcloud.github.com/backbone/#View">Backbone.View</a></h3>
+
+<p>Les évènements de la vue sont un peu particuliers car ils symbolisent des actions DOM (click, mouseOver, etc.)</p>
+
+<pre class="highlighted"><code class="javascript"><span class="keyword">var</span> DocumentView = Backbone.View.extend({
+
+  events: {
+    <span class="comment">// Appel "open" s'il y a un doubleclick sur l'élément contenant la vue</span>
+    <span class="string">"dblclick"</span>                : <span class="string">"open"</span>,
+    <span class="comment">// Appel "select" s'il y a un click gauche sur les sous éléments du contenant</span>
+    <span class="comment">// dont la classe est "doc" et sont fils d'élements dont la classe est</span>
+    <span class="comment">// .icon</span>
+    <span class="string">"click .icon.doc"</span>         : <span class="string">"select"</span>,
+    <span class="comment">// Appel "showMenu" sur un click droit</span>
+    <span class="string">"contextmenu .icon.doc"</span>   : <span class="string">"showMenu"</span>,
+    <span class="string">"click .show_notes"</span>       : <span class="string">"toggleNotes"</span>,
+    <span class="string">"click .title .lock"</span>      : <span class="string">"editAccessLevel"</span>,
+    <span class="comment">// Appel "showTooltip" lorsque la souris se trouve sur l'élément sélectionné</span>
+    <span class="string">"mouseover .title .date"</span>  : <span class="string">"showTooltip"</span>
+  },
+
+  initialize: <span class="keyword">function</span>() {
+      <span class="comment">// Très importante cette ligne, elle permet de définir le this dans les fonctions</span>
+      <span class="comment">// callback, n'oubliez pas tout est asynchrone, donc le this n'est pas forcément</span>
+      <span class="comment">// celui qu'on croit quand on l'utilise.</span>
+      _.bindAll(<span class="keyword">this</span>, <span class="string">"render"</span>,<span class="string">"open"</span>,<span class="string">"select"</span>);
+  },
+
+  render: <span class="keyword">function</span>() {
+    $(<span class="keyword">this</span>.el).html(<span class="keyword">this</span>.template(<span class="keyword">this</span>.model.toJSON()));
+    <span class="keyword">return</span> <span class="keyword">this</span>;
+  },
+
+  open: <span class="keyword">function</span>() {
+    window.open(<span class="keyword">this</span>.model.get(<span class="string">"viewer_url"</span>));
+  },
+
+  select: <span class="keyword">function</span>() {
+    <span class="keyword">this</span>.model.set({selected: <span class="literal">true</span>});
+  },
+
+  ...
+
+});
+</code></pre>
+
+<h3>Les évènements personnalisés : <a href="http://documentcloud.github.com/backbone/#Events">Backbone.Events</a></h3>
+
+<p>Il est tout à fait possible d'ajouter des évènements à tous les objets en utilisant le Mixin Events. </p>
+
+<pre class="highlighted"><code class="javascript"><span class="keyword">var</span> object = {};
+
+_.extend(object, Backbone.Events);
+
+object.on(<span class="string">"alert"</span>, <span class="keyword">function</span>(msg) {
+  alert(<span class="string">"Triggered "</span> + msg);
+});
+
+object.trigger(<span class="string">"alert"</span>, <span class="string">"an event"</span>);
+</code></pre>
+
+<p>Tout d'abord qu'est qu'un <a href="http://en.wikipedia.org/wiki/Mixin">mixin</a> ? Comme son nom l'indique, il s'agit d'une chose (un objet) qui pourra être mélangé à un autre. Alors vous me direz, &ldquo;ok mais et l'héritage alors ?&rdquo;, et bien si y a deux termes c'est que (normalement) il y a des différences.</p>
+
+<p>Un héritage sert à rendre commun un morceau de code, des propriétés à toute un hiérarchie, alors qu'un mixin peut être utilisé sur des objets qui n'ont pas forcément de rapport.</p>
+
+<p>Bref, pour revenir à nos moutons, Backbone.Events est un mixin, que l'on peut injecter dans n'importe quel objet JS.</p>
+
+<p>D'ailleurs, il est fort conseillé si vous utilisez les Events, de définir votre propre  <strong>médiateur</strong>. Et pour une approche, modulaire et extensible de votre application, vous pouvez utiliser ce qu'on appelle un <a href="http://lostechies.com/derickbailey/2011/07/19/references-routing-and-the-event-aggregator-coordinating-views-in-backbone-js/">&ldquo;Event Aggregator&rdquo;</a>.</p>
+
+<h3>Event Aggregator Pattern</h3>
+
+<p>Ou comment découpler au maximum les objets et leurs interactions.</p>
+
+<pre class="highlighted"><code class="javascript">
+<span class="keyword">var</span> AddEditView = Backbone.View.extend({
+
+  <span class="comment">// On initialise la vue avec le ventilator</span>
+  initialize: <span class="keyword">function</span>(options){
+    _.bindAll(<span class="keyword">this</span>, <span class="string">"editMedication"</span>);
+
+    <span class="comment">// On connecte un évènement "editMedication"</span>
+    options.vent.bind(<span class="string">"editMedication"</span>, <span class="keyword">this</span>.editMedication);
+  },
+
+  editMedication: <span class="keyword">function</span>(medication){
+    <span class="keyword">this</span>.model = medication;
+    <span class="keyword">this</span>.render();
+  }
+});
+
+<span class="keyword">var</span> MedicationView = Backbone.View.extend({
+  events: {
+    <span class="string">"click #edit"</span>: <span class="string">"editMedication"</span>
+  },
+
+  <span class="comment">// On initialise la vue avec le ventilator</span>
+  initialize: <span class="keyword">function</span>(options){
+    <span class="keyword">this</span>.vent = options.vent;
+  },
+
+  <span class="comment">// On envoie des évènements au ventilator, qui se chargera</span>
+  <span class="comment">// de distribuer aux destinataires le message.</span>
+  editMedication: <span class="keyword">function</span>(){
+    <span class="comment">// Un évènement est émis via le ventilator "editMedication"</span>
+    <span class="keyword">this</span>.vent.trigger(<span class="string">"editMedication"</span>, <span class="keyword">this</span>.model);
+  }
+});
+
+<span class="comment">// Initialisation de l'application, et connexion des évènements</span>
+<span class="comment">// en utilisant l"event aggregator".</span>
+
+<span class="keyword">var</span> vent = _.extend({}, Backbone.Events);
+
+<span class="keyword">var</span> addEditView = <span class="keyword">new</span> AddEditView({vent: vent});
+
+medicationList.each(<span class="keyword">function</span>(med){
+  <span class="keyword">new</span> MedicationView({model: med, vent: vent});
+});
+</code></pre>
+
+<p>Cette dernière partie est un peu brutale, je sais, mais c'est pour finir en beauté. Comme je l'ai déjà dit, le principal avantage de Backbone.JS, c'est de fournir à l'utilisateur un moyen de bien développer, par la structuration du code, les concepts de séparation de responsabilité, etc.</p>
+
+<p>Cela permet aussi d'utiliser des patrons de conception déjà éprouvés dans le monde de l'informatique au sein du navigateur (et aussi du serveur) avec JavaScript.</p>
+
+<h2>Conclusion</h2>
+
+<p>Voila cet article terminé sur la gestion des évènements Backbone.JS. Comme toujours, j'espère avoir été clair, enfin plus clair que la documentation sur le sujet, ou au moins avoir levé un peu du voile que l'on affronte quand on arrive sur Backbone et tous les JS friends.</p>
+
+<p>Mon prochain article parlera de l'utilisation de CoffeeScript avec Backbone.JS, pour simplifier l'écriture du code.</p>
+
+<p>Bonne soirée à toutes et à tous.</p>
+
+<p>PS : Un grand merci à <a href="http://jekyllrb.com/">jekyll</a>, <a href="http://octopress.org/">octopress</a> et Git, qui rendent l'écriture des articles sur mon blog vraiment agréable.</p>
+</div></div></div></article></section><section id="related"><div class="row"><div class="offset2 span10"><h3>Autre(s) article(s)</h3><ul><li><span>2012 mars 04</span>&nbsp;&raquo;&nbsp;<a href="/articles/2012-03-04-backbone-dot-js-presentation.html">Backbone.js - Présentation</a></li><li><span>2012 avr. 07</span>&nbsp;&raquo;&nbsp;<a href="/articles/2012-04-07-backbone-dot-js-and-coffeescript.html">Backbone.js &amp; CoffeeScript</a></li></ul></div></div></section><section id="comments"><div class="row"><div class="offset2 span10"><h3>Commentaire(s)</h3><div id="disqus_thread" class="well"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'zenithar';
+    var disqus_identifier = '/articles/2012-03-05-backbone-dot-js-les-evenements.html';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></section></div></div><footer class="footer"><div class="container"><div class="row"><p>Copyright &copy; 2005-2013 Thibault NORMAND, motorisé par <a href="https://github.com/balupton/docpad">Docpad</a>, versionné par <a href="https://github.com/Zenithar/zenithar.docpad">Github</a>.</p></div></div></footer><!--DISQUS--><script>var disqus_shortname = 'zenithar';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());</script><!--GA--><script>if( 'http://www.zenithar.org' === 'http://' + window.location.hostname ) {
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8114245-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}</script></body></html>

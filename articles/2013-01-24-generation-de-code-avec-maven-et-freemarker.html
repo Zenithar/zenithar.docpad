@@ -1,0 +1,277 @@
+<!DOCTYPE html><html lang="fr"><head><!--Meta--><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><meta http-equiv="content-type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Zenithar.org - Génération de code avec Maven et Freemarker</title><meta name="description" content="Utilisation du plugin fmpp pour maven pour générer du code lors du processus de génération." /><meta name="keywords" content="zenithar, toulouse, java, security, engineer, Maven, Freemarker, Java" /><meta name="author" content="Thibault NORMAND" /><!--Icons--><link rel="shortcut icon" href="images/favicon.ico" /><link rel="apple-touch-icon" href="images/apple-touch-icon.png" /><link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png" /><link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png" /><link rel="alternate" type="application/atom+xml" title="Zenithar.org &raquo; Feed" href="http://feeds.feedburner.com/ZenitharOrg" /><!--Shims: IE6-8 support of HTML5 elements--><!--[if lt IE 9]>
+        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]--><!--Styles--><link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" media="screen, projection" /><link rel="stylesheet" href="/styles/style.css" media="screen, projection" /><link rel="stylesheet" href="/styles/markdown.css" media="screen, projection" /><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/github.min.css" media="screen, projection" /><!--Scripts--><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script src="//connect.facebook.net/fr_FR/all.js#xfbml=1"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js"></script></head><body><!--Topbar--><div class="navbar navbar-static-top"><div class="navbar-inner"><div class="container"><a class="btn btn-navbar pull-right" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="/">Zenithar.org</a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/site/tagmap.html">Tagmap</a></li><li><a href="/site/archive.html">Archives</a></li><li><a href="http://zenithar.org" rel="me">CV</a></li><li><a href="http://feeds.feedburner.com/ZenitharOrg"><img src="/images/rss_32.png" style="width: 24px" /></a></li></ul><form id="search-form" class="pull-right navbar-search" action="http://google.com/search" method="get"><input type="hidden" name="q" value="site:www.zenithar.org" /><input type="text" name="q" results="0" placeholder="Search" search-query /></form></div></div></div></div><!--Markup--><div class="container"><div><script src="http://platform.twitter.com/widgets.js"></script><script>//facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+//google plusone
+(function() {
+  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+  po.src = 'https://apis.google.com/js/plusone.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+</script><section class="content"><article id="post" class="post" typeof="sioc:post" about="/articles/2013-01-24-generation-de-code-avec-maven-et-freemarker.html" lang="fr-fr"><div class="row"><div class="span2 muted modern-font small-font"><span property="dc:created">2013 janv. 24 &raquo;</span></div><div class="span10"><h1 property="dcterms:title">Génération de code avec Maven et Freemarker</h1></div></div><div class="row"><div class="offset2 span10 modern-font small-font muted"><span>&nbsp; par <a href="https://twitter.com/zenithar/">Thibault NORMAND</a></span>
+ | <a href="/site/tagmap.html#maven" class="tag">Maven</a> <a href="/site/tagmap.html#freemarker" class="tag">Freemarker</a> <a href="/site/tagmap.html#java" class="tag">Java</a> | <span><a href="/articles/2013-01-24-generation-de-code-avec-maven-et-freemarker.html#disqus_thread" data-disqus-identifier="/articles/2013-01-24-generation-de-code-avec-maven-et-freemarker.html"></a></span>
+</div></div><div class="row"><div class="span2"><style rel="stylesheet" media="screen, projection" scoped="scoped">#social-buttons {
+  margin-left: 30px;
+}</style><div id="social-buttons" class="pull-right"><ul class="unstyled"><li><a class="twitter-share-button" href="https://twitter.com/share" data-url="http://www.zenithar.org/articles/2013-01-24-generation-de-code-avec-maven-et-freemarker.html" data-via="zenithar" data-count="horizontal" data-lang="fr">Tweet</a></li><li><div class="g-plusone" data-size="medium" data-href="http://www.zenithar.org/articles/2013-01-24-generation-de-code-avec-maven-et-freemarker.html"></div></li><li><div class="fb-like" data-href="http://www.zenithar.org/articles/2013-01-24-generation-de-code-avec-maven-et-freemarker.html" data-send="false" data-layout="button_count" data-show-faces="false"></div></li></ul></div></div><div class="span10"><div property="sioc:content"><p>J'utilise de plus en plus dans mes applications les évènements Spring car je trouve ça tout simplement pratique et cela offre un découplage simple et efficace des applications.</p>
+
+<p>Ces évènements sont à la fois des évènements de type Entity : Create, Delete, Update, mais aussi ils peuvent être Business. Ils sont représentés sous la forme de classes souvent en quantité. </p>
+
+<p>Je n'ai pas souvent l'occasion d'utiliser mes connaissances en métamodélisation, et ou génération de code, en entreprise, mais quand l'occasion se présente j'en profite.</p>
+
+<p>Il arrive souvent que l'on nécessite un peu de génération de code lors de la construction d'artefact; Attention je parle pas de MDA, mais bien de génération ponctuelle.</p>
+
+<p>C'est ce qui a motivé cet article.</p>
+
+<h1>FreeMarker</h1>
+
+<p><a href="http://freemarker.sourceforge.net/">FreeMarker</a> est un moteur de template Java, tout comme <a href="http://velocity.apache.org/">Velocity</a>, ou <a href="http://www.stringtemplate.org/">StringTemplate</a>.</p>
+
+<p>Il est capable de générer des fichiers de sortie type texte, à partir des modèles et de données. Il est souvent utilisé comme moteur dans <a href="http://freemarker.sourceforge.net/poweredBy.html">les applications Java</a> car il est entièrement écrit dans ce même langage.</p>
+
+<p>Voici un exemple de fichier FreeMarker (sample.ftl)</p>
+
+<pre class="highlighted"><code class="xml"><span class="tag">&lt;<span class="title">#assign</span> <span class="attribute">book</span> = <span class="attribute">doc.book</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h1</span>&gt;</span>${book.title}<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+<span class="tag">&lt;<span class="title">#list</span> <span class="attribute">book.chapter</span> <span class="attribute">as</span> <span class="attribute">ch</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">h2</span>&gt;</span>${ch.title}<span class="tag">&lt;/<span class="title">h2</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">#list</span> <span class="attribute">ch.para</span> <span class="attribute">as</span> <span class="attribute">p</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>${p}<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">#list</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">#list</span>&gt;</span>
+</code></pre>
+
+<p>Les instructions <code>${}</code> sont des placeholders qui seront remplacés à la fusion entre les données et le template.<br/>
+Les instructions <code>&lt;# &gt;</code>sont les instructions FreeMarker, elles peuvent être de commandes de contrôle de flot (if, then, etc.), mais aussi des instructions de boucles (list, etc.)</p>
+
+<p>L'instruction <code>#list</code> est un équivalent d'un <code>foreach</code>.</p>
+
+<pre class="highlighted"><code class="xml"><span class="tag">&lt;<span class="title">book</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">title</span>&gt;</span>Test Book<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">chapter</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Ch1<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">para</span>&gt;</span>p1.1<span class="tag">&lt;/<span class="title">para</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">para</span>&gt;</span>p1.2<span class="tag">&lt;/<span class="title">para</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">para</span>&gt;</span>p1.3<span class="tag">&lt;/<span class="title">para</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">chapter</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">chapter</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Ch2<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">para</span>&gt;</span>p2.1<span class="tag">&lt;/<span class="title">para</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">para</span>&gt;</span>p2.2<span class="tag">&lt;/<span class="title">para</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">chapter</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">book</span>&gt;</span>
+</code></pre>
+
+<p>En joignant le fichier XML précédent avec le template, on obtient :</p>
+
+<pre class="highlighted"><code class="xml"><span class="tag">&lt;<span class="title">h1</span>&gt;</span>Test<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">h2</span>&gt;</span>Ch1<span class="tag">&lt;/<span class="title">h2</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>p1.1
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>p1.2
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>p1.3
+  <span class="tag">&lt;<span class="title">h2</span>&gt;</span>Ch2<span class="tag">&lt;/<span class="title">h2</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>p2.1
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>p2.2
+</code></pre>
+
+<p>Notez que l'indentation est sauvegardée, cela pourra vous poser des problèmes dans certains cas.</p>
+
+<p>Pour plus d'informations, je vous invite à consulter la documentation<br/>
+&ldquo;<a href="http://freemarker.sourceforge.net/docs/xgui_imperative_learn.html">Learning by example</a>&rdquo;.</p>
+
+<h2>FMPP : FreeMarker-based text file PreProcessor</h2>
+
+<p><a href="http://fmpp.sourceforge.net/">FMPP</a> est un outil dérivé de FreeMarker, il se présente sous plusieurs formes :</p>
+
+<ul>
+<li>Un outil en ligne de commande</li>
+<li>Extension ANT</li>
+</ul>
+
+<p>Il permet d'effectuer des fusion de modèles à partir d'un script SHELL ou ANT. C'est un outil très pratique car notament il peut utiliser tout un tas de type de <a href="http://fmpp.sourceforge.net/dataloader.html">source en entrée</a> (CSV, Java Properties, Txt, XML, HTML, etc.).</p>
+
+<h1>Maven</h1>
+
+<p><a href="http://maven.apache.org/">Maven</a> est un outil de gestion d'environnement de construction spécialisé pour Java.</p>
+
+<p>Cet outil apporte un certains cadre lié au cycle de génération d'une application (compilation, test, packaging, etc.), mais aussi une extensibilité que je qualifirais d'exemplaire.</p>
+
+<p><a href="http://fr.wikipedia.org/wiki/Apache_Maven">Plus d'informations ?</a></p>
+
+<h2>Plugin FFMP pour Maven</h2>
+
+<p>Ce <a href="http://code.google.com/p/freemarkerpp-maven-plugin/">plugin</a> permet d'utiliser FMPP au sein d'un processus de génération Maven.</p>
+
+<p>Pour pouvoir utiliser le plugin dans votre projet, il suffit de déclarer un  plugin dans votre fichier <code>pom.xml</code></p>
+
+<pre class="highlighted"><code class="xml"><span class="tag">&lt;<span class="title">plugin</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>com.googlecode.fmpp-maven-plugin<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>fmpp-maven-plugin<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+<span class="tag">&lt;<span class="title">plugin</span>&gt;</span>
+</code></pre>
+
+<p>Il faut ordonner la génération du code lors de la compilation de l'artefact pour cela vous devez configuration la phase d'invocation du plugin :</p>
+
+<pre class="highlighted"><code class="xml"><span class="tag">&lt;<span class="title">configuration</span>&gt;</span>
+  <span class="comment">&lt;!-- Fichier de configuration FMPP --&gt;</span>
+  <span class="tag">&lt;<span class="title">cfgFile</span>&gt;</span>src/main/fmpp/config.fmpp<span class="tag">&lt;/<span class="title">cfgFile</span>&gt;</span>
+  <span class="comment">&lt;!-- Configuration du repertoire par défaut de sortie --&gt;</span>
+  <span class="tag">&lt;<span class="title">outputDirectory</span>&gt;</span>target/generated-sources/main/java<span class="tag">&lt;/<span class="title">outputDirectory</span>&gt;</span>
+  <span class="comment">&lt;!-- Repertoire contenant les templates *.ftl --&gt;</span>
+  <span class="tag">&lt;<span class="title">templateDirectory</span>&gt;</span>src/main/fmpp/templates<span class="tag">&lt;/<span class="title">templateDirectory</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">configuration</span>&gt;</span>
+<span class="comment">&lt;!-- Cela va invoquer le plugin lors du traitement de la phase "generate" --&gt;</span>
+<span class="tag">&lt;<span class="title">executions</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">execution</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">phase</span>&gt;</span>generate-sources<span class="tag">&lt;/<span class="title">phase</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">goals</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">goal</span>&gt;</span>generate<span class="tag">&lt;/<span class="title">goal</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">goals</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">execution</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">executions</span>&gt;</span>
+</code></pre>
+
+<p>Voila qui en est terminé de la configuration Maven !</p>
+
+<h1>Génération du code</h1>
+
+<p>Nous allons procéder à la génération de classe Java <code>simple</code> à partir des informations fournies par un fichier CSV.</p>
+
+<p>Jusque là rien de magique, tout est fourni par FMPP.</p>
+
+<pre class="highlighted"><code class="java"><span class="keyword">package</span> org.zenithar.app.service.events;
+
+<span class="keyword">import</span> org.zentihar.app.dto.${event.payloadType};
+<span class="keyword">import</span> org.springframework.context.ApplicationEvent;
+
+<span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> ${</span>event.entityName}${event.name}Event extends ApplicationEvent {
+  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1</span>L;
+
+  <span class="keyword">private</span> ${event.payloadType} payload;
+
+  <span class="keyword">public</span> ${event.entityName}${event.name}Event(Object source, ${event.payloadType} payload) {
+    <span class="keyword">super</span>(source);
+    <span class="keyword">this</span>.payload = payload;
+  }
+
+  <span class="keyword">public</span> ${event.payloadType} getPayload() {
+    <span class="keyword">return</span> <span class="keyword">this</span>.payload;
+  } 
+}
+</code></pre>
+
+<p>Voici mon modèle pour une classe Java, cela représente un évènement Spring. Biensur il est tout à fait possible d'utiliser l'héritage ainsi que la généricité pour limiter la duplication de code.</p>
+
+<h2>Configuration FMPP</h2>
+
+<p>Par défaut la génération via FreeMarker est <code>mono-fichier</code>, c'est à dire qu'un template<br/>
+devient un et un seul fichier. </p>
+
+<p>Il faut procéder à la configuration de FMPP, en modifiant de fichier <code>config.fmpp</code>, <br/>
+<a href="http://fmpp.sourceforge.net/configfile.html">plusieurs formats de fichier de configuration</a> <br/>
+peuvent être utilisés. J'ai choisi d'utilisé le format TDD, qui resemble beaucoup au format<br/>
+JSON.</p>
+
+<pre class="highlighted"><code class="javascript">data: events:csv(..<span class="regexp">/data/</span>events.csv)
+</code></pre>
+
+<p>Ce fichier va définir les sources de données utilisées <code>data</code>, remarquez la syntaxe :</p>
+
+<pre class="highlighted"><code class="xml">data: <span class="tag">&lt;<span class="title">collection</span>&gt;</span>:<span class="tag">&lt;<span class="title">loader</span>&gt;</span>(<span class="tag">&lt;<span class="title">source</span>&gt;</span>)
+</code></pre>
+
+<p>Cette configuration va charger le fichier <code>../data/events.csv</code>, à l'aide du loader <code>csv</code> afin de produire une collection nommée <code>events</code>. C'est à dire que dans notre template il y aura une collection appelée <code>events</code> exploitable par le langage FreeMarker.</p>
+
+<h2>Préparation des données</h2>
+
+<p>Pour exploiter une source de données de type séquence, il faut utiliser :</p>
+
+<pre class="highlighted"><code class="xml"><span class="tag">&lt;<span class="title">#list</span> <span class="attribute">events</span> <span class="attribute">as</span> <span class="attribute">event</span>&gt;</span>
+  ${event.name}
+<span class="tag">&lt;/<span class="title">#list</span>&gt;</span>
+</code></pre>
+
+<p>Vous avez remarqué que <code>event</code> est considéré comme un objet avec des propriétés, et bien dans le cadre du loader CSV, il s'agit tout simplement du nom de colonne renseignée dans le fichier :</p>
+
+<pre class="highlighted"><code class="bash">entityName;name;payloadType
+User;Created;UserDTO
+User;Deleted;UserDTO
+
+</code></pre>
+
+<p><div class="alert alert-info"> !!! ATTENTION de ne pas oublier le dernier retour à la ligne !!! </div></p>
+
+<h2>Génération multi-fichiers</h2>
+
+<p>La fusion du template avec les données va donc produire une suite d'évènement, jusque là<br/>
+tout va bien, seul problème, tout est généré dans un seul fichier portant le nom du template !</p>
+
+<p>Pour cela il faut utiliser des directives fmpp supplémentaires, ce qui donnera au final le <br/>
+template suivant :</p>
+
+<pre class="highlighted"><code class="java">&lt;<span class="annotation">@pp</span>.dropOutputFile /&gt; 
+&lt;#list events as event&gt;
+&lt;<span class="annotation">@pp</span>.changeOutputFile name=${event.entityName}+${event.name}+<span class="string">"Event.java"</span> /&gt;
+<span class="keyword">package</span> org.zenithar.app.service.events;
+
+<span class="keyword">import</span> org.zenithar.app.service.events.AbstractEvent;
+<span class="keyword">import</span> org.zenithar.app.service.dto.${event.payloadType};
+
+<span class="keyword">import</span> org.springframework.context.ApplicationEvent;
+
+<span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> ${</span>event.entityName}${event.name}Event extends AbstractEvent&lt;${event.payloadType}&gt; {
+  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1</span>L;
+
+  <span class="keyword">public</span> ${event.entityName}${event.name}Event(Object source, ${event.payloadType} payload) {
+    <span class="keyword">super</span>(source, payload);
+  }
+}
+&lt;/#list&gt;
+</code></pre>
+
+<p>Ce template produira autant de fichier qu'il y a de lignes dans la collection.</p>
+
+<p>A l'exécution de la commande :</p>
+
+<pre class="highlighted"><code class="bash">&gt; mvn clean package
+</code></pre>
+
+<p>Le plugin FMPP sera invoqué, génèrera les fichiers, ils seront compilés, puis intégrés dans l'artefact généré.</p>
+
+<h1>Conclusion</h1>
+
+<p>Et voila ! Vous possédez un micro générateur de code, ce n'est pas du MDA type UML + M2T avec <a href="http://www.acceleo.org/">Acceleo</a> ou équivalent, mais ça peut dépanner pour des générations simples.</p>
+</div></div></div></article></section><section id="related"><div class="row"><div class="offset2 span10"><h3>Autre(s) article(s)</h3><ul><li><span>2005 août 10</span>&nbsp;&raquo;&nbsp;<a href="/articles/2005-08-10-java-cest-mal.html">Java c'est mal !!!!!!!</a></li><li><span>2011 mars 19</span>&nbsp;&raquo;&nbsp;<a href="/articles/2011-03-19-acceleo-3-0-et-les-attributs-de-classe-uml.html">Acceleo 3.0 et les attributs de classe UML.</a></li><li><span>2011 mai 06</span>&nbsp;&raquo;&nbsp;<a href="/articles/2011-05-06-pourquoi-je-nutiliserai-plus-struts-2-a-lavenir.html">Pourquoi je n'utiliserai plus Struts 2 à l'avenir ...</a></li></ul></div></div></section><section id="comments"><div class="row"><div class="offset2 span10"><h3>Commentaire(s)</h3><div id="disqus_thread" class="well"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'zenithar';
+    var disqus_identifier = '/articles/2013-01-24-generation-de-code-avec-maven-et-freemarker.html';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></section></div></div><footer class="footer"><div class="container"><div class="row"><p>Copyright &copy; 2005-2013 Thibault NORMAND, motorisé par <a href="https://github.com/balupton/docpad">Docpad</a>, versionné par <a href="https://github.com/Zenithar/zenithar.docpad">Github</a>.</p></div></div></footer><!--DISQUS--><script>var disqus_shortname = 'zenithar';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());</script><!--GA--><script>if( 'http://www.zenithar.org' === 'http://' + window.location.hostname ) {
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8114245-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}</script></body></html>

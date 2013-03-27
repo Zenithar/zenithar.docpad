@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="fr"><head><!--Meta--><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><meta http-equiv="content-type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Zenithar.org - Mon bootstrap en laisse !</title><meta name="description" content="Ancien ingénieur sécurité passionné, acteur dans le monde du logiciel 'libre'. Je suis en veille technologique permanente car toujours à la recherche du 'meilleur tournevis'." /><meta name="keywords" content="zenithar, toulouse, java, security, engineer, Bootstrap, Twitter, Node.js, Theme" /><meta name="author" content="Thibault NORMAND" /><!--Icons--><link rel="shortcut icon" href="images/favicon.ico" /><link rel="apple-touch-icon" href="images/apple-touch-icon.png" /><link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png" /><link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png" /><link rel="alternate" type="application/atom+xml" title="Zenithar.org &raquo; Feed" href="http://feeds.feedburner.com/ZenitharOrg" /><!--Shims: IE6-8 support of HTML5 elements--><!--[if lt IE 9]>
+        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]--><!--Styles--><link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" media="screen, projection" /><link rel="stylesheet" href="/styles/style.css" media="screen, projection" /><link rel="stylesheet" href="/styles/markdown.css" media="screen, projection" /><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/github.min.css" media="screen, projection" /><!--Scripts--><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script src="//connect.facebook.net/fr_FR/all.js#xfbml=1"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js"></script></head><body><!--Topbar--><div class="navbar navbar-static-top"><div class="navbar-inner"><div class="container"><a class="btn btn-navbar pull-right" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="/">Zenithar.org</a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/site/tagmap.html">Tagmap</a></li><li><a href="/site/archive.html">Archives</a></li><li><a href="http://zenithar.org" rel="me">CV</a></li><li><a href="http://feeds.feedburner.com/ZenitharOrg"><img src="/images/rss_32.png" style="width: 24px" /></a></li></ul><form id="search-form" class="pull-right navbar-search" action="http://google.com/search" method="get"><input type="hidden" name="q" value="site:www.zenithar.org" /><input type="text" name="q" results="0" placeholder="Search" search-query /></form></div></div></div></div><!--Markup--><div class="container"><div><script src="http://platform.twitter.com/widgets.js"></script><script>//facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+//google plusone
+(function() {
+  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+  po.src = 'https://apis.google.com/js/plusone.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+</script><section class="content"><article id="post" class="post" typeof="sioc:post" about="/articles/2012-08-13-mon-bootstrap-en-laisse.html" lang="fr-fr"><div class="row"><div class="span2 muted modern-font small-font"><span property="dc:created">2012 août 13 &raquo;</span></div><div class="span10"><h1 property="dcterms:title">Mon bootstrap en laisse !</h1></div></div><div class="row"><div class="offset2 span10 modern-font small-font muted"><span>&nbsp; par <a href="https://twitter.com/zenithar/">Thibault NORMAND</a></span>
+ | <a href="/site/tagmap.html#bootstrap" class="tag">Bootstrap</a> <a href="/site/tagmap.html#twitter" class="tag">Twitter</a> <a href="/site/tagmap.html#node.js" class="tag">Node.js</a> <a href="/site/tagmap.html#theme" class="tag">Theme</a> | <span><a href="/articles/2012-08-13-mon-bootstrap-en-laisse.html#disqus_thread" data-disqus-identifier="/articles/2012-08-13-mon-bootstrap-en-laisse.html"></a></span>
+</div></div><div class="row"><div class="span2"><style rel="stylesheet" media="screen, projection" scoped="scoped">#social-buttons {
+  margin-left: 30px;
+}</style><div id="social-buttons" class="pull-right"><ul class="unstyled"><li><a class="twitter-share-button" href="https://twitter.com/share" data-url="http://www.zenithar.org/articles/2012-08-13-mon-bootstrap-en-laisse.html" data-via="zenithar" data-count="horizontal" data-lang="fr">Tweet</a></li><li><div class="g-plusone" data-size="medium" data-href="http://www.zenithar.org/articles/2012-08-13-mon-bootstrap-en-laisse.html"></div></li><li><div class="fb-like" data-href="http://www.zenithar.org/articles/2012-08-13-mon-bootstrap-en-laisse.html" data-send="false" data-layout="button_count" data-show-faces="false"></div></li></ul></div></div><div class="span10"><div property="sioc:content"><p>Oui, moi aussi je veux mon <a href="http://twitter.github.com/bootstrap">Bootstrap</a> ! Voici comment le personnaliser, avec possibilités de mises à jour du framework de base.</p>
+
+<p>Avant de commencer, il vous faudra installer Git, Node.js, ainsi que les dépendances associées à Bootstrap.</p>
+
+<pre class="highlighted"><code class="brainfuck"><span class="comment">projectRoot</span>
+  <span class="literal">+</span><span class="literal">-</span> <span class="comment">bootstrap</span>
+  <span class="literal">+</span><span class="literal">-</span> <span class="comment">custom</span>    
+  <span class="literal">+</span><span class="literal">-</span> <span class="comment">grunt</span>.<span class="comment">js</span>        
+  <span class="literal">+</span><span class="literal">-</span> <span class="comment">package</span>.<span class="comment">json</span>
+</code></pre>
+
+<ul>
+<li><code>bootstrap</code> : Contiendra un sous-module Git, pointant sur le dépôt Github de Bootstrap.</li>
+<li><code>custom</code> : Contiendra vos sources venant surcharger les scripts LESS de bootstrap.</li>
+<li><code>grunt.js</code> : Un Gruntfile basique pour la compilation du thème.</li>
+<li><code>package.json</code> : Déclaration CommonJS des dépendances du projet.</li>
+</ul>
+
+<h1>Mise en place</h1>
+
+<p>Je suppose que vous savez déjà installer Git, Node.js, ainsi que NPM.</p>
+
+<h2>Préparation du répertoire</h2>
+
+<p>Tout d'abord, nous allons créer la structure d'accueil de notre thème.</p>
+
+<pre class="highlighted"><code class="bash"> &gt; mkdir montheme
+ &gt; cd montheme
+ &gt; git init .
+</code></pre>
+
+<p>Nous devons ajouter un certains nombre de fichiers à ignorer au référentiel Git :</p>
+
+<pre class="highlighted"><code class="bash"> &gt; <span class="keyword">echo</span> <span class="string">"node_modules"</span> &gt;&gt; .gitignore
+ &gt; <span class="keyword">echo</span> <span class="string">"npm-debug.log"</span> &gt;&gt; .gitignore
+</code></pre>
+
+<h2>Récupération de Bootstrap</h2>
+
+<p>Nous allons récupérer les sources de Bootstrap sur Github :</p>
+
+<pre class="highlighted"><code class="bash"> &gt; git submodule add https://github.com/twitter/bootstrap.git
+</code></pre>
+
+<p>Cette commande va télécharger Bootstrap et le mettre dans un répertoire <code>bootstrap</code>, ce répertoire contiendra tout le dépôt Git associé au projet, c'est une sorte de lien, un sous-module Git (<a href="http://git-scm.com/book/en/Git-Tools-Submodules">pour plus d'informations c'est par ici !</a>).</p>
+
+<p>Nous venons de récupérer les sources de Bootstrap, pensez à exécuter la commande suivante depuis le répertoire <code>bootstrap</code></p>
+
+<pre class="highlighted"><code class="bash"> &gt; npm install -g
+</code></pre>
+
+<p>Vous allez installer avec cette commande :</p>
+
+<ul>
+<li><a href="https://github.com/mishoo/UglifyJS/">Uglify-JS</a> : Minifier Javascript / CSS</li>
+<li><a href="http://www.jshint.com/">JSHint</a> : Validateur syntaxique</li>
+<li><a href="http://twitter.github.com/recess/">Recess</a> : Couteau suisse CSS twitter</li>
+<li><a href="http://www.senchalabs.org/connect/">Connect</a> : Utilisé uniquement pour les tests unitaires</li>
+</ul>
+
+<p>Notez, l'utilisation du switch <code>-g</code> permettant une installation globale, et non pas localisée au projet.</p>
+
+<h2>Création de votre thème</h2>
+
+<pre class="highlighted"><code class="bash"> &gt; mkdir custom
+ &gt; cd custom
+</code></pre>
+
+<p>Ce répertoire contiendra les surcharges des classes LESS.</p>
+
+<p>Pour surcharger un fichier, il suffit de copier le fichier <code>bootstrap.less</code> du répertoire <code>bootstrap</code>.</p>
+
+<pre class="highlighted"><code class="bash"> &gt; sed -e <span class="string">"s/@import \"/@import \"\.\.\/bootstrap\/less\//g"</span> ../bootstrap/less/bootstrap.less &gt; theme.less
+</code></pre>
+
+<p>Ce fichier sera votre point d'entrée de votre thème Bootstrap, c'est celui qui sera compilé pour produire le fichier CSS.<br/>
+La commande précédente permet de générer un fichier LESS, en modifiant les <code>@import</code> pour pouvoir utiliser ceux de bootstrap.</p>
+
+<h2>Surcharge des classes LESS</h2>
+
+<p>Si vous souhaitez par exemple, changer les couleurs du thème de base Bootstrap, il suffit de créer un fichier correspondant au fichier que vous souhaitez modifier.</p>
+
+<p>Nous allons modifier les couleurs de bases du thème, pour cela il suffit de créer un fichier <code>variables.less</code> dans le répertoire <code>custom</code> :</p>
+
+<pre class="highlighted"><code class="css"><span class="at_rule">@<span class="keyword">import</span> <span class="string">"../bootstrap/less/variables.less"</span></span>;
+</code></pre>
+
+<p>Il faut aussi modifier la ligne dans le fichier <code>theme.less</code> pour inclure votre fichier <code>variables.less</code></p>
+
+<pre class="highlighted"><code class="undefined">// Core variables and mixins
+@import "../bootstrap/less/variables.less"; // Modify this for custom colors, font-sizes, etc
+@import "../bootstrap/less/mixins.less";
+</code></pre>
+
+<p>Pour le modifier de la sorte :</p>
+
+<pre class="highlighted"><code class="undefined">// Core variables and mixins
+@import "variables.less"; // Modify this for custom colors, font-sizes, etc
+@import "../bootstrap/less/mixins.less";
+</code></pre>
+
+<p>De ce fait lors de la compilation du LESS en CSS, votre fichier sera analysé pour générer un thème à partir de Bootstrap.</p>
+
+<pre class="highlighted"><code class="bash"> &gt; lessc theme.less
+</code></pre>
+
+<p>Je vais maintenant traiter des problématiques d'automatisation de génération, via le gestionnaire de build <a href="https://github.com/cowboy/grunt">Grunt.js</a>.</p>
+
+<h1>Automatisation</h1>
+
+<p>J'ai choisi d'utiliser Grunt.js, alors pourquoi ? Bien parce que ça marche ! Tout simplement !</p>
+
+<pre class="highlighted"><code class="javascript">module.exports = <span class="keyword">function</span>(grunt) {
+  <span class="comment">// Project configuration.</span>
+  grunt.initConfig({
+    recess : {
+      dist: {
+        src: [<span class="string">'custom/theme.less'</span>],
+        dest: <span class="string">'dist/theme.css'</span>,
+        options: {
+          compile: <span class="literal">true</span>
+        }
+      }
+    }
+  });
+  grunt.loadNpmTasks(<span class="string">'grunt-recess'</span>);
+  <span class="comment">// Default task.</span>
+  grunt.registerTask(<span class="string">'default'</span>, <span class="string">'recess'</span>);
+};
+</code></pre>
+
+<p>Il faut installer les dépendances liées à Grunt via :</p>
+
+<pre class="highlighted"><code class="bash"> &gt; npm install -g grunt grunt-recess
+</code></pre>
+
+<p>Pour compiler le tout, un petit <code>grunt</code> et voila ! J'utilise la tâche Recess de Grunt, disponible <a href="https://github.com/sindresorhus/grunt-recess">ici</a>.</p>
+
+<p>Vous trouverez les sources complètes de l'article sur <a href="https://github.com/Zenithar/custom-bootstrap-boilerplate">Github</a>.</p>
+
+<p>Pour utiliser cet exemple, vous devez cloner le dépôt, et initialiser le sous-module :</p>
+
+<pre class="highlighted"><code class="bash"> &gt; git clone https://github.com/Zenithar/custom-bootstrap-boilerplate.git
+ &gt; git submodule --init update
+</code></pre>
+
+<p>Et voila, bon bootstapping !</p>
+</div></div></div></article></section><section id="related"><div class="row"><div class="offset2 span10"><h3>Autre(s) article(s)</h3><ul><li><span>2011 nov. 29</span>&nbsp;&raquo;&nbsp;<a href="/articles/2011-11-29-du-javascript-a-toutes-les-sauces.html">Du JavaScript à toutes les Sauces !!! </a></li><li><span>2013 févr. 05</span>&nbsp;&raquo;&nbsp;<a href="/articles/2013-02-05-exporter-les-taches-icescrum-avec-nodejs.html">Exporter les tâches IceScrum avec Node.js</a></li></ul></div></div></section><section id="comments"><div class="row"><div class="offset2 span10"><h3>Commentaire(s)</h3><div id="disqus_thread" class="well"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'zenithar';
+    var disqus_identifier = '/articles/2012-08-13-mon-bootstrap-en-laisse.html';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></section></div></div><footer class="footer"><div class="container"><div class="row"><p>Copyright &copy; 2005-2013 Thibault NORMAND, motorisé par <a href="https://github.com/balupton/docpad">Docpad</a>, versionné par <a href="https://github.com/Zenithar/zenithar.docpad">Github</a>.</p></div></div></footer><!--DISQUS--><script>var disqus_shortname = 'zenithar';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());</script><!--GA--><script>if( 'http://www.zenithar.org' === 'http://' + window.location.hostname ) {
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8114245-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}</script></body></html>

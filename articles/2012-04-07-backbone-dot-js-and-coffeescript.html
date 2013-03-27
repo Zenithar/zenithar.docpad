@@ -1,0 +1,296 @@
+<!DOCTYPE html><html lang="fr"><head><!--Meta--><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><meta http-equiv="content-type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Zenithar.org - Backbone.js &amp; CoffeeScript</title><meta name="description" content="Ancien ingénieur sécurité passionné, acteur dans le monde du logiciel 'libre'. Je suis en veille technologique permanente car toujours à la recherche du 'meilleur tournevis'." /><meta name="keywords" content="zenithar, toulouse, java, security, engineer, backbone.js, CoffeeScript" /><meta name="author" content="Thibault NORMAND" /><!--Icons--><link rel="shortcut icon" href="images/favicon.ico" /><link rel="apple-touch-icon" href="images/apple-touch-icon.png" /><link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png" /><link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png" /><link rel="alternate" type="application/atom+xml" title="Zenithar.org &raquo; Feed" href="http://feeds.feedburner.com/ZenitharOrg" /><!--Shims: IE6-8 support of HTML5 elements--><!--[if lt IE 9]>
+        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]--><!--Styles--><link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" media="screen, projection" /><link rel="stylesheet" href="/styles/style.css" media="screen, projection" /><link rel="stylesheet" href="/styles/markdown.css" media="screen, projection" /><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/github.min.css" media="screen, projection" /><!--Scripts--><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script src="//connect.facebook.net/fr_FR/all.js#xfbml=1"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js"></script></head><body><!--Topbar--><div class="navbar navbar-static-top"><div class="navbar-inner"><div class="container"><a class="btn btn-navbar pull-right" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="/">Zenithar.org</a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/site/tagmap.html">Tagmap</a></li><li><a href="/site/archive.html">Archives</a></li><li><a href="http://zenithar.org" rel="me">CV</a></li><li><a href="http://feeds.feedburner.com/ZenitharOrg"><img src="/images/rss_32.png" style="width: 24px" /></a></li></ul><form id="search-form" class="pull-right navbar-search" action="http://google.com/search" method="get"><input type="hidden" name="q" value="site:www.zenithar.org" /><input type="text" name="q" results="0" placeholder="Search" search-query /></form></div></div></div></div><!--Markup--><div class="container"><div><script src="http://platform.twitter.com/widgets.js"></script><script>//facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+//google plusone
+(function() {
+  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+  po.src = 'https://apis.google.com/js/plusone.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+</script><section class="content"><article id="post" class="post" typeof="sioc:post" about="/articles/2012-04-07-backbone-dot-js-and-coffeescript.html" lang="fr-fr"><div class="row"><div class="span2 muted modern-font small-font"><span property="dc:created">2012 avr. 07 &raquo;</span></div><div class="span10"><h1 property="dcterms:title">Backbone.js &amp; CoffeeScript</h1></div></div><div class="row"><div class="offset2 span10 modern-font small-font muted"><span>&nbsp; par <a href="https://twitter.com/zenithar/">Thibault NORMAND</a></span>
+ | <a href="/site/tagmap.html#backbone.js" class="tag">backbone.js</a> <a href="/site/tagmap.html#coffeescript" class="tag">CoffeeScript</a> | <span><a href="/articles/2012-04-07-backbone-dot-js-and-coffeescript.html#disqus_thread" data-disqus-identifier="/articles/2012-04-07-backbone-dot-js-and-coffeescript.html"></a></span>
+</div></div><div class="row"><div class="span2"><style rel="stylesheet" media="screen, projection" scoped="scoped">#social-buttons {
+  margin-left: 30px;
+}</style><div id="social-buttons" class="pull-right"><ul class="unstyled"><li><a class="twitter-share-button" href="https://twitter.com/share" data-url="http://www.zenithar.org/articles/2012-04-07-backbone-dot-js-and-coffeescript.html" data-via="zenithar" data-count="horizontal" data-lang="fr">Tweet</a></li><li><div class="g-plusone" data-size="medium" data-href="http://www.zenithar.org/articles/2012-04-07-backbone-dot-js-and-coffeescript.html"></div></li><li><div class="fb-like" data-href="http://www.zenithar.org/articles/2012-04-07-backbone-dot-js-and-coffeescript.html" data-send="false" data-layout="button_count" data-show-faces="false"></div></li></ul></div></div><div class="span10"><div property="sioc:content"><p>Cet article va traiter de l'utilisation de CoffeeScript dans le cadre de la réalisation d'une application Backbone.js. </p>
+
+<p>Dans un premier, j'aborderai très rapidement le langage CoffeeScript, puis dans un second temps son utilisation dans l'écriture de script JavaScript.</p>
+
+<h2>CoffeeScript - &ldquo;It&rsquo;s just javascript !&rdquo;</h2>
+
+<p>Le CoffeeScript est un langage de programmation, qui une fois compilé produit du code Javascript. Le but principal de ce langage est de fournir à l'utilisateur une notation type POO (Programmation Orienté Objet), avec des mots clés comme <em>extends</em>, <em>super</em>, ainsi que de simplifier la syntaxe du Javascript.</p>
+
+<p>En effet Javascript, n'est pas vraiment un langage objet, l'héritage se fait par manipulation du prototype[<a href="http://javascript.info/tutorial/inheritance">1</a>]. Ce qui rends la programmation objet pas très facile avec Javascript.</p>
+
+<pre class="highlighted"><code class="coffeescript"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>
+  constructor: (<span class="property">@name</span>) -&gt;
+
+  move: (meters) -&gt;
+    alert <span class="property">@name</span> + <span class="string">" moved <span class="subst">#{meters}</span>m."</span>
+
+<span class="class"><span class="keyword">class</span> <span class="title">Snake</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>
+  move: -&gt;
+    alert <span class="string">"Slithering..."</span>
+    <span class="keyword">super</span> <span class="number">5</span>
+
+<span class="class"><span class="keyword">class</span> <span class="title">Horse</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>
+  move: -&gt;
+    alert <span class="string">"Galloping..."</span>
+    <span class="keyword">super</span> <span class="number">45</span>
+
+sam = <span class="keyword">new</span> Snake <span class="string">"Sammy the Python"</span>
+tom = <span class="keyword">new</span> Horse <span class="string">"Tommy the Palomino"</span>
+</code></pre>
+
+<p>Ce qui va donner après compilation via CoffeeScript :</p>
+
+<pre class="highlighted"><code class="javascript"><span class="keyword">var</span> Animal, Horse, sam, tom,
+  __hasProp = {}.hasOwnProperty,
+  __extends = <span class="keyword">function</span>(child, parent) { <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> parent) { <span class="keyword">if</span> (__hasProp.call(parent, key)) child[key] = parent[key]; } <span class="function"><span class="keyword">function</span> <span class="title">ctor</span><span class="params">()</span> {</span> <span class="keyword">this</span>.constructor = child; } ctor.prototype = parent.prototype; child.prototype = <span class="keyword">new</span> ctor; child.__super__ = parent.prototype; <span class="keyword">return</span> child; };
+
+Animal = (<span class="keyword">function</span>() {
+  Animal.name = <span class="string">'Animal'</span>;
+  <span class="function"><span class="keyword">function</span> <span class="title">Animal</span><span class="params">(name)</span> {</span>
+    <span class="keyword">this</span>.name = name;
+  }
+  Animal.prototype.move = <span class="keyword">function</span>(meters) {
+    <span class="keyword">return</span> alert(<span class="keyword">this</span>.name + (<span class="string">" moved "</span> + meters + <span class="string">"m."</span>));
+  };
+  <span class="keyword">return</span> Animal;
+})();
+
+Horse = (<span class="keyword">function</span>(_super) {
+  __extends(Horse, _super);
+  Horse.name = <span class="string">'Horse'</span>;
+  <span class="function"><span class="keyword">function</span> <span class="title">Horse</span><span class="params">()</span> {</span>
+    <span class="keyword">return</span> Horse.__super__.constructor.apply(<span class="keyword">this</span>, arguments);
+  }
+  Horse.prototype.move = <span class="keyword">function</span>() {
+    alert(<span class="string">"Galloping..."</span>);
+    <span class="keyword">return</span> Horse.__super__.move.call(<span class="keyword">this</span>, <span class="number">45</span>);
+  };
+  <span class="keyword">return</span> Horse;
+})(Animal);
+
+tom = <span class="keyword">new</span> Horse(<span class="string">"Tommy the Palomino"</span>);
+tom.move();
+</code></pre>
+
+<p>Remarquez que le code généré utilise des méthodes pour simplifier le code. Attention, pour les tatillons vous remarquerez que j'utilise pas CoffeeScript mais un dérivé compatible IcedCoffeeScript, qui produit une sortie JavaScript plus propre. Bon c'est un détail, mais ça compte !</p>
+
+<p>L'utilisation de la syntaxe CoffeeScript me permet aussi d'éliminer beaucoup de problèmes liés à la syntaxe du JavaScript.</p>
+
+<p>Je vous invite à aller consulter le site <a href="http://coffeescript.org">CoffeeScript.org</a>, pour voir toute l'étendue de la syntaxe CoffeeScript.</p>
+
+<h3>Outils CoffeeScript</h3>
+
+<p>Le langage apporte tout un ensemble d'outils pour rendre service au développeur.</p>
+
+<ul>
+<li>Documentation :
+
+<ul>
+<li><a href="http://jashkenas.github.com/docco/">Docco</a> : Par l'auteur du langage, permet de générer de la documentation en utilisant les commentaires du code. Le site de docco utilise docco, vous voyez donc un exemple de sortie du format de la documentation.</li>
+</ul></li>
+<li>Javascript :
+
+<ul>
+<li><a href="http://js2coffee.org/">JS2Coffee</a> : Cet outil permet de traduire vos scripts Js en script CoffeeScript.</li>
+</ul></li>
+<li>IDE :
+
+<ul>
+<li><a href="http://www.jetbrains.com/idea/">Intellj IDEA</a></li>
+<li>Vim</li>
+<li><a href="http://www.sublimetext.com/2">Sublime Text</a></li>
+<li>TextMate</li>
+<li>et bien d'autres …</li>
+</ul></li>
+<li>Références :
+
+<ul>
+<li><a href="http://coffeescriptcookbook.com/">CoffeeScript Cookbook</a></li>
+<li><a href="http://paper.li/dmohl/1314620036">The CoffeeScript Daily</a></li>
+</ul></li>
+</ul>
+
+<h1>Backbone.js et CoffeeScript</h1>
+
+<p>Backbone.js et CoffeeScript ont été écrit par la même organisation DocumentCloud, ils sont &ldquo;accessoirement&rdquo; les auteurs :</p>
+
+<ul>
+<li><a href="http://documentcloud.github.com/underscore/">Underscore.js</a> : Librairie de fonction utilitaires Javascript</li>
+<li><a href="http://documentcloud.github.com/backbone/">Backbone.js</a> : Framework MVC</li>
+<li><a href="http://documentcloud.github.com/visualsearch/">VisualSearch.js</a> : Un composant de recherche visuel (Completely Awwwwwweeeeesssssommmmme !)</li>
+<li>Voir les <a href="http://www.documentcloud.org/opensource">autres&hellip;</a></li>
+</ul>
+
+<p>Les exemples suivants sont extraits du portage Todo App en CoffeeScript par <a href="https://github.com/JasonGiedymin/backbone-todojs-coffeescript/blob/master/todos.coffee">Jason Giedymin</a>.</p>
+
+<h2>Les modèles</h2>
+
+<pre class="highlighted"><code class="coffeescript"><span class="comment"># Définition du modèle backbone</span>
+<span class="class"><span class="keyword">class</span> <span class="title">Todo</span> <span class="keyword">extends</span> <span class="title">Backbone</span>.<span class="title">Model</span></span>
+  <span class="comment"># Attributs par défault</span>
+  defaults:
+    <span class="comment"># Un objet Todo possède un contenu, "empty todo…" sera la valeur </span>
+    <span class="comment"># initiale à la construction.</span>
+    content: <span class="string">"empty todo..."</span>
+    <span class="comment"># Un obj Todo possède un attribut indiquant qu'il est fait ou non, </span>
+    <span class="comment"># par défaut à la construction le status sera faux (pas fait)</span>
+    done: <span class="literal">false</span>
+
+  <span class="comment"># A ne pas confondre avec le constructeur, avec backbone il y a deux</span>
+  <span class="comment"># initialisations: la construction (via constructor), et l'initialisation </span>
+  <span class="comment"># (via initialize), ces deux fonctions peuvent prendre en paramètre un objet</span>
+  <span class="comment"># souvent pour définir les valeurs de les attributs du modèle.</span>
+  initialize: -&gt;
+    <span class="property">@set</span>({ <span class="string">"content"</span>: <span class="property">@defaults</span>.content }) <span class="keyword">if</span> !<span class="property">@get</span>(<span class="string">"content"</span>)
+
+  <span class="comment"># Fonction utilitaire pour changer le status de la tâche</span>
+  toggle: -&gt;
+    <span class="property">@save</span>({ done: !<span class="property">@get</span>(<span class="string">"done"</span>) })
+</code></pre>
+
+<h2>Les collections</h2>
+
+<pre class="highlighted"><code class="coffeescript"><span class="comment"># Notez la syntaxe pour la déclaration d'une classe</span>
+<span class="class"><span class="keyword">class</span> <span class="title">TodoList</span> <span class="keyword">extends</span> <span class="title">Backbone</span>.<span class="title">Collection</span></span>
+
+  <span class="comment"># Type de la collection</span>
+  model: Todo
+
+  <span class="comment"># Notez bien la différence, le '=' au lieu du ':', cette différence va</span>
+  <span class="comment"># générer deux codes Js différents :</span>
+  <span class="comment">#  - ':' : pour des membres d'instances</span>
+  <span class="comment">#  - '=' : pour des membres de classes privés (fonctions statiques)</span>
+  <span class="function"><span class="title">getDone</span></span> = (todo) -&gt; 
+    <span class="comment"># Remarquez le '?', qui va faire un appel à get, uniquement si todo != null</span>
+    <span class="comment"># =&gt; qu'est ce que j'aimerais avoir ça en java !!! (vive scala …)</span>
+    <span class="keyword">return</span> todo?.get(<span class="string">"done"</span>)
+
+  <span class="comment"># Biensur cette fonction n'a aucun intérêt dans le modêle.</span>
+  <span class="comment"># Mais c'est comme ça que l'on déclare des fonctions statiques publiques.</span>
+  <span class="comment"># Elles pourront être invoqués de la sorte :</span>
+  <span class="comment"># TodoList.pouet()</span>
+  <span class="comment">#</span>
+  <span class="comment"># Notez que le "return" est implicite, en CoffeeScript la dernière instruction</span>
+  <span class="comment"># du scope, produit toujours un "return", d'ailleurs attention au effet de bord.</span>
+  <span class="property">@pouet</span> = () -&gt;
+    <span class="string">"toto fait du vélo !"</span>
+
+  <span class="comment"># Utilise la méthode filter des collections Backbone (en fait Underscore),</span>
+  <span class="comment"># avec note méthode statique privée comme prédicat.</span>
+  done: -&gt;
+    <span class="keyword">return</span> <span class="property">@filter</span>( getDone )
+
+  <span class="comment"># Retourne les tâches qui ne font pas partie des tâches terminées, donc cela</span>
+  <span class="comment"># retourne les tâches inachevées.</span>
+  remaining: -&gt;
+    <span class="keyword">return</span> <span class="property">@without</span>.apply( <span class="keyword">this</span>, <span class="property">@done</span>() )
+
+  nextOrder: -&gt;
+    <span class="comment"># Alors on apprécie ou pas cette syntaxe mais c'est quand même beau !</span>
+    <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">if</span> !<span class="property">@length</span>  
+    <span class="keyword">return</span> <span class="property">@last</span>().get(<span class="string">'order'</span>) + <span class="number">1</span>
+
+  <span class="comment"># Function héritée de la collection Backbone utilisée pour ordonner la collection.</span>
+  comparator: (todo) -&gt;
+    <span class="keyword">return</span> todo.get(<span class="string">"order"</span>)
+</code></pre>
+
+<h2>Les vues</h2>
+
+<pre class="highlighted"><code class="coffeescript"><span class="class"><span class="keyword">class</span> <span class="title">TodoView</span> <span class="keyword">extends</span> <span class="title">Backbone</span>.<span class="title">View</span></span>
+  <span class="comment"># L'élément DOM de base crée par la vue sera un &lt;li&gt;, cela veut dire que</span>
+  <span class="comment"># this.el (@el) sera "&lt;li&gt;&lt;/li&gt;"</span>
+  tagName:  <span class="string">"li"</span>
+
+  <span class="comment"># Utlisation du moteur de template Underscore</span>
+  template: _.template( $(<span class="string">"#item-template"</span>).html() )
+
+  <span class="comment"># Bind des évènements DOM</span>
+  events:
+    <span class="string">"click .check"</span>              : <span class="string">"toggleDone"</span>
+    <span class="string">"dblclick div.todo-content"</span> : <span class="string">"edit"</span>
+    <span class="string">"click span.todo-destroy"</span>   : <span class="string">"clear"</span>
+    <span class="string">"keypress .todo-input"</span>      : <span class="string">"updateOnEnter"</span>
+
+  <span class="comment"># Initialisation de la vue</span>
+  initialize: -&gt;
+    <span class="property">@model</span>.<span class="literal">on</span> <span class="string">'change'</span>, <span class="keyword">this</span>.render
+
+  <span class="comment"># Remarquez le '=&gt;' que l'on appelle la 'fat arrow', c'est le genre de</span>
+  <span class="comment"># nouveauté qu'apporte CoffeeScript, cela permet de sauvegarder la valeur</span>
+  <span class="comment"># de 'this', et de référencer le this interne par une autre variable, permettant</span>
+  <span class="comment"># l'utilisation classique du 'this' dans la méthode.</span>
+  <span class="comment">#</span>
+  <span class="comment"># On n'est pas obligé d'utiliser la 'fat arrow', il suffit de faire une fonction</span>
+  <span class="comment"># simple '-&gt;', ET ne pas oublier le '_.bindAll(this, "render")' dans le bloc </span>
+  <span class="comment"># initialize. </span>
+  render: =&gt;
+    <span class="comment"># Depuis Backbone 0.9 @.$(@el) est devenu @$el</span>
+    <span class="property">@$el</span>.html( <span class="property">@template</span>(<span class="property">@model</span>.toJSON()) )
+    <span class="property">@setContent</span>()
+    <span class="comment"># Ne pas oublier par convention render DOIT retourner "this"</span>
+    @
+
+  <span class="comment"># Volontairement écourté …</span>
+</code></pre>
+
+<h2>Conclusion</h2>
+
+<p>Voila c'est fini, pour cet article, j'espère vous avoir donné l'envie de continuer les recherches, et les expérimentations dans le &ldquo;nouveau&rdquo; monde du JavaScript et du HTML5.</p>
+
+<p>Il existe des alternatives sérieuses à Backbone.js :</p>
+
+<ul>
+<li><a href="http://emberjs.com/">Ember.js</a> : Qui semble être capable de rivaliser avec backbone.js dans le royaume des MVC.JS</li>
+<li><a href="http://spinejs.com/">Spine.js</a> : dans la même veine (je l'ai découvert en bossant sur swagger-core.)</li>
+<li><a href="http://knockoutjs.com/">Knockout.js</a> : possède une approche différente, type <a href="http://fr.wikipedia.org/wiki/Mod%C3%A8le-Vue-VueMod%C3%A8le">MVVM</a>, personellement j'accroche pas, je trouve trop compliqué, et ça me rappelle trop WPF… </li>
+<li>et bien d'autres sortes et surf sur la vague du JS</li>
+</ul>
+
+<p>Toutes ces nouvelles technologies ne rendront que plus agréable vos futurs développements JS, et n'hésitez pas, foncez, c'est pour votre bien !</p>
+
+<p>Qui plus est, la compétence Backbone.js commence à être demandée sur le marché du travail, ça fait toujours une corde de plus à son arc. </p>
+
+<h3>A venir …</h3>
+
+<p>Mon prochain article parlera de l'utilisation de Require.js au sein d'application Backbone.js, en reprenant l'article d'Addy Osmani - <a href="http://addyosmani.com/writing-modular-js/">Writing modular js</a>. J'essayerai de résumer, et d'apporter mon retour d'expérience.</p>
+
+<p>Sur ce, bonne soirée (enfin bonne nuit vue l'heure !).</p>
+</div></div></div></article></section><section id="related"><div class="row"><div class="offset2 span10"><h3>Autre(s) article(s)</h3><ul><li><span>2012 mars 04</span>&nbsp;&raquo;&nbsp;<a href="/articles/2012-03-04-backbone-dot-js-presentation.html">Backbone.js - Présentation</a></li><li><span>2012 mars 05</span>&nbsp;&raquo;&nbsp;<a href="/articles/2012-03-05-backbone-dot-js-les-evenements.html">Backbone.js - Les évènements</a></li><li><span>2012 avr. 06</span>&nbsp;&raquo;&nbsp;<a href="/articles/2012-04-06-iced-coffeescript-minification.html">[Iced]CoffeeScript minification</a></li><li><span>2012 août 05</span>&nbsp;&raquo;&nbsp;<a href="/articles/2012-08-05-generation-de-hash-conforme-owasp.html">Génération de Hash conforme OWASP</a></li><li><span>2012 août 05</span>&nbsp;&raquo;&nbsp;<a href="/articles/2012-08-05-verifier-un-rio.html">Vérifier un RIO</a></li><li><span>2012 août 06</span>&nbsp;&raquo;&nbsp;<a href="/articles/2012-08-06-8-mois-avec-backbone-dot-js-et-ca-dure.html">8 mois avec Backbone.js et ça dure !</a></li></ul></div></div></section><section id="comments"><div class="row"><div class="offset2 span10"><h3>Commentaire(s)</h3><div id="disqus_thread" class="well"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'zenithar';
+    var disqus_identifier = '/articles/2012-04-07-backbone-dot-js-and-coffeescript.html';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></section></div></div><footer class="footer"><div class="container"><div class="row"><p>Copyright &copy; 2005-2013 Thibault NORMAND, motorisé par <a href="https://github.com/balupton/docpad">Docpad</a>, versionné par <a href="https://github.com/Zenithar/zenithar.docpad">Github</a>.</p></div></div></footer><!--DISQUS--><script>var disqus_shortname = 'zenithar';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());</script><!--GA--><script>if( 'http://www.zenithar.org' === 'http://' + window.location.hostname ) {
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8114245-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}</script></body></html>

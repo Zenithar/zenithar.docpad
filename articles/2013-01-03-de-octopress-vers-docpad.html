@@ -1,0 +1,129 @@
+<!DOCTYPE html><html lang="fr"><head><!--Meta--><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><meta http-equiv="content-type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Zenithar.org - De Octopress vers DocPad</title><meta name="description" content="La migration d'Octopress vers DocPad, une histoire de temps !" /><meta name="keywords" content="zenithar, toulouse, java, security, engineer, Octopress, DocPad, Migration, Markdown" /><meta name="author" content="Thibault NORMAND" /><!--Icons--><link rel="shortcut icon" href="images/favicon.ico" /><link rel="apple-touch-icon" href="images/apple-touch-icon.png" /><link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png" /><link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png" /><link rel="alternate" type="application/atom+xml" title="Zenithar.org &raquo; Feed" href="http://feeds.feedburner.com/ZenitharOrg" /><!--Shims: IE6-8 support of HTML5 elements--><!--[if lt IE 9]>
+        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]--><!--Styles--><link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" media="screen, projection" /><link rel="stylesheet" href="/styles/style.css" media="screen, projection" /><link rel="stylesheet" href="/styles/markdown.css" media="screen, projection" /><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/github.min.css" media="screen, projection" /><!--Scripts--><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script src="//connect.facebook.net/fr_FR/all.js#xfbml=1"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js"></script></head><body><!--Topbar--><div class="navbar navbar-static-top"><div class="navbar-inner"><div class="container"><a class="btn btn-navbar pull-right" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="/">Zenithar.org</a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/site/tagmap.html">Tagmap</a></li><li><a href="/site/archive.html">Archives</a></li><li><a href="http://zenithar.org" rel="me">CV</a></li><li><a href="http://feeds.feedburner.com/ZenitharOrg"><img src="/images/rss_32.png" style="width: 24px" /></a></li></ul><form id="search-form" class="pull-right navbar-search" action="http://google.com/search" method="get"><input type="hidden" name="q" value="site:www.zenithar.org" /><input type="text" name="q" results="0" placeholder="Search" search-query /></form></div></div></div></div><!--Markup--><div class="container"><div><script src="http://platform.twitter.com/widgets.js"></script><script>//facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+//google plusone
+(function() {
+  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+  po.src = 'https://apis.google.com/js/plusone.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+</script><section class="content"><article id="post" class="post" typeof="sioc:post" about="/articles/2013-01-03-de-octopress-vers-docpad.html" lang="fr-fr"><div class="row"><div class="span2 muted modern-font small-font"><span property="dc:created">2013 janv. 03 &raquo;</span></div><div class="span10"><h1 property="dcterms:title">De Octopress vers DocPad</h1></div></div><div class="row"><div class="offset2 span10 modern-font small-font muted"><span>&nbsp; par <a href="https://twitter.com/zenithar/">Thibault NORMAND</a></span>
+ | <a href="/site/tagmap.html#octopress" class="tag">Octopress</a> <a href="/site/tagmap.html#docpad" class="tag">DocPad</a> <a href="/site/tagmap.html#migration" class="tag">Migration</a> <a href="/site/tagmap.html#markdown" class="tag">Markdown</a> | <span><a href="/articles/2013-01-03-de-octopress-vers-docpad.html#disqus_thread" data-disqus-identifier="/articles/2013-01-03-de-octopress-vers-docpad.html"></a></span>
+</div></div><div class="row"><div class="span2"><style rel="stylesheet" media="screen, projection" scoped="scoped">#social-buttons {
+  margin-left: 30px;
+}</style><div id="social-buttons" class="pull-right"><ul class="unstyled"><li><a class="twitter-share-button" href="https://twitter.com/share" data-url="http://www.zenithar.org/articles/2013-01-03-de-octopress-vers-docpad.html" data-via="zenithar" data-count="horizontal" data-lang="fr">Tweet</a></li><li><div class="g-plusone" data-size="medium" data-href="http://www.zenithar.org/articles/2013-01-03-de-octopress-vers-docpad.html"></div></li><li><div class="fb-like" data-href="http://www.zenithar.org/articles/2013-01-03-de-octopress-vers-docpad.html" data-send="false" data-layout="button_count" data-show-faces="false"></div></li></ul></div></div><div class="span10"><div property="sioc:content"><p>Il y a quelques temps, j'ai fait la migration de <a href="/articles/2012-02-18-bye-bye-wordpress.html">Worpress vers Octopress</a>, cependant je n'étais pas vraiment satisfait. </p>
+
+<p>C'est un bon logiciel, forké de <a href="http://jekyllrb.com/">Jekyll</a>, cependant je trouve qu'il est difficile à personnaliser et l'on se trouve souvent à avoir un blog qui ressemble à tous les utilisateurs d'<a href="http://octopress.org/">Octopress</a>. </p>
+
+<p>J'ai donc pris la décison de migrer (encore une fois), vers une autre solution de publication basé Markdown. Cette fois ce sera <a href="http://docpad.org/">DocPad</a>.</p>
+
+<p>DocPad est un moteur de génération de site écrit en CoffeeScript et fonctionne avec Node.js.</p>
+
+<h2>Initialisation de DocPad</h2>
+
+<p>Pour démarrer un site utilisant docpad, il suffit d'utiliser un site qui l'a déja mis en place, c'est ce qui est appelé un <code>skeleton</code>.</p>
+
+<pre class="highlighted"><code class="bash"> &gt; git clone https://github.com/docpad/twitter-bootstrap.docpad.git 
+</code></pre>
+
+<p>Ce squelette DocPad est un exemple de blog utilisant <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> comme framework de style. Et accessoirement, c'est avec ce squelette que j'ai démarré la migration.</p>
+
+<p>Une fois le projet cloné, vous devez télécharger les dépendances Node.js, comme d'habitude :</p>
+
+<pre class="highlighted"><code class="bash"> &gt; npm install
+</code></pre>
+
+<p>Les dépendnaces sont gérées comme toutes applications Node.js conforme au CommonJS, via un fichier <code>package.json</code>.</p>
+
+<pre class="highlighted"><code class="undefined">{
+    "name": "twitter-bootstrap.docpad",
+    .... (blah blah comme d'hab) ...
+    "dependencies": {
+        "docpad": "6.x",
+        "docpad-plugin-cleanurls": "2.x",
+        "docpad-plugin-coffeescript": "2.x",
+        "docpad-plugin-eco": "2.x",
+        "docpad-plugin-less": "2.x",
+        "docpad-plugin-marked": "2.x",
+        "docpad-plugin-partials": "2.x",
+        "docpad-plugin-stylus": "2.x",
+        "docpad-plugin-text": "2.x"
+    },
+    "devDependencies": {
+        "docpad-plugin-livereload": "2.x"
+    },
+    "main": "node_modules/docpad/bin/docpad-server"
+}
+</code></pre>
+
+<p>Le squelette utilise 9 plugins :</p>
+
+<ul>
+<li><a href="https://github.com/docpad/docpad-plugin-cleanurls">cleanurls</a> : Plugin de gestion des URLs, ne fonctionne pas en static.</li>
+<li><a href="https://github.com/docpad/docpad-plugin-coffeescript">coffeescript</a> : Plugin de compilation des fichiers dont l'extension est .coffee.</li>
+<li><a href="https://github.com/docpad/docpad-plugin-eco">eco</a> : Moteur de template</li>
+<li><a href="https://github.com/docpad/docpad-plugin-less">less</a> : Support du langage CSS <a href="http://lesscss.org/">Less</a></li>
+<li><a href="https://github.com/docpad/docpad-plugin-marked">marked</a> : Plugin de gestion des fichiers markdown</li>
+<li><a href="https://github.com/docpad/docpad-plugin-partials">partials</a> : Gestion des morceaux de fichiers (template)</li>
+<li><a href="https://github.com/docpad/docpad-plugin-stylus">stylus</a> : Autre langage CSS <a href="http://learnboost.github.com/stylus/">Stylus</a></li>
+<li><a href="https://github.com/docpad/docpad-plugin-text">text</a> : Gestion de template simple (type placeholder)</li>
+<li><a href="https://github.com/docpad/docpad-plugin-livereload">livereload</a> : Plugin utilisé lors du développement pour le rechargement automatique des ressources modifiées.</li>
+</ul>
+
+<p>Vous pouvez dès à présent lancer la plateforme :</p>
+
+<pre class="highlighted"><code class="bash"> &gt; docpad run
+</code></pre>
+
+<p>Cette commande va exécuter le serveur docpad utilisé pour le développement, il s'agit d'un simple serveur de fichiers statics. La commande va d'abord procéder à la génération du site dans le répertoire de sortie <code>out</code>. Ce répertoire contient l'ensemble des fichiers nécessaire au site.</p>
+
+<p>Vous pourrez accéder au site via <a href="http://localhost:9778">http://localhost:9778</a></p>
+
+<h2>Structure d'un site DocPad</h2>
+
+<pre class="highlighted"><code class="bash"> +- out             // Répertoire de sortie
+ +- src             // Répertoire contenant les sources à générer
+ +- plugins         // Répertoire optionnel contenant les plugins locaux
+ docpad.coffee       // Fichier contenant à la fois la configuration et les modifications du système
+ package.json        // Fichier CommonJS
+</code></pre>
+
+<p>Tous les fichiers contenu dans <code>src</code> sont soumis à la génération au travers de tous les plugins. C'est le plugin qui décidera en fonction de critères particuliers qu'il traitera le fichier et/ou le délguera au prochain dans la chaine de traitement.</p>
+
+<p>Voilà c'est une présentation rapide et succinte, mais je reviendrai dans les détails en utilisant mon propre blog comme support d'exemple.<br/>
+En attendant, vous pouvez jetez un oeil sur le dépot Git : <a href="https://github.com/Zenithar/zenithar.docpad">https://github.com/Zenithar/zenithar.docpad</a>.</p>
+</div></div></div></article></section><section id="related"><div class="row"><div class="offset2 span10"><h3>Autre(s) article(s)</h3><ul><li><span>2012 févr. 18</span>&nbsp;&raquo;&nbsp;<a href="/articles/2012-02-18-bye-bye-wordpress.html">Bye bye Wordpress</a></li></ul></div></div></section><section id="comments"><div class="row"><div class="offset2 span10"><h3>Commentaire(s)</h3><div id="disqus_thread" class="well"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'zenithar';
+    var disqus_identifier = '/articles/2013-01-03-de-octopress-vers-docpad.html';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></section></div></div><footer class="footer"><div class="container"><div class="row"><p>Copyright &copy; 2005-2013 Thibault NORMAND, motorisé par <a href="https://github.com/balupton/docpad">Docpad</a>, versionné par <a href="https://github.com/Zenithar/zenithar.docpad">Github</a>.</p></div></div></footer><!--DISQUS--><script>var disqus_shortname = 'zenithar';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());</script><!--GA--><script>if( 'http://www.zenithar.org' === 'http://' + window.location.hostname ) {
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8114245-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}</script></body></html>

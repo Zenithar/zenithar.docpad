@@ -1,0 +1,175 @@
+<!DOCTYPE html><html lang="fr"><head><!--Meta--><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><meta http-equiv="content-type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Zenithar.org - 8 mois avec Backbone.js et ça dure !</title><meta name="description" content="Ancien ingénieur sécurité passionné, acteur dans le monde du logiciel 'libre'. Je suis en veille technologique permanente car toujours à la recherche du 'meilleur tournevis'." /><meta name="keywords" content="zenithar, toulouse, java, security, engineer, Backbone.js, CoffeeScript" /><meta name="author" content="Thibault NORMAND" /><!--Icons--><link rel="shortcut icon" href="images/favicon.ico" /><link rel="apple-touch-icon" href="images/apple-touch-icon.png" /><link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png" /><link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png" /><link rel="alternate" type="application/atom+xml" title="Zenithar.org &raquo; Feed" href="http://feeds.feedburner.com/ZenitharOrg" /><!--Shims: IE6-8 support of HTML5 elements--><!--[if lt IE 9]>
+        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]--><!--Styles--><link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" media="screen, projection" /><link rel="stylesheet" href="/styles/style.css" media="screen, projection" /><link rel="stylesheet" href="/styles/markdown.css" media="screen, projection" /><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/github.min.css" media="screen, projection" /><!--Scripts--><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script src="//connect.facebook.net/fr_FR/all.js#xfbml=1"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js"></script></head><body><!--Topbar--><div class="navbar navbar-static-top"><div class="navbar-inner"><div class="container"><a class="btn btn-navbar pull-right" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="/">Zenithar.org</a><div class="nav-collapse collapse"><ul class="nav"><li><a href="/site/tagmap.html">Tagmap</a></li><li><a href="/site/archive.html">Archives</a></li><li><a href="http://zenithar.org" rel="me">CV</a></li><li><a href="http://feeds.feedburner.com/ZenitharOrg"><img src="/images/rss_32.png" style="width: 24px" /></a></li></ul><form id="search-form" class="pull-right navbar-search" action="http://google.com/search" method="get"><input type="hidden" name="q" value="site:www.zenithar.org" /><input type="text" name="q" results="0" placeholder="Search" search-query /></form></div></div></div></div><!--Markup--><div class="container"><div><script src="http://platform.twitter.com/widgets.js"></script><script>//facebook
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+//google plusone
+(function() {
+  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+  po.src = 'https://apis.google.com/js/plusone.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+</script><section class="content"><article id="post" class="post" typeof="sioc:post" about="/articles/2012-08-06-8-mois-avec-backbone-dot-js-et-ca-dure.html" lang="fr-fr"><div class="row"><div class="span2 muted modern-font small-font"><span property="dc:created">2012 août 06 &raquo;</span></div><div class="span10"><h1 property="dcterms:title">8 mois avec Backbone.js et ça dure !</h1></div></div><div class="row"><div class="offset2 span10 modern-font small-font muted"><span>&nbsp; par <a href="https://twitter.com/zenithar/">Thibault NORMAND</a></span>
+ | <a href="/site/tagmap.html#backbone.js" class="tag">Backbone.js</a> <a href="/site/tagmap.html#coffeescript" class="tag">CoffeeScript</a> | <span><a href="/articles/2012-08-06-8-mois-avec-backbone-dot-js-et-ca-dure.html#disqus_thread" data-disqus-identifier="/articles/2012-08-06-8-mois-avec-backbone-dot-js-et-ca-dure.html"></a></span>
+</div></div><div class="row"><div class="span2"><style rel="stylesheet" media="screen, projection" scoped="scoped">#social-buttons {
+  margin-left: 30px;
+}</style><div id="social-buttons" class="pull-right"><ul class="unstyled"><li><a class="twitter-share-button" href="https://twitter.com/share" data-url="http://www.zenithar.org/articles/2012-08-06-8-mois-avec-backbone-dot-js-et-ca-dure.html" data-via="zenithar" data-count="horizontal" data-lang="fr">Tweet</a></li><li><div class="g-plusone" data-size="medium" data-href="http://www.zenithar.org/articles/2012-08-06-8-mois-avec-backbone-dot-js-et-ca-dure.html"></div></li><li><div class="fb-like" data-href="http://www.zenithar.org/articles/2012-08-06-8-mois-avec-backbone-dot-js-et-ca-dure.html" data-send="false" data-layout="button_count" data-show-faces="false"></div></li></ul></div></div><div class="span10"><div property="sioc:content"><p>Cela fait quelques temps déjà que j'utilise Backbone.JS and Friends, et bon je vais essayer de rester objectif sur le retour d'expérience que je compte développer.</p>
+
+<p>Tout d'abord, ça roxe du poney (avis tout à fait objectif !) par rapport au développement classique d'IHM web (struts, dojo, etc.). Ceux qui me lisent et/ou me connaissent (en vrai) savent tout mon amour que je porte au développement Web (hum), qui plus est développement web avec des technologies compatibles IE2 (ActiveX sur Serveur jBoss par exemple) … voir IE tout court … hum hum :-)</p>
+
+<p>Personnellement, ce que je n'aime pas dans le développement Web, c'est le Web lui même, qui ressemble plus à un ensemble bricolé qui tombait en marche sur tous les navigateurs du marché (sauf un, devinez :-) ).</p>
+
+<p>Beaucoup d'application dites Web 2.0, ne le sont pas ! Notamment, on croit que faire un include de plusieurs librairies JavaScript, permet comme par magie de faire du Web 2.0. Mais j'ai eu l'occasion de découvrir toutes la puissance des &ldquo;vraies&rdquo; applications JavaScript via Backbone.js. </p>
+
+<h1>Découverte</h1>
+
+<p>Comment suis-je arrivé à connaitre Backbone.js, et bien à cause de <a href="http://nodejs.org/">Node.js</a> ! Vous ne connaissez pas ? C'est, selon moi, celui qui a accéléré les choses, RoR/Django ont essuyés les plâtres, mais <a href="http://nodejs.org/">Node.js</a> a tout refait mais en mieux.</p>
+
+<p>Le problème de ces technologies, c'est qu'elles ne sont pas guidées (est-ce vraiment un inconvénient ?), et j'ai du prendre en bloc tout ce qui est venu avec c-à-d :</p>
+
+<ul>
+<li>JavaScript, que je ne connaissais pas si puissant (comme bcp de monde d'ailleurs)</li>
+<li><a href="http://jquery.com/">jQuery</a></li>
+<li>puis <a href="http://coffeescript.org">CoffeeScript</a>, pour simplifier le JavaScript</li>
+<li>et enfin <a href="http://backbonejs.org">Backbone.js</a></li>
+</ul>
+
+<p>J'ai du me mettre au JS, par nécessité d'interactivité tout simplement, je suis passé du simple <code>$(&quot;#foo&quot;).hide()</code> à une organisation du code en modules, classes, composants.</p>
+
+<p><a href="http://jquery.com/">jQuery</a> m'a surtout permit de gérer les problèmes de navigateurs, ainsi que les manipulations DOM; premier plugin un diagramme de Gantt basé sur des <code>&lt;tr&gt;</code>, <code>&lt;td&gt;</code>, et css (Ouh que c'était dégueulasse !).</p>
+
+<p><a href="http://coffeescript.org">CoffeeScript</a> n'était pas encore présent (Décembre 2011) dans ma caisse à outils. Cependant ce qui m'a fait migrer, c'est la génération du code JS valide sur tous les navigateurs (Gestion des &lsquo;var&rsquo;, &lsquo;;&rsquo;, etc.). Pour moi CoffeeScript c'était ça au début, puis j'ai découvert les classes Objet et pas par Prototype.</p>
+
+<h1>Problèmes rencontrés</h1>
+
+<p>C'est bien beau toutes ces nouvelles technologies, mais comment les intégrer ? Voici les problèmes rencontrés :</p>
+
+<h2>Intégration au processus de génération Java</h2>
+
+<p>Un des problèmes majeurs est l'intégration au système de build de l'application Java/J2EE que ce soit Maven ou Ant, il y a un gros vide. J'ai donc pris la décision d'utiliser Node.js dans la chaine de compilation.</p>
+
+<h2>Mise en place d'une architecture orientée service</h2>
+
+<p>Malheureusement, le découplage fonctionnel n'est pas naturel pour tous les développeurs, il a fallut mettre en place par le biais de service Web REST/JSON, une interface d'accès au système. </p>
+
+<p>Nous avons mis en évidence aussi la présence de fonctionnel métier présent dans la vue (formulaire), ce qui a impliqué une longue phase de refactoring, qui est traitée au fur et à mesure de l'avancement de la migration. Cette phase consiste à déplacer le fonctionnel métier dans un module partagé entre la vue (action struts2) et le service.</p>
+
+<h2>Export fonctionnel client</h2>
+
+<p>Le fait d'exporter une partie du fonctionnel coté client (navigateur) a impliqué beaucoup de travail annexe, notamment tout ce qui concerne le domaine &ldquo;statique&rdquo; applicatif tels que les typologies, les paramètres.</p>
+
+<p>L'objectif majeur était d'éliminer les interactions serveurs &ldquo;inutiles&rdquo;, d'où le besoin d'exporter les logiques métiers coté client, pour présenter une information pré-machée au serveur, sans pour autant faire confiance, d'où le doublon de code.</p>
+
+<h2>Sécurité</h2>
+
+<p>L'export fonctionnel apporte des problématiques de gestion de la Sécurité (Qui me tient à coeur, car trop souvent négligée !). &ldquo;Normalement&rdquo;, il y a coté serveur des contrôles d'accès sur les  fonctions, et le code exposé. </p>
+
+<p>En JavaScript, tout est modifiable par l'utilisateur, seule la norme ECMASCRIPT 5 (ça aussi découvert pendant l'apprentissage !) apporte des mécanismes de scellements via <code>Object.seal</code>, ou de vérrouillage via <code>Object.freeze</code>. Qui plus est beaucoup de développeurs n'utilisent pas les namespaces, et le module pattern pour protéger leurs codes privés. Il devient alors très facile d'écraser un contrôle client, qui n'est pas vérifié coté serveur.</p>
+
+<p>Nous avons mis en place un système de facades, permettant via un bootstrap applicatif, de récupérer coté client les permissions de l'utilisateur. Les méthodes de la facade sous forme de &ldquo;can*&rdquo; exposent les permissions à l'application JavaScript.<br/>
+Nous avons repris et adapté le pattern &ldquo;<a href="http://addyosmani.com/largescalejavascript/">Large Scale JavaScript Application</a>&rdquo; d'Addy Osmani à nos besoins.</p>
+
+<h2>Gestion des modules</h2>
+
+<p>Avec la multiplication des modules JS (CoffeeScript compilé), il a fallut mettre en place un système de gestion de dépendances, chose il faut le dire, ce n'est pas necessairement naturel pour un néophyte du JavaScript, qui a l'habitude du bon vieux <code>&lt;script src=&#39;…&#39;&gt;</code> dans l'entête.</p>
+
+<p>Il a fallut comprendre la différence entre <a href="http://wiki.commonjs.org/">CommonJS</a> et AMD, pour comprendre que c'est la même chose, en fait <a href="http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition">AMD</a> est un gestionnaire <a href="http://wiki.commonjs.org/">CommonJS</a>, mais avec le chargement asynchrone (via réseau par exemple).</p>
+
+<p>Nous nous sommes tournés vers <a href="http://requirejs.org/">Require.js</a> qui est un des chargeurs <a href="http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition">AMD</a>, permettant au travers du module pattern d'organiser le code, et surtout la gestion de l'exposition des fonctions (privées / publiques).</p>
+
+<p>La partie cliente est composée de :</p>
+
+<ul>
+<li>Framework : Abstraction des librairies (Notifications, Validations), etc.</li>
+<li>Modèles (Backbone)</li>
+<li>Collections (Backbone)</li>
+<li>Facades</li>
+<li>Views (Backbone)</li>
+<li>Templates (Handlebars)</li>
+<li>Widgets </li>
+<li>Services : Pour les communications serveurs hors Backbone.</li>
+</ul>
+
+<p>Le tout articulé via Require.js (AMD), hormis le framework qui est sous la forme d'extension d'espace de nom via le plugin namespace de CoffeeScript simplement concaténé.</p>
+
+<p><script src="https://gist.github.com/2318881.js"></script></p>
+
+<h2>Beaucoup de connaissances à acquérir</h2>
+
+<p>Il n'est pas possible de prendre en partie toute la connaissance nécessaire pour contrôler ces nouveaux outils, ils sont tous reliés. De ce fait on a souvent le sentiment de se disperser.<br/>
+Qui plus est, liés aux buzzs, beaucoup d'autres choses intéressantes viennent polluer les choix.</p>
+
+<h1>Avantages</h1>
+
+<p>Biensur beaucoup d'inconvénients majeurs liés à la migration d'un projet, tout cela ne sont au final que des pré-requis à l'utilisation d'IHM JS, donc effectivement si ce n'est pas le cas, et bien il faut mettre en place l'infrastructure d'accueil.</p>
+
+<h2>Modularité et réutilisabilité</h2>
+
+<p>On obtient bon nombre de modules, qui en fonction de la sensibilité (/ compétences) de développeur peuvent être réutilisable. Backbone.js est pour moi une librairie de concept qui peuvent être tous (ou pas) utilisés, voir complété par extensions.</p>
+
+<p>Personnellement, j'utilise <a href="https://github.com/chaplinjs/chaplin">Chaplin</a>, qui se veut être un framework qui utilise Backbone.js. Cela permet d'ajouter et de prendre en charge les problématiques que l'ont rencontre assez rapidement en cas de développement IHM JS (Gestion des sessions, gestion des vues, mise en page). Il ajoute à la manière de Rails, des conventions permettant de simplifier la configuration, et donc le développement.</p>
+
+<h2>Testabilité</h2>
+
+<p>La testabilité devient de plus en plus le mot d'ordre pour les entreprises d'aujourd'hui, il est très important de pouvoir tester son code de manière efficace et surtout rapide.</p>
+
+<p>Le fait de découper son application cliente en modules fonctionnels testables, permets d'utiliser tous les mécanismes de tests &ldquo;coté serveur&rdquo;, mais &ldquo;coté client&rdquo;, en utilisant des framework comme <a href="http://visionmedia.github.com/mocha/">Mocha</a> (mon préféré ! surtout le <a href="http://tjholowaychuk.com/post/25314967097/mocha-1-2-0-now-with-more-nyan">mode nyan cat</a> ! heu non en fait …)</p>
+
+<h2>Interactivité / Rapidité</h2>
+
+<p>Autre avantage, l'interactivité ! L'utilisateur veut améliorer son expérience (cette fameuse expérience utilisateur : UX en anglais, dont <a href="https://www.google.fr/search?q=CV%20UX">les spécialistes fleurissent sur Internet</a> )</p>
+
+<p>Le fait d'utiliser les ressources du client (navigateur) pour générer les pages, les modifier sans le fameux &ldquo;click&rdquo; d'IE signifiant un chargement, aller-retour serveurs, l'utilisation de techniques de templates clients (Handlebars, et bien d'autres) instrumenté via JSON pour limiter les informations au strict nécessaire, permettent d'améliorer la rapidité et donc la satisfaction de l'utilisateur.</p>
+
+<p>Fini les aller-retours pour cocher une case à cocher, fini les aller-retours pour valider un formulaire, fini les allés-retours pour changer un CSS, le Javascript est la pour ça.</p>
+
+<h2>Conception offline</h2>
+
+<p>Cette approche permet un développement centré sur l'IHM, c-à-d ce qui va être le plus jugé par l'utilisateur final. Il est conseillé de concevoir l'application JavaScript comme une application Offline puis la connecté à l'infrastructure via les DataServices.</p>
+
+<p>Ce modèle fait que l'application devient cliente de l'infrastructure, ce qui permet d'avoir une infrastructure ouverte et extensible.</p>
+
+<p>J'ai essayé de garder un point objectif sur mon utilisation de Backbone.js, dons le cadre d'une migration de socle applicatif. J'espère vous avoir donné quelques éléments permettant de vous préparer, si comme moi vous êtes aussi fou pour tenter la migration (Mais bon je suis loin d'avoir fini, prochaine étape : les websockets pour élminer le polling !). </p>
+
+<h1>Conclusion</h1>
+
+<p>La migration d'une application Web 1.5, vers une application Web 2.5 (2.0 + HTML5) permet d'améliorer dans un premier temps la satisfaction du client, via une expérience utilisateur plus proche de lui, mais aussi la satisfaction du développeur souvent négligée au profit de la satisfaction du client.</p>
+
+<p>L'introduction de &ldquo;Backbone.js And Friends&rdquo; dans les projets n'est pas simple du fait de la frilosité des entreprises à investir sur des technologies nouvelles. Choses assez paradoxales puisque ces mêmes entreprises vont investir sur le HTML5, qui je rappelle est une technologie encore en cours de spécification. Pour moi, Backbone.js, *.js sont issues de la génèse de HTML5, et je pense qu'on a pas fini d'en voir.</p>
+
+<p>J'avoue être curieux, et admiratif de toutes ces personnalités émérgentes du HTML5 et dérivés, je pense à <a href="http://addyosmani.com/blog/">Addy Osmani</a> (<a href="http://yeoman.io/">Yeoman</a> c'est pour quand ?), <a href="https://github.com/jashkenas/">Jeremy Ashkenas</a>, <a href="http://ejohn.org/">John Resig</a>, et bien d'autres. Et je me pose une question simple utilisez vous vos propres technologies ? ou deviennent elles publiques par manquent de confiance de vos sociétés respectives ? (TROOOOOLLLLLLLLLLL) </p>
+
+<p>En tout cas merci !</p>
+</div></div></div></article></section><section id="related"><div class="row"><div class="offset2 span10"><h3>Autre(s) article(s)</h3><ul><li><span>2012 avr. 06</span>&nbsp;&raquo;&nbsp;<a href="/articles/2012-04-06-iced-coffeescript-minification.html">[Iced]CoffeeScript minification</a></li><li><span>2012 avr. 07</span>&nbsp;&raquo;&nbsp;<a href="/articles/2012-04-07-backbone-dot-js-and-coffeescript.html">Backbone.js &amp; CoffeeScript</a></li><li><span>2012 août 05</span>&nbsp;&raquo;&nbsp;<a href="/articles/2012-08-05-generation-de-hash-conforme-owasp.html">Génération de Hash conforme OWASP</a></li><li><span>2012 août 05</span>&nbsp;&raquo;&nbsp;<a href="/articles/2012-08-05-verifier-un-rio.html">Vérifier un RIO</a></li><li><span>2012 août 14</span>&nbsp;&raquo;&nbsp;<a href="/articles/2012-08-14-backbone-dot-js-iterablemodel.html">Backbone.js : IterableModel</a></li></ul></div></div></section><section id="comments"><div class="row"><div class="offset2 span10"><h3>Commentaire(s)</h3><div id="disqus_thread" class="well"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'zenithar';
+    var disqus_identifier = '/articles/2012-08-06-8-mois-avec-backbone-dot-js-et-ca-dure.html';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></section></div></div><footer class="footer"><div class="container"><div class="row"><p>Copyright &copy; 2005-2013 Thibault NORMAND, motorisé par <a href="https://github.com/balupton/docpad">Docpad</a>, versionné par <a href="https://github.com/Zenithar/zenithar.docpad">Github</a>.</p></div></div></footer><!--DISQUS--><script>var disqus_shortname = 'zenithar';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());</script><!--GA--><script>if( 'http://www.zenithar.org' === 'http://' + window.location.hostname ) {
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8114245-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}</script></body></html>
