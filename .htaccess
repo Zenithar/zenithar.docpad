@@ -1,0 +1,3 @@
+Options -Indexes
+Redirect permanent /articles http://blog.zenithar.org/articles
+Redirect permanent /site http://blog.zenithar.org/site

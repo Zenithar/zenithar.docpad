@@ -33,7 +33,7 @@ docpadConfig = {
         # Specify some site properties
         site:
             # The production url of our website
-            url: "http://www.zenithar.org"
+            url: "http://blog.zenithar.org"
 
             # The default title of our website
             title: "Il existe moins bien mais c'est plus cher !"
