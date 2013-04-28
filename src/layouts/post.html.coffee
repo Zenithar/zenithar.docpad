@@ -46,7 +46,10 @@ section '.content', ->
     # Author & Info
     div '.row', ->
       div '.offset2.span10.modern-font.small-font.muted', ->
-        text @layout 'article-footer', @documentModel
+        text @partial 'article-footer.html.coffee', {
+          document: @documentModel,
+          helper: @helper
+        }
     # Content Container
     div '.row', ->
       div '.span2', ->

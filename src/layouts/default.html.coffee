@@ -33,7 +33,7 @@ html lang: 'fr', ->
     comment '[if lt IE 9]>\n        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>\n    <![endif]'
     comment 'Styles'
 
-    link rel: 'stylesheet', href: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css', media: 'screen, projection'
+    link rel: 'stylesheet', href: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css', media: 'screen, projection'
     link rel: 'stylesheet', href: '/styles/style.css', media: 'screen, projection'
     link rel: 'stylesheet', href: '/styles/markdown.css', media: 'screen, projection'
     link rel: 'stylesheet', href: 'http://yandex.st/highlightjs/7.3/styles/github.min.css', media: 'screen, projection'
@@ -44,10 +44,10 @@ html lang: 'fr', ->
 
     comment 'Scripts'
 
-    script src: '//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js'
+    script src: '//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js'
     script src: '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js'
     script src: "//connect.facebook.net/fr_FR/all.js#xfbml=1"
-    script src: '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js'
+    script src: '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/bootstrap.min.js'
 
     #text @blocks.scripts.join('')
 

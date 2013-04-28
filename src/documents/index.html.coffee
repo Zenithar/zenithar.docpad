@@ -27,7 +27,7 @@ section '.content.articles', ->
         # Author & Info
         div '.row.subtitle', ->
           div '.offset2.span10.modern-font.small-font.muted', ->
-            text @layout 'article-footer', document
+            text @partial 'article-footer.html.coffee', { document: document, helper: @helper }
         if i > 3
           return
         # First paragraph
