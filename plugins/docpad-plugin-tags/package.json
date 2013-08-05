@@ -1,9 +1,10 @@
 {
 	"name": "docpad-plugin-tags",
-	"version": "0.1.0",
+	"version": "2.0.0",
 	"description": "for tags",
 	"homepage": "https://github.com/dogfeet/dogfeet.docpad",
 	"keywords": [
+		"docpad",
 		"docpad-plugin"
 	],
 	"author": {
@@ -37,8 +38,13 @@
 	},
 	"dependencies": {
 	},
+  	"devDependencies": {
+    	"coffee-script": "~1.6.2",
+    	"docpad": ">=6.37 <7"
+  	},
 	"engines" : {
-		"node": ">=0.6.0"
+		"node": ">=0.8",
+    	"docpad": ">=6"
 	},
 	"bin": {
 		"docpad": "./bin/docpad"
@@ -46,5 +52,5 @@
 	"directories": {
 		"lib": "."
 	},
-	"main": "./tags.plugin.coffee"
+	"main": "./tags.plugin.js"
 }

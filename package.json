@@ -33,23 +33,23 @@
     "underscore": "latest",
     "coffee-script": "latest",
     "highlight.js": "latest",
-    "docpad": "6.x",
-    "docpad-plugin-eco": "2.x",
-    "docpad-plugin-coffee": "2.x",
-    "docpad-plugin-coffeescript": "2.x",
-    "docpad-plugin-less": "2.x",
-    "docpad-plugin-robotskirt": "2.x",
-    "docpad-plugin-partials": "2.x",
-    "docpad-plugin-stylus": "2.x",
-    "docpad-plugin-jade": "2.x",
-    "docpad-plugin-text": "2.x",
-    "docpad-plugin-related": "2.x",
-    "docpad-plugin-highlightjs": "~2.1.1",
-    "docpad-plugin-uglify": "latest",
-    "docpad-plugin-ghpages": "~2.0.0"
+    "docpad": "~6.48.0",
+    "docpad-plugin-eco": "~2.0.2",
+    "docpad-plugin-coffee": "~2.0.2",
+    "docpad-plugin-coffeescript": "~2.2.2",
+    "docpad-plugin-less": "~2.2.0",
+    "docpad-plugin-robotskirt": "~2.0.3",
+    "docpad-plugin-partials": "~2.7.2",
+    "docpad-plugin-stylus": "~2.4.0",
+    "docpad-plugin-jade": "~2.5.0",
+    "docpad-plugin-text": "~2.2.4",
+    "docpad-plugin-related": "~2.0.5",
+    "docpad-plugin-highlightjs": "~2.1.7",
+    "docpad-plugin-uglify": "~2.2.0",
+    "docpad-plugin-ghpages": "~2.3.0"
   },
   "devDependencies": {
-    "docpad-plugin-livereload": "2.x"
+    "docpad-plugin-livereload": "~2.5.1"
   },
   "main": "node_modules/docpad/bin/docpad-server"
 }

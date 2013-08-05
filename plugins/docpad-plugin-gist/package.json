@@ -1,6 +1,6 @@
 {
 	"name": "docpad-plugin-gist",
-	"version": "0.1.0",
+	"version": "2.0.0",
 	"description": "for composition layout",
 	"homepage": "https://github.com/balupton/docpad",
 	"keywords": [
@@ -41,7 +41,8 @@
 	"dependencies": {
 	},
 	"engines" : {
-		"node": ">=0.6.0"
+		"node": ">=0.8",
+		"docpad": ">=6"
 	},
 	"bin": {
 		"docpad": "./bin/docpad"
