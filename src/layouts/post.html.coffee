@@ -38,21 +38,21 @@ section '.content', ->
   article "#post.post", typeof: 'sioc:post', about: "#{@document.url}", lang: 'fr-fr', ->
     # Date & Title
     div '.row', ->
-      div '.span2.muted.modern-font.small-font', ->
+      div '.col-lg-2.muted.modern-font.small-font', ->
         span property: 'dc:created', ->
           @helper.formatDate( @document.date ) + ' &raquo;'
-      div '.span10', ->
+      div '.col-lg-10', ->
         h1 property: 'dcterms:title', "#{@document.title}"
     # Author & Info
     div '.row', ->
-      div '.offset2.span10.modern-font.small-font.muted', ->
+      div '.col-offset-2.col-lg-10.modern-font.small-font.muted', ->
         text @partial 'article-footer.html.coffee', {
           document: @documentModel,
           helper: @helper
         }
     # Content Container
     div '.row', ->
-      div '.span2', ->
+      div '.col-lg-2', ->
         # Social Button
         style rel: 'stylesheet', media: 'screen, projection', scoped: 'scoped', ->
           """
@@ -73,14 +73,14 @@ section '.content', ->
             li -> div '.fb-like', 'data-href': articleUrl, 'data-send': 'false', 'data-layout': 'button_count', 'data-show-faces': 'false'
         # / Social Button
 
-      div '.span10', ->
+      div '.col-lg-10', ->
         # Content
         div property: 'sioc:content', -> "#{@content}"
 # relatedDocuments
 if @document.relatedDocuments.length > 0
   section '#related', ->
     div '.row', ->
-      div '.offset2.span10', ->
+      div '.col-offset-2.col-lg-10', ->
         h3 'Autre(s) article(s)'
         ul ->
           @document.relatedDocuments.forEach (document)->
@@ -92,7 +92,7 @@ if @document.relatedDocuments.length > 0
 # Comments
 section '#comments', ->
   div '.row', ->
-    div '.offset2.span10', ->
+    div '.col-offset-2.col-lg-10', ->
       h3 'Commentaire(s)'
       text """
         <div id="disqus_thread" class="well"></div>

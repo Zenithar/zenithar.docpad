@@ -10,7 +10,7 @@ to =
     it
 
 ## for locally access
-    
+
 authors =
   'zenithar':
     name: 'Thibault NORMAND'
@@ -84,7 +84,7 @@ docpadConfig = {
               return to.value(author.page) if author.hasOwnProperty( 'page' )
               """<a href="https://twitter.com/#{author.twitter}/">#{author.name}</a>"""
             ).join ', '
-            
+
           genTwitter: (names) ->
             ret = []
             names = "zenithar" unless names?
@@ -153,7 +153,7 @@ docpadConfig = {
 
         # Ammend our Template Data
         renderBefore: ({collection, templateData}, next) ->
-            #sorting documents 
+            #sorting documents
             collection.comparator = (model) ->
                 -model.get('date').getTime()
             collection.sort()
@@ -186,9 +186,11 @@ docpadConfig = {
             #for hash tag·
             out = out.replace /(^|[ \t]+)#([a-zA-Z0-9]+)/g, (whole, m1, m2) ->
               hash m1 + '<a href="/site/tagmap.html#' + m2 + '">#' + m2 + '</a>'
-              
-            out
 
+            out
+  environments:
+    w:
+      ignoreCustomPatterns: /2005|2006|2007|2008|2009|2010|2011|2012/
 }
 
 

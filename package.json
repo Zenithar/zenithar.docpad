@@ -33,7 +33,7 @@
     "underscore": "latest",
     "coffee-script": "latest",
     "highlight.js": "latest",
-    "docpad": "~6.48.0",
+    "docpad": "~6.49.0",
     "docpad-plugin-eco": "~2.0.2",
     "docpad-plugin-coffee": "~2.0.2",
     "docpad-plugin-coffeescript": "~2.2.2",

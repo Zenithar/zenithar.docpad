@@ -33,7 +33,7 @@ html lang: 'fr', ->
     comment '[if lt IE 9]>\n        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>\n    <![endif]'
     comment 'Styles'
 
-    link rel: 'stylesheet', href: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css', media: 'screen, projection'
+    link rel: 'stylesheet', href: '//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css', media: 'screen, projection'
     link rel: 'stylesheet', href: '/styles/style.css', media: 'screen, projection'
     link rel: 'stylesheet', href: '/styles/markdown.css', media: 'screen, projection'
     link rel: 'stylesheet', href: 'http://yandex.st/highlightjs/7.3/styles/github.min.css', media: 'screen, projection'
@@ -44,34 +44,36 @@ html lang: 'fr', ->
 
     comment 'Scripts'
 
-    script src: '//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js'
+    script src: '//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js'
+    script src: '//cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.min.js'
     script src: '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js'
     script src: "//connect.facebook.net/fr_FR/all.js#xfbml=1"
-    script src: '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/bootstrap.min.js'
+    script src: '//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js'
 
     #text @blocks.scripts.join('')
 
   body ->
     comment 'Topbar'
     div '.navbar.navbar-static-top', ->
-      div '.navbar-inner', ->
-        div '.container', ->
-          a '.btn.btn-navbar.pull-right', 'data-toggle':'collapse', 'data-target':'.nav-collapse', ->
-              span '.icon-bar', ''
-              span '.icon-bar', ''
-              span '.icon-bar', ''
+      div '.container', ->
+        button '.navbar-toggle', 'type':'button', 'data-toggle':'collapse', 'data-target':'.navbar-responsive-collapse', ->
+          span '.icon-bar', ''
+          span '.icon-bar', ''
+          span '.icon-bar', ''
 
-          a '.brand', href: '/', 'Zenithar.org'
-          div '.nav-collapse.collapse', ->
-            ul '.nav', ->
-              li -> a href: '/site/tagmap.html', 'Tagmap'
-              li -> a href: '/site/archive.html', 'Archives'
-              li -> a href: 'http://zenithar.org', rel: 'me', 'CV'
-              li -> a href: 'http://feeds.feedburner.com/ZenitharOrg', ->
-                img src: '/images/rss_32.png', style: 'width: 24px'
-            form '#search-form.pull-right.navbar-search', action: 'http://google.com/search', method: 'get', ->
-              input type: 'hidden', name: 'q', value: 'site:www.zenithar.org'
-              input 'search-query', type: 'text', name: 'q', results: '0', placeholder: 'Search'
+        a '.navbar-brand', href: '/', 'Zenithar.org'
+
+        div '.nav-collapse.collapse.navbar-responsive-collapse', ->
+          ul '.nav.navbar-nav', ->
+            li -> a href: '/site/tagmap.html', 'Tagmap'
+            li -> a href: '/site/archive.html', 'Archives'
+            li -> a href: 'http://zenithar.org', rel: 'me', 'CV'
+            li -> a href: 'http://feeds.feedburner.com/ZenitharOrg', ->
+              img src: '/images/rss_32.png', style: 'width: 24px'
+
+          form '#search-form.navbar-form.pull-right', action: 'http://google.com/search', method: 'get', ->
+            input type: 'hidden', name: 'q', value: 'site:www.zenithar.org'
+            input '#search-query.form-control', type: 'text', name: 'q', results: '0', placeholder: 'Search'
 
     comment 'Markup'
     div '.container', ->

@@ -4,9 +4,9 @@ date: '2000-1-1'
 ---
 div style: 'display:none', -> h1 'Zenithar.org'
 
-div '.row.hidden-phone.well', style: 'padding: 5px; margin-top: 15px;', ->
+div '.row.hidden-sm.well', style: 'padding: 5px; margin-top: 15px;', ->
   div '.header', style: 'background-color: #000; text-align: center;', ->
-    img src: '/images/header.png'
+    img '.img-responsive', src: '/images/header.png'
 
 # Articles
 section '.content.articles', ->
@@ -19,23 +19,23 @@ section '.content.articles', ->
       article '.articles-item', style: 'padding-bottom: 1em;', ->
         # Date & Title
         div '.row.title', ->
-          div '.span2.muted.modern-font.small-font', ->
+          div '.col-lg-2.muted.modern-font.small-font', ->
             span property: 'dc:created', ->
               @helper.formatDate( document.get('date') ) + ' &raquo;'
-          div '.span10', ->
+          div '.col-lg-10', ->
             a '.index-article-title', href: document.get('url'), -> document.get('title')
         # Author & Info
         div '.row.subtitle', ->
-          div '.offset2.span10.modern-font.small-font.muted', ->
+          div '.col-offset-2.col-lg-10.modern-font.small-font.muted', ->
             text @partial 'article-footer.html.coffee', { document: document, helper: @helper }
         if i > 3
           return
         # First paragraph
-        div '.row.hidden-phone.content', ->
-          div '.offset2.span10', ->
+        div '.row.hidden-sm.content', ->
+          div '.col-offset-2.col-lg-10', ->
             if document.get('contentRenderedWithoutLayouts')
               text '<br/>'
               text @tool.summary document.get('contentRenderedWithoutLayouts')
             p -> a '.btn', href: document.get('url'), 'Suite &raquo;'
 
-  div '.row', -> p '.offset2.span10', -> a '.btn.btn-mini.info.right', href: '/site/archive.html', 'Archives &raquo;'
+  div '.row', -> p '.col-offset-2.col-lg-10', -> a '.btn.btn-small.info.right', href: '/site/archive.html', 'Archives &raquo;'
